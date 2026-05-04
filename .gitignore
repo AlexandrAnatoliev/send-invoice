@@ -1,2 +1,4 @@
 .php-cs-fixer.dist.php
 .todo
+vendor/
+.php-cs-fixer.cache
