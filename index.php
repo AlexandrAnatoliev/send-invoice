@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-require_once 'classes/Card.php';
+require_once 'src/Card.php';
 use sendInvoice\Card;
 
 $card = new Card();
