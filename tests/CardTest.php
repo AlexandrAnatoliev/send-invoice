@@ -45,4 +45,20 @@ class CardTest extends TestCase
         $this->assertStringNotContainsString('data-name="123456"', $html);
         $this->assertStringContainsString('data-name="Тестовый товар"', $html);
     }
+
+    public function testGetCardCSSWhenFileExists(): void
+    {
+        $this->assertFileExists($this->card->css);
+        $cssTag = $this->card->getCardCSS();
+
+        $this->assertStringStartsWith('<style>', $cssTag);
+        $this->assertStringEndsWith('</style>', $cssTag);
+        $this->assertNotEmpty(trim(strip_tags($cssTag))); // внутри есть CSS-код
+    }
+
+    public function testGetCardCSSWhenFileNotExists(): void
+    {
+        $this->card->css = '/nonexistent/file.css';
+        $this->assertSame('<style></style>', $this->card->getCardCSS());
+    }
 }
