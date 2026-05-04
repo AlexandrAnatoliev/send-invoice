@@ -12,7 +12,7 @@ declare(strict_types=1);
   <link rel="stylesheet" href="styles/index.css">
 </head>
 <body>
-    <div class="calculator"> 
+    <div class="calculator">
         <h1>Калькулятор услуг</h1>
         <form id="orderForm" action="checkout.php" method="post">
             <!-- Блок выбора основного тарифа (Радио) -->
