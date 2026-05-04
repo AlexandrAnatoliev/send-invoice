@@ -20,17 +20,16 @@ class Card
 
     public function getCard(): string
     {
-        $label = '
+        return '
           <label class="card">
-      <input type="radio" name="itemName" 
-              value="' . $this->name . '" 
-              data-price="' . $this->price . '" 
-              data-name="' . htmlspecialchars($this->price) . '" 
-              required>
+            <input type="radio" name="itemName" 
+                    value="' . $this->name . '" 
+                    data-price="' . $this->price . '" 
+                    data-name="' . htmlspecialchars($this->price) . '" 
+                    required>
             <img src="' . $this->image . '" alt="' . $this->name . '">
             <span class="title">' . $this->name . '</span>
             <span class="price">' . number_format($this->price, 0, ',', ' ') . ' ₽</span>
           </label>';
-        return $label;
     }
 }
