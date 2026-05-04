@@ -24,5 +24,5 @@
 * Покрытие тестами
 
 ```
-./vendor/bin/phpunit --coverage-html coverage tests
+ > ./vendor/bin/phpunit --coverage-html coverage --coverage-filter src tests
 ```

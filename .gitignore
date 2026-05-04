@@ -2,3 +2,4 @@
 .todo
 vendor/
 .php-cs-fixer.cache
+coverage
