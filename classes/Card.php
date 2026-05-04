@@ -22,10 +22,10 @@ class Card
     {
         return '
           <label class="card">
-            <input type="radio" name="itemName" 
-                    value="' . $this->name . '" 
-                    data-price="' . $this->price . '" 
-                    data-name="' . htmlspecialchars($this->price) . '" 
+            <input type="radio" name="itemName"
+                    value="' . $this->name . '"
+                    data-price="' . $this->price . '"
+                    data-name="' . htmlspecialchars($this->price) . '"
                     required>
             <img src="' . $this->image . '" alt="' . $this->name . '">
             <span class="title">' . $this->name . '</span>
