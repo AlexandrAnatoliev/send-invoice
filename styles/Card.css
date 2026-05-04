@@ -1,0 +1,52 @@
+.card { 
+  flex: 1; 
+  min-width: 160px; 
+  border: 2px solid #ddd; 
+  border-radius: 16px; 
+  padding: 20px 10px; 
+  text-align: center; 
+  cursor: pointer; 
+  background: #fff;
+  transition: all 0.2s; 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center;
+}
+
+.card.small { 
+  min-width: 120px; 
+}
+
+.card img { 
+  width: 100px; 
+  height: 100px; 
+  object-fit: cover; 
+  border-radius: 50%; 
+  margin-bottom: 10px; 
+  background: #f0f0f0; 
+}
+
+.card .title { 
+  font-weight: bold; 
+  margin: 5px 0; 
+}
+
+.card .price { 
+  font-size: 1.2rem; 
+  color: #27ae60; 
+  font-weight: bold; 
+}
+
+.card input { 
+  display: none; 
+}
+
+.card:hover { 
+  border-color: #3498db; 
+}
+
+.card:has(input:checked) { 
+  border-color: #3498db; 
+  background: #ebf5ff; 
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2); 
+}
