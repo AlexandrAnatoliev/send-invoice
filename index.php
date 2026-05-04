@@ -2,6 +2,14 @@
 
 declare(strict_types=1);
 
+require_once 'classes/Card.php';
+use sendInvoice\Card;
+
+$card = new Card();
+$card->name = 'name1';
+$card->css = 'styles/Card.css';
+$card->price = 123;
+$card->image = 'img/Card/ocean_pen.jpg';
 ?>
 
 <!DOCTYPE html>
@@ -18,6 +26,8 @@ declare(strict_types=1);
             <!-- Блок выбора основного тарифа (Радио) -->
             <h2>1. Выберите сувенир</h2>
             <div class="radio-group">
+              <?= $card->getCardCSS() ?>
+              <?= $card->getCard() ?>
             </div>
         </form>
     </div>
