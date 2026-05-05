@@ -6,7 +6,7 @@ class Card
 {
     protected const CSS = 'styles/Card.css';
     protected string $name;
-    public int $price;
+    protected int $price;
     public string $image;
 
     public function __construct(
@@ -24,6 +24,11 @@ class Card
         return $this->name;
     }
 
+    public function getPrice(): int
+    {
+        return $this->price;
+    }
+
     public static function getCardCSS(): string
     {
         $cssContent = '';
@@ -39,12 +44,12 @@ class Card
           <label class="card">
             <input type="radio" name="itemName"
                     value="' . $this->getName() . '"
-                    data-price="' . $this->price . '"
+                    data-price="' . $this->getPrice() . '"
                     data-name="' . htmlspecialchars($this->getName()) . '"
                     required>
             <img src="' . $this->image . '" alt="' . $this->getName() . '">
             <span class="title">' . $this->getName() . '</span>
-            <span class="price">' . number_format($this->price, 0, ',', ' ') . ' ₽</span>
+            <span class="price">' . number_format($this->getPrice(), 0, ',', ' ') . ' ₽</span>
           </label>';
     }
 }
