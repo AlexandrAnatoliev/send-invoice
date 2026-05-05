@@ -7,7 +7,7 @@ class Card
     protected const CSS = 'styles/Card.css';
     protected string $name;
     protected int $price;
-    public string $image;
+    protected string $image;
 
     public function __construct(
         string $name,
@@ -29,6 +29,11 @@ class Card
         return $this->price;
     }
 
+    public function getImage(): string
+    {
+        return $this->image;
+    }
+
     public static function getCardCSS(): string
     {
         $cssContent = '';
@@ -47,7 +52,7 @@ class Card
                     data-price="' . $this->getPrice() . '"
                     data-name="' . htmlspecialchars($this->getName()) . '"
                     required>
-            <img src="' . $this->image . '" alt="' . $this->getName() . '">
+            <img src="' . $this->getImage() . '" alt="' . $this->getName() . '">
             <span class="title">' . $this->getName() . '</span>
             <span class="price">' . number_format($this->getPrice(), 0, ',', ' ') . ' ₽</span>
           </label>';
