@@ -3,7 +3,7 @@
   <h1>send-invoice: Калькулятор заказа с генерацией счёта и отправкой на email</h1>
 
   ![Stars](https://img.shields.io/github/stars/AlexandrAnatoliev/send-invoice.svg?style=flat)
-  ![Version 0.4.1](https://img.shields.io/badge/Version-0.4.1-orange.svg)
+  ![Version 0.5.0](https://img.shields.io/badge/Version-0.4.1-orange.svg)
   ![Forks](https://img.shields.io/github/forks/AlexandrAnatoliev/send-invoice.svg?style=flat)
   ![GitHub repo size](https://img.shields.io/github/repo-size/AlexandrAnatoliev/send-invoice)
   
@@ -35,19 +35,21 @@
 .
 ├── composer.json
 ├── composer.lock
-├── coverage
-├── img
-│   └── Card
-│       └── ocean_pen.jpg
+├── coverage/
+├── img/
+│   └── Card/
+│       ├── lychee_pen.jpg
+│       ├── ocean_pen.jpg
+│       └── senator_pen.jpg
 ├── index.php
 ├── README.md
-├── src
-│   └── Card.php
-├── styles
-│   ├── Card.css
+├── src/
+│   └── Item.php
+├── styles/
+│   ├── Item.css
 │   └── index.css
 ├── tests
-│   └── CardTest.php
+│   └── ItemTest.php
 └── vendor
     ├── autoload.php
     ├── bin
