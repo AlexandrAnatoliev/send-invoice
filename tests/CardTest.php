@@ -14,11 +14,12 @@ class CardTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->card = new Card();
-        $this->card->name = 'Тестовый товар';
-        $this->card->price = 123456;
-        $this->card->image = 'img/test.jpg';
-        $this->card->css = __DIR__ . '/../styles/Card.css';
+        $this->card = new Card(
+            'Тестовый товар',
+            __DIR__ . '/../styles/Card.css',
+            123456,
+            'img/test.jpg',
+        );
     }
 
     public function testGetCardReturnsValidHtml(): void

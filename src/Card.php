@@ -9,6 +9,18 @@ class Card
     public int $price;
     public string $image;
 
+    public function __construct(
+        string $name,
+        string $css,
+        int $price,
+        string $image,
+    ) {
+        $this->name = $name;
+        $this->css = $css;
+        $this->price = $price;
+        $this->image = $image;
+    }
+
     public function getCardCSS(): string
     {
         $cssContent = '';
