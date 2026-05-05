@@ -16,7 +16,6 @@ class CardTest extends TestCase
     {
         $this->card = new Card(
             'Тестовый товар',
-            __DIR__ . '/../styles/Card.css',
             123456,
             'img/test.jpg',
         );
@@ -47,19 +46,11 @@ class CardTest extends TestCase
         $this->assertStringContainsString('data-name="Тестовый товар"', $html);
     }
 
-    public function testGetCardCSSWhenFileExists(): void
+    public function testGetCardCSSReturnsValidStyleTag(): void
     {
-        $this->assertFileExists($this->card->css);
-        $cssTag = $this->card->getCardCSS();
-
+        $cssTag = Card::getCardCSS();
         $this->assertStringStartsWith('<style>', $cssTag);
         $this->assertStringEndsWith('</style>', $cssTag);
-        $this->assertNotEmpty(trim(strip_tags($cssTag))); // внутри есть CSS-код
-    }
-
-    public function testGetCardCSSWhenFileNotExists(): void
-    {
-        $this->card->css = '/nonexistent/file.css';
-        $this->assertSame('<style></style>', $this->card->getCardCSS());
+        $this->assertNotEmpty(trim(strip_tags($cssTag)));
     }
 }
