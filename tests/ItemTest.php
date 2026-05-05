@@ -69,4 +69,17 @@ class ItemTest extends TestCase
             'HTML must use CSS class "item" matching the renamed class.',
         );
     }
+
+    public function testGetItemCSSReturnsStyleTagWithContent(): void
+    {
+        $css = Item::getItemCSS();
+
+        $this->assertStringStartsWith('<style>', $css);
+        $this->assertStringEndsWith('</style>', $css);
+
+        $inner = substr($css, 7, -8);
+        $this->assertNotEmpty($inner, 'CSS content should not be empty when the file exists.');
+        // Если ожидаете конкретный контент, проверьте дополнительно:
+        $this->assertStringContainsString('.item', $inner, 'CSS should contain a rule for .item class.');
+    }
 }
