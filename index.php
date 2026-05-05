@@ -5,11 +5,12 @@ declare(strict_types=1);
 require_once 'src/Card.php';
 use sendInvoice\Card;
 
-$card = new Card();
-$card->name = 'name1';
-$card->css = 'styles/Card.css';
-$card->price = 123;
-$card->image = 'img/Card/ocean_pen.jpg';
+$card = new Card(
+    'name1',
+    'styles/Card.css',
+    123,
+    'img/Card/ocean_pen.jpg',
+);
 ?>
 
 <!DOCTYPE html>
