@@ -62,14 +62,44 @@
     └── theseer
 ```
 
+<div align="center">
+  <h3>Структура классов</h3>
+</div>
+```mermaid
+classDiagram
+  
+  class Card.php {
+    - name: string
+    - price: int
+    - image: string
+    + getName(): string
+    + getPrice(): string
+    + getImage(): string
+  }
+
+  class Item.php {
+    - const CSS: 'styles/Item.css'
+    + Item(name: string, price: int, image: string)
+    + static getItemCSS(): string
+    + getItem(): string
+  }
+
+  Card.php <|-- Item.php
+
+```
+
 * Запуск тестов:
 
 ```
+
 ./vendor/bin/phpunit tests
+
 ```
 
 * Покрытие тестами
 
 ```
+
  > ./vendor/bin/phpunit --coverage-html coverage --coverage-filter src tests
+
 ```
