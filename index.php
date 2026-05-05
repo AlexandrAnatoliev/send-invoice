@@ -6,19 +6,19 @@ require_once 'src/Card.php';
 use sendInvoice\Card;
 
 $card1 = new Card(
-    'name1',
-    123,
+    'Ocean',
+    16,
     'img/Card/ocean_pen.jpg',
 );
 $card2 = new Card(
-    'name2',
-    123456,
-    'img/Card/ocean_pen.jpg',
+    'Senator',
+    19,
+    'img/Card/senator_pen.jpg',
 );
 $card3 = new Card(
-    'name3',
-    123456789,
-    'img/Card/ocean_pen.jpg',
+    'Lychee',
+    15,
+    'img/Card/lychee_pen.jpg',
 );
 ?>
 
