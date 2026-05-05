@@ -2,6 +2,8 @@
 
 namespace sendInvoice;
 
+require_once __DIR__ . '/Card.php';
+
 /**
  * Item represents a product card for the order calculator.
  *
@@ -11,12 +13,9 @@ namespace sendInvoice;
  *
  * @package sendInvoice
  */
-class Item
+class Item extends Card
 {
     protected const CSS = 'styles/Item.css';
-    protected string $name;
-    protected int $price;
-    protected string $image;
 
     /**
      * Create a new Item instance.
@@ -30,24 +29,7 @@ class Item
         int $price,
         string $image,
     ) {
-        $this->name = $name;
-        $this->price = $price;
-        $this->image = $image;
-    }
-
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    public function getPrice(): int
-    {
-        return $this->price;
-    }
-
-    public function getImage(): string
-    {
-        return $this->image;
+        parent::__construct($name, $price, $image);
     }
 
     /**
