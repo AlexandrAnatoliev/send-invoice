@@ -37,7 +37,7 @@
 ├── composer.lock
 ├── coverage/
 ├── img/
-│   └── Card/
+│   └── Item/
 │       ├── lychee_pen.jpg
 │       ├── ocean_pen.jpg
 │       └── senator_pen.jpg
