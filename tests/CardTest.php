@@ -35,7 +35,7 @@ class CardTest extends TestCase
 
         // Проверяем data-атрибуты
         $this->assertStringContainsString('data-price="123456"', $html);
-        $this->assertStringContainsString('data-name="' . htmlspecialchars($this->card->name) . '"', $html);
+        $this->assertStringContainsString('data-name="' . htmlspecialchars($this->card->getName()) . '"', $html);
     }
 
     public function testDataNameShouldBeProductNameNotPrice(): void

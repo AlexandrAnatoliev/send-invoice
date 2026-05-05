@@ -4,10 +4,10 @@ namespace sendInvoice;
 
 class Card
 {
-    public const CSS = 'styles/Card.css';
-    public string $name;
-    public int $price;
-    public string $image;
+    protected const CSS = 'styles/Card.css';
+    protected string $name;
+    protected int $price;
+    protected string $image;
 
     public function __construct(
         string $name,
@@ -17,6 +17,21 @@ class Card
         $this->name = $name;
         $this->price = $price;
         $this->image = $image;
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function getPrice(): int
+    {
+        return $this->price;
+    }
+
+    public function getImage(): string
+    {
+        return $this->image;
     }
 
     public static function getCardCSS(): string
@@ -33,13 +48,13 @@ class Card
         return '
           <label class="card">
             <input type="radio" name="itemName"
-                    value="' . $this->name . '"
-                    data-price="' . $this->price . '"
-                    data-name="' . htmlspecialchars($this->name) . '"
+                    value="' . $this->getName() . '"
+                    data-price="' . $this->getPrice() . '"
+                    data-name="' . htmlspecialchars($this->getName()) . '"
                     required>
-            <img src="' . $this->image . '" alt="' . $this->name . '">
-            <span class="title">' . $this->name . '</span>
-            <span class="price">' . number_format($this->price, 0, ',', ' ') . ' ₽</span>
+            <img src="' . $this->getImage() . '" alt="' . $this->getName() . '">
+            <span class="title">' . $this->getName() . '</span>
+            <span class="price">' . number_format($this->getPrice(), 0, ',', ' ') . ' ₽</span>
           </label>';
     }
 }
