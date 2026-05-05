@@ -45,4 +45,12 @@ class CardTest extends TestCase
         $this->assertStringNotContainsString('data-name="123456"', $html);
         $this->assertStringContainsString('data-name="Тестовый товар"', $html);
     }
+
+    public function testGetCardCSSReturnsValidStyleTag(): void
+    {
+        $cssTag = Card::getCardCSS();
+        $this->assertStringStartsWith('<style>', $cssTag);
+        $this->assertStringEndsWith('</style>', $cssTag);
+        $this->assertNotEmpty(trim(strip_tags($cssTag)));
+    }
 }
