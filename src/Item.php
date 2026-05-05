@@ -3,9 +3,9 @@
 namespace sendInvoice;
 
 /**
- * Item represents a product card for the order calculator.
+ * Item represents a product item for the order calculator.
  *
- * Each card includes a name, price,
+ * Each item includes a name, price,
  * and an image path. It can render itself as an HTML radio-button label
  * and provides static CSS injection.
  *
@@ -51,7 +51,7 @@ class Item
     }
 
     /**
-     * Return a <style> tag with the contents of the card CSS file.
+     * Return a <style> tag with the contents of the item CSS file.
      *
      * If the file does not exist, an empty <style> tag is returned.
      *
@@ -67,18 +67,18 @@ class Item
     }
 
     /**
-     * Render the card as an HTML label containing a radio input.
+     * Render the item as an HTML label containing a radio input.
      *
      * The radio element carries data-price (raw integer) and data-name
      * (HTML-escaped) attributes for JavaScript consumption. The visible
      * price is formatted with a thousands separator and the Ruble sign.
      *
-     * @return HTML markup of the card
+     * @return HTML markup of the item
      */
     public function getItem(): string
     {
         return '
-          <label class="card">
+          <label class="item">
             <input type="radio" name="itemName"
                     value="' . $this->getName() . '"
                     data-price="' . $this->getPrice() . '"

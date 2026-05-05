@@ -5,17 +5,17 @@ declare(strict_types=1);
 require_once 'src/Item.php';
 use sendInvoice\Item;
 
-$card1 = new Item(
+$item1 = new Item(
     'Ocean',
     16,
     'img/Item/ocean_pen.jpg',
 );
-$card2 = new Item(
+$item2 = new Item(
     'Senator',
     19,
     'img/Item/senator_pen.jpg',
 );
-$card3 = new Item(
+$item3 = new Item(
     'Lychee',
     15,
     'img/Item/lychee_pen.jpg',
@@ -37,9 +37,9 @@ $card3 = new Item(
             <h2>1. Выберите сувенир</h2>
             <div class="radio-group">
               <?= Item::getItemCSS() ?>
-              <?= $card1->getItem() ?>
-              <?= $card2->getItem() ?>
-              <?= $card3->getItem() ?>
+              <?= $item1->getItem() ?>
+              <?= $item2->getItem() ?>
+              <?= $item3->getItem() ?>
             </div>
         </form>
     </div>

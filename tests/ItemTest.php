@@ -10,11 +10,11 @@ use sendInvoice\Item;
 
 class ItemTest extends TestCase
 {
-    private Item $card;
+    private Item $item;
 
     protected function setUp(): void
     {
-        $this->card = new Item(
+        $this->item = new Item(
             'Тестовый товар',
             123456,
             'img/test.jpg',
@@ -23,10 +23,10 @@ class ItemTest extends TestCase
 
     public function testGetItemReturnsValidHtml(): void
     {
-        $html = $this->card->getItem();
+        $html = $this->item->getItem();
 
         // Проверяем структуру label и наличие обязательных элементов
-        $this->assertStringContainsString('<label class="card">', $html);
+        $this->assertStringContainsString('<label class="item">', $html);
         $this->assertStringContainsString('type="radio"', $html);
         $this->assertStringContainsString('name="itemName"', $html);
         $this->assertStringContainsString('Тестовый товар', $html);
@@ -35,12 +35,12 @@ class ItemTest extends TestCase
 
         // Проверяем data-атрибуты
         $this->assertStringContainsString('data-price="123456"', $html);
-        $this->assertStringContainsString('data-name="' . htmlspecialchars($this->card->getName()) . '"', $html);
+        $this->assertStringContainsString('data-name="' . htmlspecialchars($this->item->getName()) . '"', $html);
     }
 
     public function testDataNameShouldBeProductNameNotPrice(): void
     {
-        $html = $this->card->getItem();
+        $html = $this->item->getItem();
         // Дополнительно убедимся, что старый баг не вернулся
         $this->assertStringNotContainsString('data-name="123456"', $html);
         $this->assertStringContainsString('data-name="Тестовый товар"', $html);
