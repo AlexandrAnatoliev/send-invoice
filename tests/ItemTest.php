@@ -53,4 +53,20 @@ class ItemTest extends TestCase
         $this->assertStringEndsWith('</style>', $cssTag);
         $this->assertNotEmpty(trim(strip_tags($cssTag)));
     }
+
+    public function testGetCardRendersWithItemClassNotCard(): void
+    {
+        $html = $this->item->getItem();
+
+        $this->assertStringNotContainsString(
+            'class="card"',
+            $html,
+            'HTML still contains old CSS class "card" after rename to Item.',
+        );
+        $this->assertStringContainsString(
+            'class="item"',
+            $html,
+            'HTML must use CSS class "item" matching the renamed class.',
+        );
+    }
 }
