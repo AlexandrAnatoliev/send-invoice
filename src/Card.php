@@ -38,12 +38,12 @@ class Card
         return '
           <label class="card">
             <input type="radio" name="itemName"
-                    value="' . $this->name . '"
+                    value="' . $this->getName() . '"
                     data-price="' . $this->price . '"
-                    data-name="' . htmlspecialchars($this->name) . '"
+                    data-name="' . htmlspecialchars($this->getName()) . '"
                     required>
-            <img src="' . $this->image . '" alt="' . $this->name . '">
-            <span class="title">' . $this->name . '</span>
+            <img src="' . $this->image . '" alt="' . $this->getName() . '">
+            <span class="title">' . $this->getName() . '</span>
             <span class="price">' . number_format($this->price, 0, ',', ' ') . ' ₽</span>
           </label>';
     }
