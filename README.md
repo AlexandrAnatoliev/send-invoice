@@ -76,14 +76,14 @@ classDiagram
     # price: int
     # image: string
     + Card(name: string, price: int, image: string)
-    + getName(): string
-    + getPrice(): int
-    + getImage(): string
+    + getName() string
+    + getPrice() int
+    + getImage() string
   }
 
   class Item {
-    + static getItemCSS(): string
-    + getItem(): string
+    + static getItemCSS() string
+    + getItem() string
   }
 
   Card <|-- Item
