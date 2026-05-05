@@ -4,7 +4,7 @@ namespace sendInvoice;
 
 class Card
 {
-    public const CSS = 'styles/Card.css';
+    protected const CSS = 'styles/Card.css';
     protected string $name;
     public int $price;
     public string $image;
