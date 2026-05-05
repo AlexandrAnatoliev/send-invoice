@@ -7,19 +7,16 @@ use sendInvoice\Card;
 
 $card1 = new Card(
     'name1',
-    'styles/Card.css',
     123,
     'img/Card/ocean_pen.jpg',
 );
 $card2 = new Card(
     'name2',
-    'styles/Card.css',
     123456,
     'img/Card/ocean_pen.jpg',
 );
 $card3 = new Card(
     'name3',
-    'styles/Card.css',
     123456789,
     'img/Card/ocean_pen.jpg',
 );
@@ -39,11 +36,9 @@ $card3 = new Card(
             <!-- Блок выбора основного тарифа (Радио) -->
             <h2>1. Выберите сувенир</h2>
             <div class="radio-group">
-              <?= $card1->getCardCSS() ?>
+              <?= Card::getCardCSS() ?>
               <?= $card1->getCard() ?>
-              <?= $card2->getCardCSS() ?>
               <?= $card2->getCard() ?>
-              <?= $card3->getCardCSS() ?>
               <?= $card3->getCard() ?>
             </div>
         </form>

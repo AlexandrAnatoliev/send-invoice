@@ -4,28 +4,26 @@ namespace sendInvoice;
 
 class Card
 {
+    public const CSS = 'styles/Card.css';
     public string $name;
-    public string $css;
     public int $price;
     public string $image;
 
     public function __construct(
         string $name,
-        string $css,
         int $price,
         string $image,
     ) {
         $this->name = $name;
-        $this->css = $css;
         $this->price = $price;
         $this->image = $image;
     }
 
-    public function getCardCSS(): string
+    public static function getCardCSS(): string
     {
         $cssContent = '';
-        if (file_exists($this->css)) {
-            $cssContent = file_get_contents($this->css);
+        if (file_exists(self::CSS)) {
+            $cssContent = file_get_contents(self::CSS);
         }
         return '<style>' . $cssContent . '</style>';
     }
