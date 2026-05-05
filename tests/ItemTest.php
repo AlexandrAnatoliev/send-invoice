@@ -4,26 +4,26 @@ declare(strict_types=1);
 
 namespace Tests;
 
-require_once 'src/Card.php';
+require_once 'src/Item.php';
 use PHPUnit\Framework\TestCase;
-use sendInvoice\Card;
+use sendInvoice\Item;
 
-class CardTest extends TestCase
+class ItemTest extends TestCase
 {
-    private Card $card;
+    private Item $card;
 
     protected function setUp(): void
     {
-        $this->card = new Card(
+        $this->card = new Item(
             'Тестовый товар',
             123456,
             'img/test.jpg',
         );
     }
 
-    public function testGetCardReturnsValidHtml(): void
+    public function testGetItemReturnsValidHtml(): void
     {
-        $html = $this->card->getCard();
+        $html = $this->card->getItem();
 
         // Проверяем структуру label и наличие обязательных элементов
         $this->assertStringContainsString('<label class="card">', $html);
@@ -40,15 +40,15 @@ class CardTest extends TestCase
 
     public function testDataNameShouldBeProductNameNotPrice(): void
     {
-        $html = $this->card->getCard();
+        $html = $this->card->getItem();
         // Дополнительно убедимся, что старый баг не вернулся
         $this->assertStringNotContainsString('data-name="123456"', $html);
         $this->assertStringContainsString('data-name="Тестовый товар"', $html);
     }
 
-    public function testGetCardCSSReturnsValidStyleTag(): void
+    public function testGetItemCSSReturnsValidStyleTag(): void
     {
-        $cssTag = Card::getCardCSS();
+        $cssTag = Item::getItemCSS();
         $this->assertStringStartsWith('<style>', $cssTag);
         $this->assertStringEndsWith('</style>', $cssTag);
         $this->assertNotEmpty(trim(strip_tags($cssTag)));

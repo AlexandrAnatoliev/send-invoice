@@ -3,7 +3,7 @@
 namespace sendInvoice;
 
 /**
- * Card represents a product card for the order calculator.
+ * Item represents a product card for the order calculator.
  *
  * Each card includes a name, price,
  * and an image path. It can render itself as an HTML radio-button label
@@ -11,15 +11,15 @@ namespace sendInvoice;
  *
  * @package sendInvoice
  */
-class Card
+class Item
 {
-    protected const CSS = 'styles/Card.css';
+    protected const CSS = 'styles/Item.css';
     protected string $name;
     protected int $price;
     protected string $image;
 
     /**
-     * Create a new Card instance.
+     * Create a new Item instance.
      *
      * @param $name  Product name
      * @param $price Product price
@@ -57,7 +57,7 @@ class Card
      *
      * @return HTML style tag
      */
-    public static function getCardCSS(): string
+    public static function getItemCSS(): string
     {
         $cssContent = '';
         if (file_exists(self::CSS)) {
@@ -75,7 +75,7 @@ class Card
      *
      * @return HTML markup of the card
      */
-    public function getCard(): string
+    public function getItem(): string
     {
         return '
           <label class="card">

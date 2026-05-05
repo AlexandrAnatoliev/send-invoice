@@ -2,23 +2,23 @@
 
 declare(strict_types=1);
 
-require_once 'src/Card.php';
-use sendInvoice\Card;
+require_once 'src/Item.php';
+use sendInvoice\Item;
 
-$card1 = new Card(
+$card1 = new Item(
     'Ocean',
     16,
-    'img/Card/ocean_pen.jpg',
+    'img/Item/ocean_pen.jpg',
 );
-$card2 = new Card(
+$card2 = new Item(
     'Senator',
     19,
-    'img/Card/senator_pen.jpg',
+    'img/Item/senator_pen.jpg',
 );
-$card3 = new Card(
+$card3 = new Item(
     'Lychee',
     15,
-    'img/Card/lychee_pen.jpg',
+    'img/Item/lychee_pen.jpg',
 );
 ?>
 
@@ -36,10 +36,10 @@ $card3 = new Card(
             <!-- Блок выбора основного тарифа (Радио) -->
             <h2>1. Выберите сувенир</h2>
             <div class="radio-group">
-              <?= Card::getCardCSS() ?>
-              <?= $card1->getCard() ?>
-              <?= $card2->getCard() ?>
-              <?= $card3->getCard() ?>
+              <?= Item::getItemCSS() ?>
+              <?= $card1->getItem() ?>
+              <?= $card2->getItem() ?>
+              <?= $card3->getItem() ?>
             </div>
         </form>
     </div>
