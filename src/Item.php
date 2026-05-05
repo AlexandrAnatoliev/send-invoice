@@ -2,53 +2,20 @@
 
 namespace sendInvoice;
 
+require_once __DIR__ . '/Card.php';
+
 /**
- * Item represents a product item for the order calculator.
+ * Item represents a product card for the order calculator.
  *
- * Each item includes a name, price,
+ * Each card includes a name, price,
  * and an image path. It can render itself as an HTML radio-button label
  * and provides static CSS injection.
  *
  * @package sendInvoice
  */
-class Item
+class Item extends Card
 {
-    protected const CSS = 'styles/Item.css';
-    protected string $name;
-    protected int $price;
-    protected string $image;
-
-    /**
-     * Create a new Item instance.
-     *
-     * @param $name  Product name
-     * @param $price Product price
-     * @param $image Image path (typically inside img/)
-     */
-    public function __construct(
-        string $name,
-        int $price,
-        string $image,
-    ) {
-        $this->name = $name;
-        $this->price = $price;
-        $this->image = $image;
-    }
-
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    public function getPrice(): int
-    {
-        return $this->price;
-    }
-
-    public function getImage(): string
-    {
-        return $this->image;
-    }
+    public const CSS = 'styles/Item.css';
 
     /**
      * Return a <style> tag with the contents of the item CSS file.

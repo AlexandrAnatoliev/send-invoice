@@ -3,7 +3,7 @@
   <h1>send-invoice: Калькулятор заказа с генерацией счёта и отправкой на email</h1>
 
   ![Stars](https://img.shields.io/github/stars/AlexandrAnatoliev/send-invoice.svg?style=flat)
-  ![Version 0.5.0](https://img.shields.io/badge/Version-0.4.1-orange.svg)
+  ![Version 0.6.0](https://img.shields.io/badge/Version-0.6.0-orange.svg)
   ![Forks](https://img.shields.io/github/forks/AlexandrAnatoliev/send-invoice.svg?style=flat)
   ![GitHub repo size](https://img.shields.io/github/repo-size/AlexandrAnatoliev/send-invoice)
   
@@ -44,6 +44,7 @@
 ├── index.php
 ├── README.md
 ├── src/
+│   ├── Card.php
 │   └── Item.php
 ├── styles/
 │   ├── Item.css
@@ -62,14 +63,43 @@
     └── theseer
 ```
 
+<div align="center">
+  <h3>Структура классов</h3>
+</div>
+```mermaid
+classDiagram
+  
+  class Card {
+    # name: string
+    # price: int
+    # image: string
+    + Card(name: string, price: int, image: string)
+    + getName(): string
+    + getPrice(): int
+    + getImage(): string
+  }
+
+  class Item {
+    + static getItemCSS(): string
+    + getItem(): string
+  }
+
+  Card <|-- Item
+
+```
+
 * Запуск тестов:
 
 ```
+
 ./vendor/bin/phpunit tests
+
 ```
 
 * Покрытие тестами
 
 ```
+
  > ./vendor/bin/phpunit --coverage-html coverage --coverage-filter src tests
+
 ```

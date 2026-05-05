@@ -1,0 +1,50 @@
+<?php
+
+namespace sendInvoice;
+
+/**
+ * Card represents a product card for the order calculator.
+ *
+ * Each card includes a name, price,
+ * and an image path.
+ *
+ * @package sendInvoice
+ */
+abstract class Card
+{
+    protected string $name;
+    protected int $price;
+    protected string $image;
+
+    /**
+     * Create a new Item instance.
+     *
+     * @param $name  Product name
+     * @param $price Product price
+     * @param $image Image path (typically inside img/)
+     */
+    public function __construct(
+        string $name,
+        int $price,
+        string $image,
+    ) {
+        $this->name = $name;
+        $this->price = $price;
+        $this->image = $image;
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function getPrice(): int
+    {
+        return $this->price;
+    }
+
+    public function getImage(): string
+    {
+        return $this->image;
+    }
+}
