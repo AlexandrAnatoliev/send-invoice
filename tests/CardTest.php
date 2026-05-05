@@ -16,7 +16,6 @@ class CardTest extends TestCase
     {
         $this->card = new Card(
             'Тестовый товар',
-            __DIR__ . '/../styles/Card.css',
             123456,
             'img/test.jpg',
         );
