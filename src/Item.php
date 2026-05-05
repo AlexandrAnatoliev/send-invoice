@@ -18,21 +18,6 @@ class Item extends Card
     public const CSS = 'styles/Item.css';
 
     /**
-     * Create a new Item instance.
-     *
-     * @param $name  Product name
-     * @param $price Product price
-     * @param $image Image path (typically inside img/)
-     */
-    public function __construct(
-        string $name,
-        int $price,
-        string $image,
-    ) {
-        parent::__construct($name, $price, $image);
-    }
-
-    /**
      * Return a <style> tag with the contents of the item CSS file.
      *
      * If the file does not exist, an empty <style> tag is returned.

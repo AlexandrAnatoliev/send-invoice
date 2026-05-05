@@ -73,13 +73,13 @@ classDiagram
     # name: string
     # price: int
     # image: string
+    + Card(name: string, price: int, image: string)
     + getName(): string
     + getPrice(): int
     + getImage(): string
   }
 
   class Item {
-    + Item(name: string, price: int, image: string)
     + static getItemCSS(): string
     + getItem(): string
   }
