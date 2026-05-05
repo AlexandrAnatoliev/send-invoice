@@ -3,9 +3,9 @@
 namespace sendInvoice;
 
 /**
- * Item represents a product item for the order calculator.
+ * Item represents a product card for the order calculator.
  *
- * Each item includes a name, price,
+ * Each card includes a name, price,
  * and an image path. It can render itself as an HTML radio-button label
  * and provides static CSS injection.
  *
