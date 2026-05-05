@@ -5,7 +5,7 @@ namespace sendInvoice;
 class Card
 {
     public const CSS = 'styles/Card.css';
-    public string $name;
+    protected string $name;
     public int $price;
     public string $image;
 
@@ -17,6 +17,11 @@ class Card
         $this->name = $name;
         $this->price = $price;
         $this->image = $image;
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
     }
 
     public static function getCardCSS(): string
