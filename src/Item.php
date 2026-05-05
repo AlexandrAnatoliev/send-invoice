@@ -15,7 +15,7 @@ require_once __DIR__ . '/Card.php';
  */
 class Item extends Card
 {
-    protected const CSS = 'styles/Item.css';
+    public const CSS = 'styles/Item.css';
 
     /**
      * Create a new Item instance.

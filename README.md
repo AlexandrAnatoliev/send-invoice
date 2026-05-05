@@ -44,6 +44,7 @@
 ├── index.php
 ├── README.md
 ├── src/
+│   ├── Card.php
 │   └── Item.php
 ├── styles/
 │   ├── Item.css
@@ -68,23 +69,22 @@
 ```mermaid
 classDiagram
   
-  class Card.php {
-    - name: string
-    - price: int
-    - image: string
+  class Card {
+    # name: string
+    # price: int
+    # image: string
     + getName(): string
-    + getPrice(): string
+    + getPrice(): int
     + getImage(): string
   }
 
-  class Item.php {
-    - const CSS: 'styles/Item.css'
+  class Item {
     + Item(name: string, price: int, image: string)
     + static getItemCSS(): string
     + getItem(): string
   }
 
-  Card.php <|-- Item.php
+  Card <|-- Item
 
 ```
 
