@@ -3,23 +3,23 @@
 namespace sendInvoice;
 
 /**
- * Card represents a product card for the order calculator.
+ * Item represents a product item for the order calculator.
  *
- * Each card includes a name, price,
+ * Each item includes a name, price,
  * and an image path. It can render itself as an HTML radio-button label
  * and provides static CSS injection.
  *
  * @package sendInvoice
  */
-class Card
+class Item
 {
-    protected const CSS = 'styles/Card.css';
+    protected const CSS = 'styles/Item.css';
     protected string $name;
     protected int $price;
     protected string $image;
 
     /**
-     * Create a new Card instance.
+     * Create a new Item instance.
      *
      * @param $name  Product name
      * @param $price Product price
@@ -51,13 +51,13 @@ class Card
     }
 
     /**
-     * Return a <style> tag with the contents of the card CSS file.
+     * Return a <style> tag with the contents of the item CSS file.
      *
      * If the file does not exist, an empty <style> tag is returned.
      *
      * @return HTML style tag
      */
-    public static function getCardCSS(): string
+    public static function getItemCSS(): string
     {
         $cssContent = '';
         if (file_exists(self::CSS)) {
@@ -67,18 +67,18 @@ class Card
     }
 
     /**
-     * Render the card as an HTML label containing a radio input.
+     * Render the item as an HTML label containing a radio input.
      *
      * The radio element carries data-price (raw integer) and data-name
      * (HTML-escaped) attributes for JavaScript consumption. The visible
      * price is formatted with a thousands separator and the Ruble sign.
      *
-     * @return HTML markup of the card
+     * @return HTML markup of the item
      */
-    public function getCard(): string
+    public function getItem(): string
     {
         return '
-          <label class="card">
+          <label class="item">
             <input type="radio" name="itemName"
                     value="' . $this->getName() . '"
                     data-price="' . $this->getPrice() . '"
