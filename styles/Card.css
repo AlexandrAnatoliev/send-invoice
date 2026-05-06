@@ -1,4 +1,4 @@
-.item { 
+.card { 
   flex: 1; 
   min-width: 160px; 
   border: 2px solid #ddd; 
@@ -13,11 +13,11 @@
   align-items: center;
 }
 
-.item.small { 
+.card .small { 
   min-width: 120px; 
 }
 
-.item img { 
+.card img { 
   width: 100px; 
   height: 100px; 
   object-fit: cover; 
@@ -26,26 +26,26 @@
   background: #f0f0f0; 
 }
 
-.item .title { 
+.card .title { 
   font-weight: bold; 
   margin: 5px 0; 
 }
 
-.item .price { 
+.card .price { 
   font-size: 1.2rem; 
   color: #27ae60; 
   font-weight: bold; 
 }
 
-.item input { 
+.card input { 
   display: none; 
 }
 
-.item:hover { 
+.card:hover { 
   border-color: #3498db; 
 }
 
-.item:has(input:checked) { 
+.card:has(input:checked) { 
   border-color: #3498db; 
   background: #ebf5ff; 
   box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2); 

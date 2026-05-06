@@ -3,7 +3,7 @@
   <h1>send-invoice: Калькулятор заказа с генерацией счёта и отправкой на email</h1>
 
   ![Stars](https://img.shields.io/github/stars/AlexandrAnatoliev/send-invoice.svg?style=flat)
-  ![Version 0.6.2](https://img.shields.io/badge/Version-0.6.2-orange.svg)
+  ![Version 0.6.3](https://img.shields.io/badge/Version-0.6.3-orange.svg)
   ![Forks](https://img.shields.io/github/forks/AlexandrAnatoliev/send-invoice.svg?style=flat)
   ![GitHub repo size](https://img.shields.io/github/repo-size/AlexandrAnatoliev/send-invoice)
   
@@ -48,7 +48,7 @@
 │   ├── Card.php
 │   └── Item.php
 ├── styles/
-│   ├── Item.css
+│   ├── Card.css
 │   └── index.css
 ├── tests
 │   └── ItemTest.php
@@ -75,6 +75,7 @@ classDiagram
     # name: string
     # price: int
     # image: string
+    + static getCardCSS() string
     + Card(name: string, price: int, image: string)
     + getName() string
     + getPrice() int
@@ -82,7 +83,6 @@ classDiagram
   }
 
   class Item {
-    + static getItemCSS() string
     + getItem() string
   }
 

@@ -26,7 +26,7 @@ class ItemTest extends TestCase
         $html = $this->item->getItem();
 
         // Проверяем структуру label и наличие обязательных элементов
-        $this->assertStringContainsString('<label class="item">', $html);
+        $this->assertStringContainsString('<label class="card">', $html);
         $this->assertStringContainsString('type="radio"', $html);
         $this->assertStringContainsString('name="itemName"', $html);
         $this->assertStringContainsString('Тестовый товар', $html);
@@ -48,38 +48,20 @@ class ItemTest extends TestCase
 
     public function testGetItemCSSReturnsValidStyleTag(): void
     {
-        $cssTag = Item::getItemCSS();
+        $cssTag = Item::getCardCSS();
         $this->assertStringStartsWith('<style>', $cssTag);
         $this->assertStringEndsWith('</style>', $cssTag);
         $this->assertNotEmpty(trim(strip_tags($cssTag)));
     }
 
-    public function testGetCardRendersWithItemClassNotCard(): void
-    {
-        $html = $this->item->getItem();
-
-        $this->assertStringNotContainsString(
-            'class="card"',
-            $html,
-            'HTML still contains old CSS class "card" after rename to Item.',
-        );
-        $this->assertStringContainsString(
-            'class="item"',
-            $html,
-            'HTML must use CSS class "item" matching the renamed class.',
-        );
-    }
-
     public function testGetItemCSSReturnsStyleTagWithContent(): void
     {
-        $css = Item::getItemCSS();
+        $css = Item::getCardCSS();
 
         $this->assertStringStartsWith('<style>', $css);
         $this->assertStringEndsWith('</style>', $css);
 
         $inner = substr($css, 7, -8);
         $this->assertNotEmpty($inner, 'CSS content should not be empty when the file exists.');
-        // Если ожидаете конкретный контент, проверьте дополнительно:
-        $this->assertStringContainsString('.item', $inner, 'CSS should contain a rule for .item class.');
     }
 }

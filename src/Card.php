@@ -16,8 +16,26 @@ abstract class Card
     protected int $price;
     protected string $image;
 
+    public const CSS = 'styles/Card.css';
+
     /**
-     * Create a new Item instance.
+     * Return a <style> tag with the contents of the card CSS file.
+     *
+     * If the file does not exist, an empty <style> tag is returned.
+     *
+     * @return HTML style tag
+     */
+    public static function getCardCSS(): string
+    {
+        $cssContent = '';
+        if (file_exists(self::CSS)) {
+            $cssContent = file_get_contents(self::CSS);
+        }
+        return '<style>' . $cssContent . '</style>';
+    }
+
+    /**
+     * Create a new instance.
      *
      * @param $name  Product name
      * @param $price Product price
