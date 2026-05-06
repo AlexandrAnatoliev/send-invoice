@@ -53,6 +53,7 @@
 ├── src/
 │   ├── Addon.php
 │   ├── Card.php
+│   ├── FormElement.php
 │   └── Item.php
 ├── styles/
 │   ├── Card.css
@@ -80,25 +81,30 @@
 ```mermaid
 classDiagram
   
-  class Card {
+  class FormElement {
     # name: string
+    + static getCSS() string
+    + Card(name: string)
+    + getName() string
+  }
+
+  class Card {
     # price: int
     # image: string
-    + static getCardCSS() string
     + Card(name: string, price: int, image: string)
-    + getName() string
     + getPrice() int
     + getImage() string
   }
 
   class Item {
-    + getItem() string
+    + render() string
   }
 
   class Addon {
-    + getAddon() string
+    + render() string
   }
 
+  FormElement  <|-- Card
   Card <|-- Item
   Card <|-- Addon
 
