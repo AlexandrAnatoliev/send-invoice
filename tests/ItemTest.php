@@ -48,7 +48,7 @@ class ItemTest extends TestCase
 
     public function testGetItemCSSReturnsValidStyleTag(): void
     {
-        $cssTag = Item::getCardCSS();
+        $cssTag = Item::getCSS();
         $this->assertStringStartsWith('<style>', $cssTag);
         $this->assertStringEndsWith('</style>', $cssTag);
         $this->assertNotEmpty(trim(strip_tags($cssTag)));
@@ -56,12 +56,24 @@ class ItemTest extends TestCase
 
     public function testGetItemCSSReturnsStyleTagWithContent(): void
     {
-        $css = Item::getCardCSS();
+        $css = Item::getCSS();
 
         $this->assertStringStartsWith('<style>', $css);
         $this->assertStringEndsWith('</style>', $css);
 
         $inner = substr($css, 7, -8);
         $this->assertNotEmpty($inner, 'CSS content should not be empty when the file exists.');
+    }
+
+    public function testItemHasCorrectCssFileConstant(): void
+    {
+        $ref = new \ReflectionClass(Item::class);
+        // Константа унаследована от Card, но принадлежит и Item
+        $this->assertTrue($ref->hasConstant('CSS'), 'Constant CSS should exist in Item');
+        $this->assertEquals(
+            'styles/Card.css',
+            $ref->getConstant('CSS'),
+            'CSS should point to styles/Card.css',
+        );
     }
 }

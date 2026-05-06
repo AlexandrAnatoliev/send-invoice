@@ -53,7 +53,7 @@ $addon3 = new Addon(
             <!-- Блок выбора основного тарифа (Радио) -->
             <h2>1. Выберите сувенир</h2>
             <div class="radio-group">
-              <?= Item::getCardCSS() ?>
+              <?= Item::getCSS() ?>
               <?= $item1->render() ?>
               <?= $item2->render() ?>
               <?= $item3->render() ?>

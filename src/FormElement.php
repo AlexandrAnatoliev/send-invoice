@@ -12,6 +12,7 @@ namespace sendInvoice;
 abstract class FormElement
 {
     protected string $name;
+    protected const CSS = '';
 
     /**
      * Create a new instance.
@@ -25,6 +26,22 @@ abstract class FormElement
     }
 
     abstract public function render(): string;
+
+    /**
+     * Return a <style> tag with the contents of the card CSS file.
+     *
+     * If the file does not exist, an empty <style> tag is returned.
+     *
+     * @return HTML style tag
+     */
+    public static function getCSS(): string
+    {
+        $cssContent = '';
+        if (file_exists(static::CSS)) {
+            $cssContent = file_get_contents(self::CSS);
+        }
+        return '<style>' . $cssContent . '</style>';
+    }
 
     public function getName(): string
     {
