@@ -10,9 +10,8 @@ namespace sendInvoice;
  *
  * @package sendInvoice
  */
-abstract class Card
+abstract class Card extends FormElement
 {
-    protected string $name;
     protected int $price;
     protected string $image;
 
@@ -49,11 +48,6 @@ abstract class Card
         $this->name = $name;
         $this->price = $price;
         $this->image = $image;
-    }
-
-    public function getName(): string
-    {
-        return $this->name;
     }
 
     public function getPrice(): int

@@ -3,14 +3,18 @@
 namespace sendInvoice;
 
 /**
- * Card represents a product card for the order calculator.
+ * FormElement represents a element for the order display.
  *
- * Each card includes a name, price,
- * and an image path.
+ * Each FormElement includes a name
  *
  * @package sendInvoice
  */
 abstract class FormElement
 {
     protected string $name;
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
 }
