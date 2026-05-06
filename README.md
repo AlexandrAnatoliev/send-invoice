@@ -48,7 +48,7 @@
 │   ├── Card.php
 │   └── Item.php
 ├── styles/
-│   ├── Item.css
+│   ├── Card.css
 │   └── index.css
 ├── tests
 │   └── ItemTest.php
@@ -75,6 +75,7 @@ classDiagram
     # name: string
     # price: int
     # image: string
+    + static getCardCSS() string
     + Card(name: string, price: int, image: string)
     + getName() string
     + getPrice() int
@@ -82,7 +83,6 @@ classDiagram
   }
 
   class Item {
-    + static getItemCSS() string
     + getItem() string
   }
 
