@@ -90,18 +90,8 @@ classDiagram
 
 ```
 
-* Запуск тестов:
+* Запуск тестов и покрытие тестами:
 
 ```
-
-./vendor/bin/phpunit tests
-
-```
-
-* Покрытие тестами
-
-```
-
- > ./vendor/bin/phpunit --coverage-html coverage --coverage-filter src tests
-
+vendor/phpunit/phpunit/phpunit
 ```

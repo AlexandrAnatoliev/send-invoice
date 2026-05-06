@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit 
+    colors="true" 
+    bootstrap="vendor/autoload.php"
+    cacheDirectory=".phpunit.cache"
+    failOnWarning="true"
+    failOnRisky="true"
+    failOnEmptyTestSuite="true"
+    beStrictAboutOutputDuringTests="true"
+    executionOrder="random"
+    requireCoverageMetadata="false"
+>
+    <testsuites>
+        <testsuite name="default">
+            <directory>tests</directory>
+        </testsuite>
+    </testsuites>
+    <source>
+        <include>
+            <directory>src</directory>
+        </include>
+    </source>
+    <coverage>
+        <report>
+            <html outputDirectory="coverage" />
+        </report>
+    </coverage>
+</phpunit>
