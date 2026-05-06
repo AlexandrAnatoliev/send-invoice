@@ -94,11 +94,16 @@ classDiagram
     + getItem() string
   }
 
+  class Addon {
+    + getAddon() string
+  }
+
   Card <|-- Item
+  Card <|-- Addon
 
 ```
 
-* Запуск тестов и покрытие тестами:
+* Запуск всех тестов с автоматической генерацией покрытия (HTML-отчёт в папке `coverage/`):
 
 ```
 vendor/phpunit/phpunit/phpunit
