@@ -36,7 +36,7 @@ $item3 = new Item(
             <!-- Блок выбора основного тарифа (Радио) -->
             <h2>1. Выберите сувенир</h2>
             <div class="radio-group">
-              <?= Item::getItemCSS() ?>
+              <?= Item::getCardCSS() ?>
               <?= $item1->getItem() ?>
               <?= $item2->getItem() ?>
               <?= $item3->getItem() ?>

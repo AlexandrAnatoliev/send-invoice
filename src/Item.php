@@ -13,24 +13,6 @@ namespace sendInvoice;
  */
 class Item extends Card
 {
-    public const CSS = 'styles/Item.css';
-
-    /**
-     * Return a <style> tag with the contents of the item CSS file.
-     *
-     * If the file does not exist, an empty <style> tag is returned.
-     *
-     * @return HTML style tag
-     */
-    public static function getItemCSS(): string
-    {
-        $cssContent = '';
-        if (file_exists(self::CSS)) {
-            $cssContent = file_get_contents(self::CSS);
-        }
-        return '<style>' . $cssContent . '</style>';
-    }
-
     /**
      * Render the item as an HTML label containing a radio input.
      *
