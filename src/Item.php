@@ -25,7 +25,7 @@ class Item extends Card
     public function getItem(): string
     {
         return '
-          <label class="item">
+          <label class="card">
             <input type="radio" name="itemName"
                     value="' . $this->getName() . '"
                     data-price="' . $this->getPrice() . '"
