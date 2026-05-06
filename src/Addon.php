@@ -26,7 +26,7 @@ class Addon extends Card
     {
         return '
           <label class="card small">
-            <input type="checkbox" name="addons[]" 
+            <input type="checkbox" name="addons[]"
                     value="' . $this->getName() . '"
                     data-price="' . $this->getPrice() . '"
                     data-name="' . htmlspecialchars($this->getName()) . '">
