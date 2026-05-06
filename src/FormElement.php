@@ -38,7 +38,7 @@ abstract class FormElement
     {
         $cssContent = '';
         if (file_exists(static::CSS)) {
-            $cssContent = file_get_contents(self::CSS);
+            $cssContent = file_get_contents(static::CSS);
         }
         return '<style>' . $cssContent . '</style>';
     }
