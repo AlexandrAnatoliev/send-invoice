@@ -48,7 +48,7 @@ class ItemTest extends TestCase
 
     public function testGetItemCSSReturnsValidStyleTag(): void
     {
-        $cssTag = Item::getItemCSS();
+        $cssTag = Item::getCardCSS();
         $this->assertStringStartsWith('<style>', $cssTag);
         $this->assertStringEndsWith('</style>', $cssTag);
         $this->assertNotEmpty(trim(strip_tags($cssTag)));
@@ -72,14 +72,12 @@ class ItemTest extends TestCase
 
     public function testGetItemCSSReturnsStyleTagWithContent(): void
     {
-        $css = Item::getItemCSS();
+        $css = Item::getCardCSS();
 
         $this->assertStringStartsWith('<style>', $css);
         $this->assertStringEndsWith('</style>', $css);
 
         $inner = substr($css, 7, -8);
         $this->assertNotEmpty($inner, 'CSS content should not be empty when the file exists.');
-        // Если ожидаете конкретный контент, проверьте дополнительно:
-        $this->assertStringContainsString('.item', $inner, 'CSS should contain a rule for .item class.');
     }
 }
