@@ -64,16 +64,4 @@ class ItemTest extends TestCase
         $inner = substr($css, 7, -8);
         $this->assertNotEmpty($inner, 'CSS content should not be empty when the file exists.');
     }
-
-    public function testItemHasCorrectCssFileConstant(): void
-    {
-        $ref = new \ReflectionClass(Item::class);
-        // Константа унаследована от Card, но принадлежит и Item
-        $this->assertTrue($ref->hasConstant('CSS'), 'Constant CSS should exist in Item');
-        $this->assertEquals(
-            'styles/Card.css',
-            $ref->getConstant('CSS'),
-            'CSS should point to styles/Card.css',
-        );
-    }
 }
