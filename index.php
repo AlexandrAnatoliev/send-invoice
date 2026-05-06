@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-require_once 'src/Item.php';
+require_once 'vendor/autoload.php';
 use sendInvoice\Item;
 
 $item1 = new Item(

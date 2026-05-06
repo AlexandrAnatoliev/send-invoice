@@ -2,8 +2,6 @@
 
 namespace sendInvoice;
 
-require_once __DIR__ . '/Card.php';
-
 /**
  * Item represents a product card for the order calculator.
  *
