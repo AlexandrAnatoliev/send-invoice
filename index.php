@@ -60,7 +60,7 @@ $addon3 = new Addon(
             </div>
 
             <!-- Блок дополнительных услуг (Чекбоксы) -->
-            <h2>3. Выберите нанесение</h2>
+            <h2>2. Выберите нанесение</h2>
             <div class="checkbox-group">
               <?= $addon1->getAddon() ?>
               <?= $addon2->getAddon() ?>
