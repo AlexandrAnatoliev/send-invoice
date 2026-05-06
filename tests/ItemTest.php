@@ -23,7 +23,7 @@ class ItemTest extends TestCase
 
     public function testGetItemReturnsValidHtml(): void
     {
-        $html = $this->item->getItem();
+        $html = $this->item->render();
 
         // Проверяем структуру label и наличие обязательных элементов
         $this->assertStringContainsString('<label class="card">', $html);
@@ -40,7 +40,7 @@ class ItemTest extends TestCase
 
     public function testDataNameShouldBeProductNameNotPrice(): void
     {
-        $html = $this->item->getItem();
+        $html = $this->item->render();
         // Дополнительно убедимся, что старый баг не вернулся
         $this->assertStringNotContainsString('data-name="123456"', $html);
         $this->assertStringContainsString('data-name="Тестовый товар"', $html);
@@ -48,7 +48,7 @@ class ItemTest extends TestCase
 
     public function testGetItemCSSReturnsValidStyleTag(): void
     {
-        $cssTag = Item::getCardCSS();
+        $cssTag = Item::getCSS();
         $this->assertStringStartsWith('<style>', $cssTag);
         $this->assertStringEndsWith('</style>', $cssTag);
         $this->assertNotEmpty(trim(strip_tags($cssTag)));
@@ -56,7 +56,7 @@ class ItemTest extends TestCase
 
     public function testGetItemCSSReturnsStyleTagWithContent(): void
     {
-        $css = Item::getCardCSS();
+        $css = Item::getCSS();
 
         $this->assertStringStartsWith('<style>', $css);
         $this->assertStringEndsWith('</style>', $css);

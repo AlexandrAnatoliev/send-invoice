@@ -3,7 +3,7 @@
   <h1>send-invoice: Калькулятор заказа с генерацией счёта и отправкой на email</h1>
 
   ![Stars](https://img.shields.io/github/stars/AlexandrAnatoliev/send-invoice.svg?style=flat)
-  ![Version 0.7.0](https://img.shields.io/badge/Version-0.7.0-orange.svg)
+  ![Version 0.8.0](https://img.shields.io/badge/Version-0.8.0-orange.svg)
   ![Forks](https://img.shields.io/github/forks/AlexandrAnatoliev/send-invoice.svg?style=flat)
   ![GitHub repo size](https://img.shields.io/github/repo-size/AlexandrAnatoliev/send-invoice)
   
@@ -20,6 +20,7 @@
 </div>
 
 * [Общая архитектура](#architecture)
+* [Разное](#other)
 
 ---
 
@@ -52,6 +53,7 @@
 ├── src/
 │   ├── Addon.php
 │   ├── Card.php
+│   ├── FormElement.php
 │   └── Item.php
 ├── styles/
 │   ├── Card.css
@@ -79,32 +81,49 @@
 ```mermaid
 classDiagram
   
-  class Card {
+  class FormElement {
     # name: string
+    + static getCSS() string
+    + FormElement(name: string)
+    + getName() string
+    + render() string*
+  }
+
+  class Card {
     # price: int
     # image: string
-    + static getCardCSS() string
     + Card(name: string, price: int, image: string)
-    + getName() string
     + getPrice() int
     + getImage() string
   }
 
   class Item {
-    + getItem() string
+    + render() string
   }
 
   class Addon {
-    + getAddon() string
+    + render() string
   }
 
+  FormElement  <|-- Card
   Card <|-- Item
   Card <|-- Addon
 
 ```
 
+<div align="center">
+  <a id="other"></a>
+  <h2>Разное</h2>
+</div>
+
 * Запуск всех тестов с автоматической генерацией покрытия (HTML-отчёт в папке `coverage/`):
 
 ```
 vendor/phpunit/phpunit/phpunit
+```
+
+* Обновить карту классов в `vendor/composer/autoload_*.php`
+
+```
+composer dump-autoload
 ```

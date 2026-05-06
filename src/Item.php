@@ -22,7 +22,7 @@ class Item extends Card
      *
      * @return HTML markup of the item
      */
-    public function getItem(): string
+    public function render(): string
     {
         return '
           <label class="card">

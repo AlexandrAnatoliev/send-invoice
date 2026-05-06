@@ -53,18 +53,18 @@ $addon3 = new Addon(
             <!-- Блок выбора основного тарифа (Радио) -->
             <h2>1. Выберите сувенир</h2>
             <div class="radio-group">
-              <?= Item::getCardCSS() ?>
-              <?= $item1->getItem() ?>
-              <?= $item2->getItem() ?>
-              <?= $item3->getItem() ?>
+              <?= Item::getCSS() ?>
+              <?= $item1->render() ?>
+              <?= $item2->render() ?>
+              <?= $item3->render() ?>
             </div>
 
             <!-- Блок дополнительных услуг (Чекбоксы) -->
-            <h2>3. Выберите нанесение</h2>
+            <h2>2. Выберите нанесение</h2>
             <div class="checkbox-group">
-              <?= $addon1->getAddon() ?>
-              <?= $addon2->getAddon() ?>
-              <?= $addon3->getAddon() ?>
+              <?= $addon1->render() ?>
+              <?= $addon2->render() ?>
+              <?= $addon3->render() ?>
             </div>
         </form>
     </div>

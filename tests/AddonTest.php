@@ -23,7 +23,7 @@ class AddonTest extends TestCase
 
     public function testGetAddonReturnsValidHtml(): void
     {
-        $html = $this->item->getAddon();
+        $html = $this->item->render();
 
         // Проверяем структуру label и наличие обязательных элементов
         $this->assertStringContainsString('<label class="card small">', $html);
