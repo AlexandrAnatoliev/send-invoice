@@ -20,6 +20,7 @@
 </div>
 
 * [Общая архитектура](#architecture)
+* [Разное](#other)
 
 ---
 
@@ -103,8 +104,19 @@ classDiagram
 
 ```
 
+<div align="center">
+  <a id="other"></a>
+  <h2>Разное</h2>
+</div>
+
 * Запуск всех тестов с автоматической генерацией покрытия (HTML-отчёт в папке `coverage/`):
 
 ```
 vendor/phpunit/phpunit/phpunit
+```
+
+* Обновить карту классов в `vendor/composer/autoload_*.php`
+
+```
+composer dump-autoload
 ```
