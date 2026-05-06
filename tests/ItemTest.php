@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests;
 
-require_once 'src/Item.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 use PHPUnit\Framework\TestCase;
 use sendInvoice\Item;
 
