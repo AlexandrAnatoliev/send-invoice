@@ -24,6 +24,8 @@ abstract class FormElement
         $this->name = $name;
     }
 
+    abstract public function render(): string;
+
     public function getName(): string
     {
         return $this->name;

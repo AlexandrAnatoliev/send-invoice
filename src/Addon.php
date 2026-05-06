@@ -22,7 +22,7 @@ class Addon extends Card
      *
      * @return HTML markup of the addon
      */
-    public function getAddon(): string
+    public function render(): string
     {
         return '
           <label class="card small">
