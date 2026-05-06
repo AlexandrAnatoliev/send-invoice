@@ -38,19 +38,27 @@
 ├── composer.lock
 ├── coverage/
 ├── img/
+│   ├── Addon/
+│   │   ├── print_on_clip.png
+│   │   ├── print_on_colored_case.png
+│   │   └── print_on_white_case.png
 │   └── Item/
 │       ├── lychee_pen.jpg
 │       ├── ocean_pen.jpg
 │       └── senator_pen.jpg
 ├── index.php
+├── phpunit.xml.dist
 ├── README.md
 ├── src/
+│   ├── Addon.php
 │   ├── Card.php
 │   └── Item.php
 ├── styles/
 │   ├── Card.css
 │   └── index.css
 ├── tests
+│   ├── AddonTest.php
+│   ├── HealthTest.php
 │   └── ItemTest.php
 └── vendor
     ├── autoload.php
