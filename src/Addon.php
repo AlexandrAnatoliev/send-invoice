@@ -3,34 +3,33 @@
 namespace sendInvoice;
 
 /**
- * Item represents a product card for the order calculator.
+ * Addon represents a addon product card for the order calculator.
  *
- * Each item includes a name, price,
- * and an image path. It can render itself as an HTML radio-button label
+ * Each addon includes a name, price,
+ * and an image path. It can render itself as an HTML checkbox-button label
  * and provides static CSS injection.
  *
  * @package sendInvoice
  */
-class Item extends Card
+class Addon extends Card
 {
     /**
-     * Render the item as an HTML label containing a radio input.
+     * Render the addoon as an HTML label containing a checkbox input.
      *
-     * The radio element carries data-price (raw integer) and data-name
+     * The check-box element carries data-price (raw integer) and data-name
      * (HTML-escaped) attributes for JavaScript consumption. The visible
      * price is formatted with a thousands separator and the Ruble sign.
      *
-     * @return HTML markup of the item
+     * @return HTML markup of the addon
      */
-    public function getItem(): string
+    public function getAddon(): string
     {
         return '
-          <label class="card">
-            <input type="radio" name="itemName"
+          <label class="card small">
+            <input type="checkbox" name="addons[]"
                     value="' . $this->getName() . '"
                     data-price="' . $this->getPrice() . '"
-                    data-name="' . htmlspecialchars($this->getName()) . '"
-                    required>
+                    data-name="' . htmlspecialchars($this->getName()) . '">
             <img src="' . $this->getImage() . '" alt="' . $this->getName() . '">
             <span class="title">' . $this->getName() . '</span>
             <span class="price">' . number_format($this->getPrice(), 0, ',', ' ') . ' ₽</span>

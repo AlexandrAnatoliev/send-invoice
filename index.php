@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 require_once 'vendor/autoload.php';
 use sendInvoice\Item;
+use sendInvoice\Addon;
 
 $item1 = new Item(
     'Ocean',
@@ -19,6 +20,22 @@ $item3 = new Item(
     'Lychee',
     15,
     'img/Item/lychee_pen.jpg',
+);
+
+$addon1 = new Addon(
+    'print_on_clip',
+    46,
+    'img/Addon/print_on_clip.png',
+);
+$addon2 = new Addon(
+    'print_on_colored_case',
+    43,
+    'img/Addon/print_on_colored_case.png',
+);
+$addon3 = new Addon(
+    'print_on_white_case',
+    33,
+    'img/Addon/print_on_white_case.png',
 );
 ?>
 
@@ -40,6 +57,14 @@ $item3 = new Item(
               <?= $item1->getItem() ?>
               <?= $item2->getItem() ?>
               <?= $item3->getItem() ?>
+            </div>
+
+            <!-- Блок дополнительных услуг (Чекбоксы) -->
+            <h2>3. Выберите нанесение</h2>
+            <div class="checkbox-group">
+              <?= $addon1->getAddon() ?>
+              <?= $addon2->getAddon() ?>
+              <?= $addon3->getAddon() ?>
             </div>
         </form>
     </div>

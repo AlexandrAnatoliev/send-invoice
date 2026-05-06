@@ -3,7 +3,7 @@
   <h1>send-invoice: Калькулятор заказа с генерацией счёта и отправкой на email</h1>
 
   ![Stars](https://img.shields.io/github/stars/AlexandrAnatoliev/send-invoice.svg?style=flat)
-  ![Version 0.6.3](https://img.shields.io/badge/Version-0.6.3-orange.svg)
+  ![Version 0.7.0](https://img.shields.io/badge/Version-0.7.0-orange.svg)
   ![Forks](https://img.shields.io/github/forks/AlexandrAnatoliev/send-invoice.svg?style=flat)
   ![GitHub repo size](https://img.shields.io/github/repo-size/AlexandrAnatoliev/send-invoice)
   
@@ -38,19 +38,27 @@
 ├── composer.lock
 ├── coverage/
 ├── img/
+│   ├── Addon/
+│   │   ├── print_on_clip.png
+│   │   ├── print_on_colored_case.png
+│   │   └── print_on_white_case.png
 │   └── Item/
 │       ├── lychee_pen.jpg
 │       ├── ocean_pen.jpg
 │       └── senator_pen.jpg
 ├── index.php
+├── phpunit.xml.dist
 ├── README.md
 ├── src/
+│   ├── Addon.php
 │   ├── Card.php
 │   └── Item.php
 ├── styles/
 │   ├── Card.css
 │   └── index.css
 ├── tests
+│   ├── AddonTest.php
+│   ├── HealthTest.php
 │   └── ItemTest.php
 └── vendor
     ├── autoload.php
@@ -86,22 +94,17 @@ classDiagram
     + getItem() string
   }
 
+  class Addon {
+    + getAddon() string
+  }
+
   Card <|-- Item
+  Card <|-- Addon
 
 ```
 
-* Запуск тестов:
+* Запуск всех тестов с автоматической генерацией покрытия (HTML-отчёт в папке `coverage/`):
 
 ```
-
-./vendor/bin/phpunit tests
-
-```
-
-* Покрытие тестами
-
-```
-
- > ./vendor/bin/phpunit --coverage-html coverage --coverage-filter src tests
-
+vendor/phpunit/phpunit/phpunit
 ```
