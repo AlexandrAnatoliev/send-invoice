@@ -10,7 +10,7 @@
   transition: all 0.2s; 
   display: flex; 
   flex-direction: column; 
-  align-cards: center;
+  align-items: center;
 }
 
 .card .small { 
