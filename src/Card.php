@@ -45,7 +45,7 @@ abstract class Card extends FormElement
         int $price,
         string $image,
     ) {
-        $this->name = $name;
+        parent::__construct($name);
         $this->price = $price;
         $this->image = $image;
     }

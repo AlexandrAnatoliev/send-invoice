@@ -3,7 +3,7 @@
 namespace sendInvoice;
 
 /**
- * FormElement represents a element for the order display.
+ * FormElement represents an element for the order display.
  *
  * Each FormElement includes a name
  *
@@ -12,6 +12,17 @@ namespace sendInvoice;
 abstract class FormElement
 {
     protected string $name;
+
+    /**
+     * Create a new instance.
+     *
+     * @param $name  Product name
+     */
+    public function __construct(
+        string $name,
+    ) {
+        $this->name = $name;
+    }
 
     public function getName(): string
     {
