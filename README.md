@@ -84,8 +84,9 @@ classDiagram
   class FormElement {
     # name: string
     + static getCSS() string
-    + Card(name: string)
+    + FormElement(name: string)
     + getName() string
+    + render() string*
   }
 
   class Card {
