@@ -48,4 +48,14 @@ class AddonTest extends TestCase
         $this->assertSame(123456, $this->addon->getPrice(10));
         $this->assertSame(123456, $this->addon->getPrice(1));
     }
+
+    public function testSetPriceTierChangesPriceForExactQuantity(): void
+    {
+        $this->addon->setPriceTier(10, 4000);
+        $this->assertSame(4000, $this->addon->getPrice(10));
+
+        // другие количества не затронуты
+        $this->assertSame(123456, $this->addon->getPrice(5));
+        $this->assertSame(123456, $this->addon->getPrice(50));
+    }
 }
