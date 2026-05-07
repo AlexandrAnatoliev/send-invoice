@@ -55,7 +55,7 @@ class AddonTest extends TestCase
         $this->assertSame(4000, $this->addon->getPrice(10));
     }
 
-    public function testSetPriceTiersForAddon1ormIndex(): void
+    public function testSetPriceTiersForAddon1inIndex(): void
     {
         $this->addon->setPriceTier(100, 46);
         $this->addon->setPriceTier(200, 36);
@@ -67,5 +67,19 @@ class AddonTest extends TestCase
         $this->assertSame(34, $this->addon->getPrice(300));
         $this->assertSame(31, $this->addon->getPrice(500));
         $this->assertSame(28, $this->addon->getPrice(1000));
+    }
+
+    public function testSetPriceTiersForAddon2inIndex(): void
+    {
+        $this->addon->setPriceTier(100, 43);
+        $this->addon->setPriceTier(200, 34);
+        $this->addon->setPriceTier(300, 31);
+        $this->addon->setPriceTier(500, 29);
+        $this->addon->setPriceTier(1000, 26);
+        $this->assertSame(43, $this->addon->getPrice(100));
+        $this->assertSame(34, $this->addon->getPrice(200));
+        $this->assertSame(31, $this->addon->getPrice(300));
+        $this->assertSame(29, $this->addon->getPrice(500));
+        $this->assertSame(26, $this->addon->getPrice(1000));
     }
 }
