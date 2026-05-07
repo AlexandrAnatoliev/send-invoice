@@ -34,6 +34,12 @@ abstract class Card extends FormElement
         $this->image = $image;
     }
 
+    /**
+     * Get price based on quantity
+     *
+     * @param  $quantity - quantity of items
+     * @return price
+     */
     public function getPrice($quantity = null): int
     {
         if ($quantity === null) {
