@@ -42,4 +42,10 @@ class AddonTest extends TestCase
     {
         $this->assertSame(123456, $this->addon->getPrice());
     }
+
+    public function testGetPriceWithUnknownQuantityFallsBackToBasePrice(): void
+    {
+        $this->assertSame(123456, $this->addon->getPrice(10));
+        $this->assertSame(123456, $this->addon->getPrice(1));
+    }
 }
