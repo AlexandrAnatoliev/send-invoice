@@ -27,6 +27,12 @@ $addon1 = new Addon(
     46,
     'img/Addon/print_on_clip.png',
 );
+$addon1->setPriceTier(100, 46);
+$addon1->setPriceTier(200, 36);
+$addon1->setPriceTier(300, 34);
+$addon1->setPriceTier(500, 31);
+$addon1->setPriceTier(1000, 28);
+
 $addon2 = new Addon(
     'print_on_colored_case',
     43,
