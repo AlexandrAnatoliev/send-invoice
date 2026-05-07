@@ -51,6 +51,12 @@ $addon3 = new Addon(
     33,
     'img/Addon/print_on_white_case.png',
 );
+
+$addon3->setPriceTier(100, 33);
+$addon3->setPriceTier(200, 26);
+$addon3->setPriceTier(300, 24);
+$addon3->setPriceTier(500, 22);
+$addon3->setPriceTier(1000, 20);
 ?>
 
 <!DOCTYPE html>
