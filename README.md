@@ -102,7 +102,10 @@ classDiagram
   }
 
   class Addon {
+    # priceTiers: array
+    + setPriceTier(quantity: int, price: int)
     + render() string
+    + getPrice() int
   }
 
   FormElement  <|-- Card
