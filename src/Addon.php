@@ -47,7 +47,7 @@ class Addon extends Card
         ksort($tiers);
 
         foreach ($tiers as $tiersQuantity => $priceValue) {
-            if ($quantity >= $tiersQuantity) {
+            if ($quantity <= $tiersQuantity) {
                 $price = $priceValue;
                 break;
             }
