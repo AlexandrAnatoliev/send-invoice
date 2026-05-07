@@ -27,6 +27,30 @@ class Addon extends Card
     }
 
     /**
+     * Get price based on quantity
+     *
+     * @param  $quantity - quantity of items
+     * @return price
+     */
+    public function getPrice($quantity = null): int
+    {
+        if ($quantity === null) {
+            return $this->price;
+        }
+
+        $price      = $this->price;
+        $priceTiers = $this->priceTiers;
+
+        foreach ($priceTiers as $prices => $priceValue) {
+            $price = $priceValue;
+            if ($priceValue > $quantity) {
+                break;
+            }
+        }
+        return $price;
+    }
+
+    /**
      * Render the addoon as an HTML label containing a checkbox input.
      *
      * The check-box element carries data-price (raw integer) and data-name
