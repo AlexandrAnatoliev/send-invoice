@@ -13,6 +13,19 @@ namespace sendInvoice;
  */
 class Addon extends Card
 {
+    protected array $priceTiers = [];
+
+    /**
+     * Define a price tier for a specific quantity
+     *
+     * @param  $quantity  Exact number of items
+     * @param  $price     Unit price for this quantity
+     */
+    public function setPriceTier(int $quantity, int $price): void
+    {
+        $this->priceTiers[$quantity] = $price;
+    }
+
     /**
      * Render the addoon as an HTML label containing a checkbox input.
      *
