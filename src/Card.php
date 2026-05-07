@@ -34,8 +34,11 @@ abstract class Card extends FormElement
         $this->image = $image;
     }
 
-    public function getPrice(): int
+    public function getPrice($quantity = null): int
     {
+        if ($quantity === null) {
+            return $this->price;
+        }
         return $this->price;
     }
 
