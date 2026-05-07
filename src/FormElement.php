@@ -12,7 +12,7 @@ namespace sendInvoice;
 abstract class FormElement
 {
     protected string $name;
-    protected const CSS = '';
+    protected const CSS_FILE = '';
 
     /**
      * Create a new instance.
@@ -37,8 +37,8 @@ abstract class FormElement
     public static function getCSS(): string
     {
         $cssContent = '';
-        if (file_exists(static::CSS)) {
-            $cssContent = file_get_contents(static::CSS);
+        if (file_exists(static::CSS_FILE)) {
+            $cssContent = file_get_contents(static::CSS_FILE);
         }
         return '<style>' . $cssContent . '</style>';
     }
