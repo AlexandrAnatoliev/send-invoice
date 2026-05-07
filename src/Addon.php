@@ -38,12 +38,17 @@ class Addon extends Card
             return $this->price;
         }
 
-        $price      = $this->price;
-        $priceTiers = $this->priceTiers;
+        if (empty($this->priceTiers)) {
+            return $this->price;
+        }
 
-        foreach ($priceTiers as $prices => $priceValue) {
-            $price = $priceValue;
-            if ($priceValue > $quantity) {
+        $price = $this->price;
+        $tiers = $this->priceTiers;
+        ksort($tiers);
+
+        foreach ($tiers as $tiersQuantity => $priceValue) {
+            if ($quantity >= $tiersQuantity) {
+                $price = $priceValue;
                 break;
             }
         }
