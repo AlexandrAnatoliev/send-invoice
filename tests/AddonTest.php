@@ -10,11 +10,11 @@ use sendInvoice\Addon;
 
 class AddonTest extends TestCase
 {
-    private Addon $item;
+    private Addon $addon;
 
     protected function setUp(): void
     {
-        $this->item = new Addon(
+        $this->addon = new Addon(
             'Тестовый товар',
             123456,
             'img/test.jpg',
@@ -23,7 +23,7 @@ class AddonTest extends TestCase
 
     public function testGetAddonReturnsValidHtml(): void
     {
-        $html = $this->item->render();
+        $html = $this->addon->render();
 
         // Проверяем структуру label и наличие обязательных элементов
         $this->assertStringContainsString('<label class="card small">', $html);
@@ -35,6 +35,11 @@ class AddonTest extends TestCase
 
         // Проверяем data-атрибуты
         $this->assertStringContainsString('data-price="123456"', $html);
-        $this->assertStringContainsString('data-name="' . htmlspecialchars($this->item->getName()) . '"', $html);
+        $this->assertStringContainsString('data-name="' . htmlspecialchars($this->addon->getName()) . '"', $html);
+    }
+
+    public function testGetPriceWithoutQuantityReturnsBasePrice(): void
+    {
+        $this->assertSame(123456, $this->addon->getPrice());
     }
 }
