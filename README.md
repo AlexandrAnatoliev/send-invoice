@@ -3,7 +3,7 @@
   <h1>send-invoice: Калькулятор заказа с генерацией счёта и отправкой на email</h1>
 
   ![Stars](https://img.shields.io/github/stars/AlexandrAnatoliev/send-invoice.svg?style=flat)
-  h![Version 0.8.1](https://img.shields.io/badge/Version-0.8.1-orange.svg)
+  ![Version 0.8.1](https://img.shields.io/badge/Version-0.8.1-orange.svg)
   ![Forks](https://img.shields.io/github/forks/AlexandrAnatoliev/send-invoice.svg?style=flat)
   ![GitHub repo size](https://img.shields.io/github/repo-size/AlexandrAnatoliev/send-invoice)
   
@@ -93,7 +93,7 @@ classDiagram
     # price: int
     # image: string
     + Card(name: string, price: int, image: string)
-    + getPrice() int
+    + getPrice(quantity: int = null) int
     + getImage() string
   }
 
@@ -105,7 +105,7 @@ classDiagram
     # priceTiers: array
     + setPriceTier(quantity: int, price: int)
     + render() string
-    + getPrice() int
+    + getPrice(quantity: int = null) int
   }
 
   FormElement  <|-- Card
