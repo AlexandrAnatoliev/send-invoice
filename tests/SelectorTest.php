@@ -42,8 +42,8 @@ class SelectorTest extends TestCase
     {
         $html = $this->selector->render();
 
-        // Проверяем структуру label и наличие обязательных элементов
         $this->assertStringContainsString('id="quantity"', $html);
         $this->assertStringContainsString('name="quantity"', $html);
+        $this->assertStringContainsString('<option value=', $html);
     }
 }
