@@ -49,10 +49,24 @@ class Selector extends FormElement
         return $this->step;
     }
 
+    /**
+     * Render the Selector as an HTML selector containing a quantity-block input.
+     *
+     * @return HTML markup of the addon
+     */
     public function render(): string
     {
-        return '
-          <select id="quantity" name="quantity" required>
-          </select>';
+        $html = '<select id="quantity" name="quantity" required>';
+
+        $value = $this->min;
+        while ($value <= $this->max) {
+            $html .= '
+              <option value="' . $value . '">' . $value . ' шт.</option>';
+            $value += $this->step;
+        }
+
+        $html .= '</select>';
+
+        return $html;
     }
 }
