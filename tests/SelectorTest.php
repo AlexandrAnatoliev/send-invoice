@@ -33,20 +33,12 @@ class SelectorTest extends TestCase
         $this->assertNotEmpty(trim(strip_tags($cssTag)));
     }
 
-    // public function testGetAddonReturnsValidHtml(): void
-    // {
-    //     $html = $this->addon->render();
-    //
-    //     // Проверяем структуру label и наличие обязательных элементов
-    //     $this->assertStringContainsString('<label class="card small">', $html);
-    //     $this->assertStringContainsString('type="checkbox"', $html);
-    //     $this->assertStringContainsString('name="addons[]"', $html);
-    //     $this->assertStringContainsString('Тестовый товар', $html);
-    //     $this->assertStringContainsString('123 456 ₽', $html); // number_format
-    //     $this->assertStringContainsString('img/test.jpg', $html);
-    //
-    //     // Проверяем data-атрибуты
-    //     $this->assertStringContainsString('data-price="123456"', $html);
-    //     $this->assertStringContainsString('data-name="' . htmlspecialchars($this->addon->getName()) . '"', $html);
-    // }
+    public function testRenderReturnsValidHtml(): void
+    {
+        $html = $this->selector->render();
+
+        // Проверяем структуру label и наличие обязательных элементов
+        $this->assertStringContainsString('id="quantity"', $html);
+        $this->assertStringContainsString('name="quantity"', $html);
+    }
 }

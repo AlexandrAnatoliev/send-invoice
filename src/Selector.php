@@ -13,6 +13,8 @@ class Selector extends FormElement
 
     public function render(): string
     {
-        return '';
+        return '
+          <select id="quantity" name="quantity" required>
+          </select>';
     }
 }
