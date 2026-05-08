@@ -261,3 +261,15 @@ vendor/phpunit/phpunit/phpunit
 ```
 composer dump-autoload
 ```
+
+* Удалить кэш phpactor
+
+```
+rm -rf ~/.cache/phpactor ~/.local/share/nvim/phpactor
+```
+
+* Перезапустить phpactor
+
+```
+:lsp restart phpactor
+```
