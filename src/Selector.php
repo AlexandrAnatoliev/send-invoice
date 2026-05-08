@@ -34,6 +34,21 @@ class Selector extends FormElement
         $this->min = $step;
     }
 
+    public function getMin(): int
+    {
+        return $this->min;
+    }
+
+    public function getMax(): int
+    {
+        return $this->max;
+    }
+
+    public function getStep(): int
+    {
+        return $this->step;
+    }
+
     public function render(): string
     {
         return '

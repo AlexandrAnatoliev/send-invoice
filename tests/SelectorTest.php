@@ -22,10 +22,9 @@ class SelectorTest extends TestCase
         );
     }
 
-    public function testGetNameReturnsValidValue(): void
+    public function testSelectorReturnsValidValues(): void
     {
-        $name = $this->selector->getName();
-        $this->assertStringContainsString('Тестовый селектор', $name);
+        $this->assertStringContainsString('Тестовый селектор', $this->selector->getName());
     }
 
     public function testGetCSSReturnsValidStyleTag(): void
