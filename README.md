@@ -52,7 +52,7 @@
   * [x] Радиокнопки для выбора основного товара
   * [x] Чекбоксы для дополнительных опций
   * [x] Тиражное ценообразование для дополнительных опций
-  * [ ] Поле количества (до 1000 шт, выпадающий список)
+  * [x] Поле количества (до 1000 шт, выпадающий список)
   * [ ] Динамический пересчёт цен и итоговой суммы
   * [ ] Выделение выбранных опций (цвет, список внизу)
     * [ ] Блок «Выбрано» с перечнем позиций до поля количества
@@ -61,6 +61,7 @@
   * [ ] Валидация Email и Телефона (на клиенте и сервере)
   * [ ] Выделение незаполненных полей красной рамкой
   * [ ] Кнопка отправки заказа
+  * [ ] Кнопка return to index.html
   * [ ] Математическая CAPTCHA
   * [ ] Rate limiting (ограничение частоты отправки с одного IP)
 
@@ -143,14 +144,16 @@
 │   ├── Addon.php
 │   ├── Card.php
 │   ├── FormElement.php
-│   └── Item.php
+│   ├── Item.php
+│   └── Selector.php
 ├── styles/
 │   ├── Card.css
 │   └── index.css
 ├── tests
 │   ├── AddonTest.php
 │   ├── HealthTest.php
-│   └── ItemTest.php
+│   ├── ItemTest.php
+│   └── SelectorTest.php
 └── vendor
     ├── autoload.php
     ├── bin
@@ -178,6 +181,18 @@ classDiagram
     + render() string*
   }
 
+  class Selector {
+    # min: int
+    # max: int
+    # step: int
+    + Selector(name: string, min: int, max: int, step: int)
+    + getPrice(quantity: int = null) int
+    + getMin() int
+    + getMax() int
+    + getStep() int
+    + render() string
+  }
+
   class Card {
     # price: int
     # image: string
@@ -197,6 +212,7 @@ classDiagram
     + getPrice(quantity: int = null) int
   }
 
+  FormElement  <|-- Selector
   FormElement  <|-- Card
   Card <|-- Item
   Card <|-- Addon
