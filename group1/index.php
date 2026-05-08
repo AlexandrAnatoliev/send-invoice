@@ -6,58 +6,66 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 use sendInvoice\Item;
 use sendInvoice\Addon;
+use sendInvoice\Selector;
 
 $item1 = new Item(
-    'Ocean1',
-    16,
-    'img/Item/ocean_pen.jpg',
+    name: 'Ocean1',
+    price: 16,
+    image: 'img/Item/ocean_pen.jpg',
 );
 $item2 = new Item(
-    'Senator1',
-    19,
-    'img/Item/senator_pen.jpg',
+    name: 'Senator1',
+    price: 19,
+    image: 'img/Item/senator_pen.jpg',
 );
 $item3 = new Item(
-    'Lychee1',
-    15,
-    'img/Item/lychee_pen.jpg',
+    name: 'Lychee1',
+    price: 15,
+    image: 'img/Item/lychee_pen.jpg',
 );
 
 $addon1 = new Addon(
-    'print_on_clip1',
-    46,
-    'img/Addon/print_on_clip.png',
+    name: 'print_on_clip1',
+    price: 46,
+    image: 'img/Addon/print_on_clip.png',
 );
 
-$addon1->setPriceTier(100, 46);
-$addon1->setPriceTier(200, 36);
-$addon1->setPriceTier(300, 34);
-$addon1->setPriceTier(500, 31);
-$addon1->setPriceTier(1000, 28);
+$addon1->setPriceTier(quantity: 100, price: 46);
+$addon1->setPriceTier(quantity: 200, price: 36);
+$addon1->setPriceTier(quantity: 300, price: 34);
+$addon1->setPriceTier(quantity: 500, price: 31);
+$addon1->setPriceTier(quantity: 1000, price: 28);
 
 $addon2 = new Addon(
-    'print_on_colored_case1',
-    43,
-    'img/Addon/print_on_colored_case.png',
+    name: 'print_on_colored_case1',
+    price: 43,
+    image: 'img/Addon/print_on_colored_case.png',
 );
 
-$addon2->setPriceTier(100, 43);
-$addon2->setPriceTier(200, 34);
-$addon2->setPriceTier(300, 31);
-$addon2->setPriceTier(500, 29);
-$addon2->setPriceTier(1000, 26);
+$addon2->setPriceTier(quantity: 100, price: 43);
+$addon2->setPriceTier(quantity: 200, price: 34);
+$addon2->setPriceTier(quantity: 300, price: 31);
+$addon2->setPriceTier(quantity: 500, price: 29);
+$addon2->setPriceTier(quantity: 1000, price: 26);
 
 $addon3 = new Addon(
-    'print_on_white_case1',
-    33,
-    'img/Addon/print_on_white_case.png',
+    name: 'print_on_white_case1',
+    price: 33,
+    image: 'img/Addon/print_on_white_case.png',
 );
 
-$addon3->setPriceTier(100, 33);
-$addon3->setPriceTier(200, 26);
-$addon3->setPriceTier(300, 24);
-$addon3->setPriceTier(500, 22);
-$addon3->setPriceTier(1000, 20);
+$addon3->setPriceTier(quantity: 100, price: 33);
+$addon3->setPriceTier(quantity: 200, price: 26);
+$addon3->setPriceTier(quantity: 300, price: 24);
+$addon3->setPriceTier(quantity: 500, price: 22);
+$addon3->setPriceTier(quantity: 1000, price: 20);
+
+$selector = new Selector(
+    name: 'quantity',
+    min: 0,
+    max: 1000,
+    step: 50,
+)
 ?>
 
 <!DOCTYPE html>
@@ -86,6 +94,13 @@ $addon3->setPriceTier(1000, 20);
               <?= $addon1->render() ?>
               <?= $addon2->render() ?>
               <?= $addon3->render() ?>
+            </div>
+
+            <!-- Количество / Срок -->
+            <h2>3. Нужное количество</h2>
+            <div class="quantity-block">
+              <?= Selector::getCSS() ?>
+              <?= $selector->render() ?>
             </div>
         </form>
     </div>

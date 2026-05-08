@@ -56,7 +56,7 @@ class Addon extends Card
     }
 
     /**
-     * Render the addoon as an HTML label containing a checkbox input.
+     * Render the addon as an HTML label containing a checkbox input.
      *
      * The check-box element carries data-price (raw integer) and data-name
      * (HTML-escaped) attributes for JavaScript consumption. The visible
