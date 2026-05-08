@@ -112,16 +112,17 @@
 ├── composer.json
 ├── composer.lock
 ├── coverage/
-├── img/
-│   ├── Addon/
-│   │   ├── print_on_clip.png
-│   │   ├── print_on_colored_case.png
-│   │   └── print_on_white_case.png
-│   └── Item/
-│       ├── lychee_pen.jpg
-│       ├── ocean_pen.jpg
-│       └── senator_pen.jpg
-├── index.php
+├── group1
+│   ├── img
+│   │   ├── Addon
+│   │   │   ├── print_on_clip.png
+│   │   │   ├── print_on_colored_case.png
+│   │   │   └── print_on_white_case.png
+│   │   └── Item
+│   │       ├── lychee_pen.jpg
+│   │       ├── ocean_pen.jpg
+│   │       └── senator_p
+├── index.html
 ├── phpunit.xml.dist
 ├── README.md
 ├── src/
@@ -186,6 +187,48 @@ classDiagram
   Card <|-- Item
   Card <|-- Addon
 
+```
+
+<div align="center">
+  <h3>Структура вызовов</h3>
+</div>
+
+```mermaid
+classDiagram
+  
+  class index.html {
+  }
+
+  class group1/index.php {
+  }
+
+  class group2/index.php {
+  }
+
+  class captcha.php {
+  }
+
+  class checkout.php {
+  }
+
+  class generatePDF.php {
+  }
+
+  class mailer.php {
+  }
+
+  class SMTP-сервер {
+  }
+
+  index.html --> group1/index.php
+  index.html --> group2/index.php
+  group1/index.php --> captcha.php
+  group2/index.php --> captcha.php
+  captcha.php --> checkout.php
+  checkout.php --> generatePDF.php
+  checkout.php --> mailer.php
+  generatePDF.php --> mailer.php
+  mailer.php --> SMTP-сервер
 ```
 
 <div align="center">
