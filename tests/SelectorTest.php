@@ -19,6 +19,12 @@ class SelectorTest extends TestCase
         );
     }
 
+    public function testGetNameReturnsValidValue(): void
+    {
+        $name = $this->selector->getName();
+        $this->assertStringContainsString('Тестовый селектор', $name);
+    }
+
     public function testGetItemCSSReturnsValidStyleTag(): void
     {
         $cssTag = Selector::getCSS();
