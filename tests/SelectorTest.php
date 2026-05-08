@@ -16,6 +16,9 @@ class SelectorTest extends TestCase
     {
         $this->selector = new Selector(
             'Тестовый селектор',
+            0,
+            1000,
+            50,
         );
     }
 
