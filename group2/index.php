@@ -8,23 +8,23 @@ use sendInvoice\Item;
 use sendInvoice\Addon;
 
 $item1 = new Item(
-    'Ocean1',
+    'Ocean2',
     16,
     'img/Item/ocean_pen.jpg',
 );
 $item2 = new Item(
-    'Senator1',
+    'Senator2',
     19,
     'img/Item/senator_pen.jpg',
 );
 $item3 = new Item(
-    'Lychee1',
+    'Lychee2',
     15,
     'img/Item/lychee_pen.jpg',
 );
 
 $addon1 = new Addon(
-    'print_on_clip1',
+    'print_on_clip2',
     46,
     'img/Addon/print_on_clip.png',
 );
@@ -36,7 +36,7 @@ $addon1->setPriceTier(500, 31);
 $addon1->setPriceTier(1000, 28);
 
 $addon2 = new Addon(
-    'print_on_colored_case1',
+    'print_on_colored_case2',
     43,
     'img/Addon/print_on_colored_case.png',
 );
@@ -48,7 +48,7 @@ $addon2->setPriceTier(500, 29);
 $addon2->setPriceTier(1000, 26);
 
 $addon3 = new Addon(
-    'print_on_white_case1',
+    'print_on_white_case2',
     33,
     'img/Addon/print_on_white_case.png',
 );
