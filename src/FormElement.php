@@ -37,8 +37,12 @@ abstract class FormElement
     public static function getCSS(): string
     {
         $cssContent = '';
-        if (file_exists(static::CSS_FILE)) {
-            $cssContent = file_get_contents(static::CSS_FILE);
+        $relativePath = static::CSS_FILE;
+        if ($relativePath !== '') {
+            $cssFilePath = __DIR__ . '/' . $relativePath;
+            if (file_exists($cssFilePath) && is_file($cssFilePath)) {
+                $cssContent = file_get_contents($cssFilePath);
+            }
         }
         return '<style>' . $cssContent . '</style>';
     }

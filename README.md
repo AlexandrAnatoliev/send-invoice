@@ -3,7 +3,7 @@
   <h1>send-invoice: Калькулятор заказа с генерацией счёта и отправкой на email</h1>
 
   ![Stars](https://img.shields.io/github/stars/AlexandrAnatoliev/send-invoice.svg?style=flat)
-  ![Version 0.8.1](https://img.shields.io/badge/Version-0.8.1-orange.svg)
+  ![Version 0.10.0](https://img.shields.io/badge/Version-0.10.0-orange.svg)
   ![Forks](https://img.shields.io/github/forks/AlexandrAnatoliev/send-invoice.svg?style=flat)
   ![GitHub repo size](https://img.shields.io/github/repo-size/AlexandrAnatoliev/send-invoice)
   
@@ -19,8 +19,82 @@
   <h2>Навигация</h2>
 </div>
 
+* [Техническое задание](#technical-specifications)
 * [Общая архитектура](#architecture)
 * [Разное](#other)
+
+---
+
+<div align="center">
+  <a id="technical-specifications"></a>
+  <h2>Техническое задание</h2>
+</div>
+
+```
+Нужен скрипт калькулятора-заказа на php с радиокнопками, чекбоксами, 
+картинками, полем ввода количества, расчётом итоговой суммы заказа 
+и отправкой готового счета на оплату (в pdf или html с возможностью 
+сохранения покупателем из письма в pdf) на почту покупателя и админа. 
+Проведение онлайн оплаты не нужно, только отправка.
+```
+
+### Чек-лист требований
+
+#### 1. Общая информация
+
+* [ ] PHP-калькулятор заказа, без онлайн-оплаты, с отправкой счёта на email
+* [ ] Два типа пользователей: Покупатель и Администратор
+
+#### 2. Фронтенд
+
+* [x] Html страница для выбора категории товаров
+* [ ] php страница для оформления заказа
+  * [x] Радиокнопки для выбора основного товара
+  * [x] Чекбоксы для дополнительных опций
+  * [x] Тиражное ценообразование для дополнительных опций
+  * [ ] Поле количества (до 1000 шт, выпадающий список)
+  * [ ] Динамический пересчёт цен и итоговой суммы
+  * [ ] Выделение выбранных опций (цвет, список внизу)
+    * [ ] Блок «Выбрано» с перечнем позиций до поля количества
+  * [ ] Блок «Итого»
+  * [ ] Поля: Название организации, Телефон, Email, Количество
+  * [ ] Валидация Email и Телефона (на клиенте и сервере)
+  * [ ] Выделение незаполненных полей красной рамкой
+  * [ ] Кнопка отправки заказа
+  * [ ] Математическая CAPTCHA
+  * [ ] Rate limiting (ограничение частоты отправки с одного IP)
+
+#### 3. Безопасность и структура
+
+* [x] Масштабируемость и поддерживаемость проекта
+  * [x] ООП подход к написанию кода
+  * [x] TDD подход к написаню тестов
+* Простая файловая «админка» через редактирование файлов
+  * [x] index.html
+  * [x] group/index.php, изменение
+    * [x] названий товаров
+    * [x] картинок товаров
+    * [x] цен товаров
+* [ ] Хранение паролей и ключей в .env
+* [ ] Основной код скрыт в отдельных PHP-файлах
+* [ ] Строгая типизация, управление выводом ошибок
+* [ ] Закрыт прямой доступ к .env и служебным файлам через .htaccess
+
+#### 4. Счёт на оплату
+
+* [ ] Бланк строгой формы (как в 1С), чёткие рамки
+* [ ] Нумерация: Счёт № Б-123456-987654 от ДД.ММ.ГГГГ
+* [ ] Реквизиты продавца из конфига, реквизиты покупателя из формы
+* [ ] Каждая выбранная позиция — отдельной строкой
+* [ ] Отправка счёта в формате PDF как вложение
+* [ ] Копия письма администратору
+* [ ] qr-code для оплаты
+
+#### 5. Документация и развёртывание
+
+* [ ] README с инструкцией по установке (включая хостинг без SSH)
+* [ ] Комментарии в коде
+* [ ] Лёгкая смена товаров и цен
 
 ---
 
@@ -38,16 +112,31 @@
 ├── composer.json
 ├── composer.lock
 ├── coverage/
-├── img/
-│   ├── Addon/
-│   │   ├── print_on_clip.png
-│   │   ├── print_on_colored_case.png
-│   │   └── print_on_white_case.png
-│   └── Item/
-│       ├── lychee_pen.jpg
-│       ├── ocean_pen.jpg
-│       └── senator_pen.jpg
-├── index.php
+├── group1
+│   ├── img
+│   │   ├── Addon
+│   │   │   ├── print_on_clip.png
+│   │   │   ├── print_on_colored_case.png
+│   │   │   └── print_on_white_case.png
+│   │   └── Item
+│   │       ├── lychee_pen.jpg
+│   │       ├── ocean_pen.jpg
+│   │       └── senator_pen.jpg
+│   └── index.php
+├── group2
+│   ├── img
+│   │   ├── Addon
+│   │   │   ├── print_on_clip.png
+│   │   │   ├── print_on_colored_case.png
+│   │   │   └── print_on_white_case.png
+│   │   └── Item
+│   │       ├── lychee_pen.jpg
+│   │       ├── ocean_pen.jpg
+│   │       └── senator_pen.jpg
+│   └── index.php
+├── img
+│   └── lychee_pen.jpg
+├── index.html
 ├── phpunit.xml.dist
 ├── README.md
 ├── src/
@@ -112,6 +201,48 @@ classDiagram
   Card <|-- Item
   Card <|-- Addon
 
+```
+
+<div align="center">
+  <h3>Структура вызовов</h3>
+</div>
+
+```mermaid
+classDiagram
+  
+  class index.html {
+  }
+
+  class group1/index.php {
+  }
+
+  class group2/index.php {
+  }
+
+  class captcha.php {
+  }
+
+  class checkout.php {
+  }
+
+  class generatePDF.php {
+  }
+
+  class mailer.php {
+  }
+
+  class SMTP-сервер {
+  }
+
+  index.html --> group1/index.php
+  index.html --> group2/index.php
+  group1/index.php --> captcha.php
+  group2/index.php --> captcha.php
+  captcha.php --> checkout.php
+  checkout.php --> generatePDF.php
+  checkout.php --> mailer.php
+  generatePDF.php --> mailer.php
+  mailer.php --> SMTP-сервер
 ```
 
 <div align="center">

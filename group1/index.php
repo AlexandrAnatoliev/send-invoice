@@ -2,28 +2,29 @@
 
 declare(strict_types=1);
 
-require_once 'vendor/autoload.php';
+require_once __DIR__ . '/../vendor/autoload.php';
+
 use sendInvoice\Item;
 use sendInvoice\Addon;
 
 $item1 = new Item(
-    'Ocean',
+    'Ocean1',
     16,
     'img/Item/ocean_pen.jpg',
 );
 $item2 = new Item(
-    'Senator',
+    'Senator1',
     19,
     'img/Item/senator_pen.jpg',
 );
 $item3 = new Item(
-    'Lychee',
+    'Lychee1',
     15,
     'img/Item/lychee_pen.jpg',
 );
 
 $addon1 = new Addon(
-    'print_on_clip',
+    'print_on_clip1',
     46,
     'img/Addon/print_on_clip.png',
 );
@@ -35,7 +36,7 @@ $addon1->setPriceTier(500, 31);
 $addon1->setPriceTier(1000, 28);
 
 $addon2 = new Addon(
-    'print_on_colored_case',
+    'print_on_colored_case1',
     43,
     'img/Addon/print_on_colored_case.png',
 );
@@ -47,7 +48,7 @@ $addon2->setPriceTier(500, 29);
 $addon2->setPriceTier(1000, 26);
 
 $addon3 = new Addon(
-    'print_on_white_case',
+    'print_on_white_case1',
     33,
     'img/Addon/print_on_white_case.png',
 );
@@ -64,7 +65,7 @@ $addon3->setPriceTier(1000, 20);
 <head>
   <meta charset="UTF-8">
   <title>send-invoice</title>
-  <link rel="stylesheet" href="styles/index.css">
+  <link rel="stylesheet" href="../styles/index.css">
 </head>
 <body>
     <div class="calculator">
