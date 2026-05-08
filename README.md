@@ -121,7 +121,21 @@
 │   │   └── Item
 │   │       ├── lychee_pen.jpg
 │   │       ├── ocean_pen.jpg
-│   │       └── senator_p
+│   │       └── senator_pen.jpg
+│   └── index.php
+├── group2
+│   ├── img
+│   │   ├── Addon
+│   │   │   ├── print_on_clip.png
+│   │   │   ├── print_on_colored_case.png
+│   │   │   └── print_on_white_case.png
+│   │   └── Item
+│   │       ├── lychee_pen.jpg
+│   │       ├── ocean_pen.jpg
+│   │       └── senator_pen.jpg
+│   └── index.php
+├── img
+│   └── lychee_pen.jpg
 ├── index.html
 ├── phpunit.xml.dist
 ├── README.md
