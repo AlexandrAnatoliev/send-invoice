@@ -186,7 +186,6 @@ classDiagram
     # max: int
     # step: int
     + Selector(name: string, min: int, max: int, step: int)
-    + getPrice(quantity: int = null) int
     + getMin() int
     + getMax() int
     + getStep() int
