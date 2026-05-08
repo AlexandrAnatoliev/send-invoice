@@ -3,7 +3,7 @@
   <h1>send-invoice: Калькулятор заказа с генерацией счёта и отправкой на email</h1>
 
   ![Stars](https://img.shields.io/github/stars/AlexandrAnatoliev/send-invoice.svg?style=flat)
-  ![Version 0.10.0](https://img.shields.io/badge/Version-0.10.0-orange.svg)
+  ![Version 0.10.1](https://img.shields.io/badge/Version-0.10.1-orange.svg)
   ![Forks](https://img.shields.io/github/forks/AlexandrAnatoliev/send-invoice.svg?style=flat)
   ![GitHub repo size](https://img.shields.io/github/repo-size/AlexandrAnatoliev/send-invoice)
   
@@ -213,10 +213,10 @@ classDiagram
   class index.html {
   }
 
-  class group1/index.php {
+  class group1 {
   }
 
-  class group2/index.php {
+  class group2 {
   }
 
   class captcha.php {
@@ -234,10 +234,10 @@ classDiagram
   class SMTP-сервер {
   }
 
-  index.html --> group1/index.php
-  index.html --> group2/index.php
-  group1/index.php --> captcha.php
-  group2/index.php --> captcha.php
+  index.html --> group1
+  index.html --> group2
+  group1 --> captcha.php
+  group2 --> captcha.php
   captcha.php --> checkout.php
   checkout.php --> generatePDF.php
   checkout.php --> mailer.php
