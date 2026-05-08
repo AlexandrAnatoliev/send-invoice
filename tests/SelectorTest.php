@@ -25,6 +25,9 @@ class SelectorTest extends TestCase
     public function testSelectorReturnsValidValues(): void
     {
         $this->assertStringContainsString('Тестовый селектор', $this->selector->getName());
+        $this->assertSame(0, $this->selector->getMin());
+        $this->assertSame(1000, $this->selector->getMax());
+        $this->assertSame(50, $this->selector->getStep());
     }
 
     public function testGetCSSReturnsValidStyleTag(): void

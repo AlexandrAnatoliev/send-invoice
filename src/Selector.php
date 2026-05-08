@@ -30,8 +30,8 @@ class Selector extends FormElement
     ) {
         parent::__construct($name);
         $this->min = $min;
-        $this->min = $max;
-        $this->min = $step;
+        $this->max = $max;
+        $this->step = $step;
     }
 
     public function getMin(): int
