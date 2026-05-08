@@ -65,7 +65,7 @@ $addon3->setPriceTier(1000, 20);
 <head>
   <meta charset="UTF-8">
   <title>send-invoice</title>
-  <link rel="stylesheet" href="styles/index.css">
+  <link rel="stylesheet" href="../styles/index.css">
 </head>
 <body>
     <div class="calculator">

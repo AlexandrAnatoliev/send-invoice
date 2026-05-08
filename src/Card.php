@@ -15,7 +15,7 @@ abstract class Card extends FormElement
     protected int $price;
     protected string $image;
 
-    protected const CSS_FILE = 'styles/Card.css';
+    protected const CSS_FILE = '../styles/Card.css';
 
     /**
      * Create a new instance.
