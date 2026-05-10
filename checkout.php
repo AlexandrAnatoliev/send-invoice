@@ -14,9 +14,8 @@ $sourcePath = $_POST['source_path'] ?? '';
 </head>
 <body>
   <div class="calculator">
-    <p><?= $sourcePath ?></p>
     <div class="button">
-<a href="<?= $sourcePath ?>" >Вернуться</a>
+      <a href="<?= htmlspecialchars($sourcePath) ?>" >Вернуться</a>
     </div>
   </div>
 </body>

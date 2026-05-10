@@ -110,7 +110,7 @@ $selector = new Selector(
       <input type="tel" name="customer_phone" placeholder="Телефон контакта" required>
 
       <!-- Из какой группы вызывается checkout -->
-      <input type="hidden" name="source_path" 
+      <input type="hidden" name="source_path"
         value="<?= htmlspecialchars($_SERVER['SCRIPT_NAME']) ?>">
 
       <button type="submit">Заказать и получить счёт на оплату на email</button>
