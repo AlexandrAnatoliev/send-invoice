@@ -111,6 +111,9 @@ $selector = new Selector(
 
             <button type="submit">Заказать и получить счёт на оплату на email</button>
         </form>
+        <div class="button">
+          <a href="../index.html" >Вернуться на главную страницу</a>
+        </div>
     </div>
 </body>
 </html>

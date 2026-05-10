@@ -41,7 +41,7 @@ input[type="text"], input[type="email"], input[type="tel"] {
   box-sizing: border-box;
 }
 
-button {
+button, .button {
   background: #1e8449; 
   color: white; 
   border: none; 
@@ -54,6 +54,6 @@ button {
   transition: 0.2s;
 }
 
-button:hover { 
+button:hover, .button:hover { 
   background: #2ecc71; 
 }
