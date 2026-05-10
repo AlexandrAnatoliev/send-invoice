@@ -72,7 +72,7 @@ $selector = new Selector(
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>send-invoice</title>
+  <title>send-invoice: group2</title>
   <link rel="stylesheet" href="../styles/index.css">
 </head>
 <body>
