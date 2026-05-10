@@ -30,3 +30,13 @@ h2 {
   gap: 20px; 
   flex-wrap: wrap; 
 }
+
+input[type="text"], input[type="email"], input[type="tel"] {
+  width: 100%; 
+  padding: 14px; 
+  margin-bottom: 15px; 
+  border: 1px solid #ccc; 
+  border-radius: 8px;
+  font-size: 1rem; 
+  box-sizing: border-box;
+}
