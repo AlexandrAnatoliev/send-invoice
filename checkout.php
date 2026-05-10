@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+$sourcePath = $_POST['source_path'] ?? '';
 ?>
 
 <!DOCTYPE html>
@@ -13,9 +14,9 @@ declare(strict_types=1);
 </head>
 <body>
   <div class="calculator">
-    <p>text</p>
+    <p><?= $sourcePath ?></p>
     <div class="button">
-      <a href="../index.html" >Вернуться на главную страницу</a>
+<a href="<?= $sourcePath ?>" >Вернуться</a>
     </div>
   </div>
 </body>
