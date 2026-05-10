@@ -6,5 +6,8 @@
     "psr-4": {
       "sendInvoice\\": "src/"
     }
+  },
+  "require": {
+    "vlucas/phpdotenv": "^5.6"
   }
 }
