@@ -72,13 +72,13 @@ $selector = new Selector(
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>send-invoice</title>
+  <title>send-invoice: group1</title>
   <link rel="stylesheet" href="../styles/index.css">
 </head>
 <body>
   <div class="calculator">
     <h1>Калькулятор услуг</h1>
-    <form id="orderForm" action="checkout.php" method="post">
+    <form id="orderForm" action="../checkout.php" method="post">
       <!-- Блок выбора основного тарифа (Радио) -->
       <h2>1. Выберите сувенир</h2>
       <div class="radio-group">
@@ -108,6 +108,10 @@ $selector = new Selector(
       <input type="text" name="customer_name" placeholder="Наименование организации для счёта" required>
       <input type="email" name="customer_email" placeholder="Email для отправки счета" required>
       <input type="tel" name="customer_phone" placeholder="Телефон контакта" required>
+
+      <!-- Из какой группы вызывается checkout -->
+      <input type="hidden" name="source_path"
+        value="<?= htmlspecialchars($_SERVER['SCRIPT_NAME']) ?>">
 
       <button type="submit">Заказать и получить счёт на оплату на email</button>
     </form>
