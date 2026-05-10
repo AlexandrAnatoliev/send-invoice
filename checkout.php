@@ -12,8 +12,11 @@ declare(strict_types=1);
   <link rel="stylesheet" href="styles/index.css">
 </head>
 <body>
-</body>
   <div class="calculator">
     <p>text</p>
+    <div class="button">
+      <a href="../index.html" >Вернуться на главную страницу</a>
+    </div>
   </div>
+</body>
 </html>
