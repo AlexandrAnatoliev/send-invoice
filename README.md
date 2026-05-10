@@ -3,7 +3,7 @@
   <h1>send-invoice: Калькулятор заказа с генерацией счёта и отправкой на email</h1>
 
   ![Stars](https://img.shields.io/github/stars/AlexandrAnatoliev/send-invoice.svg?style=flat)
-  ![Version 0.11.0](https://img.shields.io/badge/Version-0.11.0-orange.svg)
+  ![Version 0.12.0](https://img.shields.io/badge/Version-0.12.0-orange.svg)
   ![Forks](https://img.shields.io/github/forks/AlexandrAnatoliev/send-invoice.svg?style=flat)
   ![GitHub repo size](https://img.shields.io/github/repo-size/AlexandrAnatoliev/send-invoice)
   
@@ -57,11 +57,11 @@
   * [ ] Выделение выбранных опций (цвет, список внизу)
     * [ ] Блок «Выбрано» с перечнем позиций до поля количества
   * [ ] Блок «Итого»
-  * [ ] Поля: Название организации, Телефон, Email, Количество
+  * [x] Поля: Название организации, Телефон, Email, Количество
   * [ ] Валидация Email и Телефона (на клиенте и сервере)
   * [ ] Выделение незаполненных полей красной рамкой
-  * [ ] Кнопка отправки заказа
-  * [ ] Кнопка return to index.html
+  * [x] Кнопка отправки заказа
+  * [x] Кнопка return to index.html
   * [ ] Математическая CAPTCHA
   * [ ] Rate limiting (ограничение частоты отправки с одного IP)
 
@@ -69,7 +69,7 @@
 
 * [x] Масштабируемость и поддерживаемость проекта
   * [x] ООП подход к написанию кода
-  * [x] TDD подход к написаню тестов
+  * [x] TDD подход к написанию тестов
 * Простая файловая «админка» через редактирование файлов
   * [x] index.html
   * [x] group/index.php, изменение
@@ -148,6 +148,7 @@
 │   └── Selector.php
 ├── styles/
 │   ├── Card.css
+│   ├── Selector.css
 │   └── index.css
 ├── tests
 │   ├── AddonTest.php
