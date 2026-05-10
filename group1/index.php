@@ -108,6 +108,8 @@ $selector = new Selector(
             <input type="text" name="customer_name" placeholder="Наименование организации для счёта" required>
             <input type="email" name="customer_email" placeholder="Email для отправки счета" required>
             <input type="tel" name="customer_phone" placeholder="Телефон контакта" required>
+
+            <button type="submit">Заказать и получить счёт на оплату на email</button>
         </form>
     </div>
 </body>

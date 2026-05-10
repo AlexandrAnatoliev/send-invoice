@@ -40,3 +40,20 @@ input[type="text"], input[type="email"], input[type="tel"] {
   font-size: 1rem; 
   box-sizing: border-box;
 }
+
+button {
+  background: #1e8449; 
+  color: white; 
+  border: none; 
+  padding: 16px 30px; 
+  font-size: 1.2rem;
+  border-radius: 50px; 
+  width: 100%; 
+  cursor: pointer; 
+  font-weight: bold; 
+  transition: 0.2s;
+}
+
+button:hover { 
+  background: #2ecc71; 
+}
