@@ -76,44 +76,47 @@ $selector = new Selector(
   <link rel="stylesheet" href="../styles/index.css">
 </head>
 <body>
-    <div class="calculator">
-        <h1>Калькулятор услуг</h1>
-        <form id="orderForm" action="checkout.php" method="post">
-            <!-- Блок выбора основного тарифа (Радио) -->
-            <h2>1. Выберите сувенир</h2>
-            <div class="radio-group">
-              <?= Item::getCSS() ?>
-              <?= $item1->render() ?>
-              <?= $item2->render() ?>
-              <?= $item3->render() ?>
-            </div>
+  <div class="calculator">
+    <h1>Калькулятор услуг</h1>
+    <form id="orderForm" action="checkout.php" method="post">
+      <!-- Блок выбора основного тарифа (Радио) -->
+      <h2>1. Выберите сувенир</h2>
+      <div class="radio-group">
+        <?= Item::getCSS() ?>
+        <?= $item1->render() ?>
+        <?= $item2->render() ?>
+        <?= $item3->render() ?>
+      </div>
 
-            <!-- Блок дополнительных услуг (Чекбоксы) -->
-            <h2>2. Выберите нанесение</h2>
-            <div class="checkbox-group">
-              <?= $addon1->render() ?>
-              <?= $addon2->render() ?>
-              <?= $addon3->render() ?>
-            </div>
+      <!-- Блок дополнительных услуг (Чекбоксы) -->
+      <h2>2. Выберите нанесение</h2>
+      <div class="checkbox-group">
+        <?= $addon1->render() ?>
+        <?= $addon2->render() ?>
+        <?= $addon3->render() ?>
+      </div>
 
-            <!-- Количество / Срок -->
-            <h2>3. Нужное количество</h2>
-            <div class="quantity-block">
-              <?= Selector::getCSS() ?>
-              <?= $selector->render() ?>
-            </div>
+      <!-- Количество / Срок -->
+      <h2>3. Нужное количество</h2>
+      <div class="quantity-block">
+        <?= Selector::getCSS() ?>
+        <?= $selector->render() ?>
+      </div>
 
-            <!-- Данные покупателя -->
-            <h2>4. Ваши данные для получения счёта на оплату на почту</h2>
-            <input type="text" name="customer_name" placeholder="Наименование организации для счёта" required>
-            <input type="email" name="customer_email" placeholder="Email для отправки счета" required>
-            <input type="tel" name="customer_phone" placeholder="Телефон контакта" required>
+      <!-- Данные покупателя -->
+      <h2>4. Ваши данные для получения счёта на оплату на почту</h2>
+      <input type="text" name="customer_name" placeholder="Наименование организации для счёта" required>
+      <input type="email" name="customer_email" placeholder="Email для отправки счета" required>
+      <input type="tel" name="customer_phone" placeholder="Телефон контакта" required>
 
-            <button type="submit">Заказать и получить счёт на оплату на email</button>
-        </form>
-        <div class="button">
-          <a href="../index.html" >Вернуться на главную страницу</a>
-        </div>
+      <button type="submit">Заказать и получить счёт на оплату на email</button>
+    </form>
+
+    <br>
+
+    <div class="button">
+      <a href="../index.html" >Вернуться на главную страницу</a>
     </div>
+  </div>
 </body>
 </html>
