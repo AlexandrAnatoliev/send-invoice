@@ -110,6 +110,7 @@
 
 ```
 .
+├── checkout.php
 ├── composer.json
 ├── composer.lock
 ├── coverage/
