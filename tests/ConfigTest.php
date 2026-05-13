@@ -10,20 +10,27 @@ use sendInvoice\Config;
 
 class ConfigTest extends TestCase
 {
-    private Config $config;
-    private Config $config2;
+    private Config $testConfig;
+    private Config $envConfig;
 
     protected function setUp(): void
     {
-        $this->config = new Config(
+        $this->testConfig = new Config(
             ['testSetting' => 'testValue',],
         );
-        $this->config2 = new Config();
+
+        $this->envConfig = new Config();
     }
 
-    public function testConfigConstructor(): void
+    public function testTestConfigConstructor(): void
     {
-        $this->assertSame('testValue', $this->config->get('testSetting'));
-        $this->assertSame('Заполните настройки', $this->config->get('noExistsSetting'));
+        $this->assertSame('testValue', $this->testConfig->get('testSetting'));
+        $this->assertSame('Заполните настройки', $this->testConfig->get('noExistsSetting'));
+    }
+
+    public function testEnvConfigConstructor(): void
+    {
+        $this->assertSame('Заполните настройки', $this->envConfig->get('noExistsSetting'));
+        $this->assertSame('Администратор заказов', $this->envConfig->get('ADMIN_NAME'));
     }
 }
