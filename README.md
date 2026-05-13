@@ -21,6 +21,7 @@
 
 * [Техническое задание](#technical-specifications)
 * [Общая архитектура](#architecture)
+* [Требования к серверу](#requirements)
 * [Разное](#other)
 
 ---
@@ -260,6 +261,39 @@ classDiagram
   checkout.php --> mailer.php
   generatePDF.php --> mailer.php
   mailer.php --> SMTP-сервер
+```
+
+<div align="center">
+  <a id="requirements"></a>
+  <h2>Требования к серверу</h2>
+</div>
+
+* PHP: версия 8.1 и выше
+* Composer: менеджер пакетов PHP
+* Библиотеки (устанавливаются через Composer):
+  * vlucas/phpdotenv: версия 5.6 и выше
+
+<div align="center">
+  <h3>Установка Composer</h3>
+</div>
+
+#### Ubuntu/Debian
+
+```
+sudo apt update
+sudo apt install composer -y
+```
+
+<div align="center">
+  <h3>Установка библиотек</h3>
+</div>
+
+#### Ubuntu/Debian
+
+В корневой папке проекта выполнить:
+
+```
+composer install
 ```
 
 <div align="center">
