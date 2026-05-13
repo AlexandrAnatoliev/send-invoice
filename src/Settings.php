@@ -7,7 +7,7 @@ use Dotenv\Dotenv;
 
 class Settings
 {
-    public array $env;
+    private array $env;
 
     /**
      *
@@ -29,7 +29,7 @@ class Settings
 
     public function get($key, $default = 'Заполните настройки'): string
     {
-        if (array_key_first($key, $this->env)) {
+        if (array_key_exists($key, $this->env)) {
             return $this->env[$key];
         }
         return $default;

@@ -21,6 +21,6 @@ class SettingsTest extends TestCase
 
     public function testSettingsConstructor(): void
     {
-        $this->assertSame('test', $this->settings->env['testSetting']);
+        $this->assertSame('test', $this->settings->get('testSetting'));
     }
 }
