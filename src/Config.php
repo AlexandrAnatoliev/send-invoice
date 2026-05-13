@@ -2,10 +2,7 @@
 
 namespace sendInvoice;
 
-require_once 'vendor/autoload.php';
-use Dotenv\Dotenv;
-
-class Settings
+class Config
 {
     private array $env;
 
