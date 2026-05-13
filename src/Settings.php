@@ -18,7 +18,7 @@ class Settings
         array $env = null,
     ) {
         if ($env == null) {
-            $dotenv = \Dotenv\Dotenv::createImmutable(__DIR__);
+            $dotenv = \Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
             $dotenv->load();
 
             $this->env = $_ENV;
