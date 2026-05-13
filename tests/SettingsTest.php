@@ -11,12 +11,14 @@ use sendInvoice\Settings;
 class SettingsTest extends TestCase
 {
     private Settings $settings;
+    private Settings $settings2;
 
     protected function setUp(): void
     {
         $this->settings = new Settings(
             ['testSetting' => 'testValue',],
         );
+        $this->settings2 = new Settings();
     }
 
     public function testSettingsConstructor(): void
