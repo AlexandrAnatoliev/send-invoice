@@ -2,6 +2,9 @@
 
 namespace sendInvoice;
 
+require_once 'vendor/autoload.php';
+use Dotenv\Dotenv;
+
 class Settings
 {
     public array $env;
@@ -15,8 +18,6 @@ class Settings
         array $env = null,
     ) {
         if ($env == null) {
-            require_once 'vendor/autoload.php';
-
             $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
             $dotenv->load();
 
@@ -24,5 +25,13 @@ class Settings
         } else {
             $this->env = $env;
         }
+    }
+
+    public function get($key, $default = 'Заполните настройки'): string
+    {
+        if (array_key_first($key, $this->env)) {
+            return $this->env[$key];
+        }
+        return $default;
     }
 }
