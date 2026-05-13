@@ -15,12 +15,13 @@ class SettingsTest extends TestCase
     protected function setUp(): void
     {
         $this->settings = new Settings(
-            ['testSetting' => 'test',],
+            ['testSetting' => 'testValue',],
         );
     }
 
     public function testSettingsConstructor(): void
     {
-        $this->assertSame('test', $this->settings->get('testSetting'));
+        $this->assertSame('testValue', $this->settings->get('testSetting'));
+        $this->assertSame('Заполните настройки', $this->settings->get('noExistsSetting'));
     }
 }
