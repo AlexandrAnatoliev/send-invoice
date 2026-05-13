@@ -4,7 +4,7 @@ namespace sendInvoice;
 
 class Settings
 {
-    protected array $env;
+    public array $env;
 
     /**
      *
