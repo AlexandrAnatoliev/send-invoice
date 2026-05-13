@@ -14,9 +14,8 @@ class Settings
      *
      * @param  $env
      */
-    public function __construct(
-        array $env = null,
-    ) {
+    public function __construct(?array $env = null)
+    {
         if ($env == null) {
             $dotenv = \Dotenv\Dotenv::createImmutable(__DIR__ . '/../configs');
             $dotenv->load();
@@ -29,9 +28,6 @@ class Settings
 
     public function get($key, $default = 'Заполните настройки'): string
     {
-        if (array_key_exists($key, $this->env)) {
-            return $this->env[$key];
-        }
-        return $default;
+        return $this->env[$key] ?? getenv($key) ?: $default;
     }
 }
