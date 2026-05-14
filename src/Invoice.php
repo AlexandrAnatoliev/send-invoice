@@ -27,6 +27,8 @@ class Invoice extends FormElement
   <meta charset="UTF-8">
   <title>Счёт на оплату · банковские реквизиты</title>
   <style>';
+  
+    $invoice .= $this->getCSS(); 
 
     $invoice .= '
   </style>
