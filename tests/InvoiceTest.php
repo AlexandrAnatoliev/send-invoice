@@ -10,6 +10,20 @@ use sendInvoice\Invoice;
 
 class InvoiceTest extends TestCase
 {
+    private Invoice $invoice;
+
+    protected function setUp(): void
+    {
+        $this->invoice = new Invoice(
+            'Тестовый счет',
+        );
+    }
+
+    public function testConstructorFieldsIsValid(): void
+    {
+        $this->assertSame('Тестовый счет', $this->invoice->getName());
+    }
+
     public function testGetCSSReturnsValidStyleTag(): void
     {
         $cssTag = Invoice::getCSS();
