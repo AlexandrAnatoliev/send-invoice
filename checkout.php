@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-$sourcePath = $_POST['source_path'] ?? '';
+$sourcePath = htmlspecialchars($_POST['source_path']) ?? '';
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +15,7 @@ $sourcePath = $_POST['source_path'] ?? '';
 <body>
   <div class="calculator">
     <div class="button">
-      <a href="<?= htmlspecialchars($sourcePath) ?>" >Вернуться</a>
+      <a href="<?= $sourcePath ?>" >Вернуться</a>
     </div>
   </div>
 </body>
