@@ -10,9 +10,9 @@ namespace sendInvoice;
 class Selector extends FormElement
 {
     protected const CSS_FILE = '../styles/Selector.css';
-    protected int $min;
-    protected int $max;
-    protected int $step;
+    private int $min;
+    private int $max;
+    private int $step;
 
     /**
      * Create a new instance.
