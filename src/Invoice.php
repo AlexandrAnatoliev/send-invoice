@@ -28,16 +28,16 @@ class Invoice extends FormElement
   <title>Счёт на оплату · банковские реквизиты</title>
   <style>';
 
-    $htmlInvoice .= '
+    $invoice .= '
   </style>
 </head>';
 
-    $htmlInvoice .= '
+    $invoice .= '
   <div class="empty-line"></div>';
 
     $dateIn3Days = date('Y-m-d', strtotime('+3 days'));
 
-    $htmlInvoice .= '
+    $invoice .= '
   <p>Оплатить не позднее ' . $dateIn3Days . '</p>
 
   <p>Оплата данного счёта означает согласие с условиями поставки товара.<br>
@@ -57,6 +57,6 @@ class Invoice extends FormElement
 </div>
 </body>
 </html>';
-    return $htmlInvoice;
+    return $invoice;
     }
 }

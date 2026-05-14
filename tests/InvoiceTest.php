@@ -31,4 +31,13 @@ class InvoiceTest extends TestCase
         $this->assertStringEndsWith('</style>', $cssTag);
         $this->assertNotEmpty(trim(strip_tags($cssTag)));
     }
+
+    public function testRenderReturnsValidHtml(): void
+    {
+        $html = $this->invoice->render();
+
+        $this->assertStringContainsString(
+          '<title>Счёт на оплату · банковские реквизиты</title>', 
+          $html);
+    }
 }
