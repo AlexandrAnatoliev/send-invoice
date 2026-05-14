@@ -13,7 +13,7 @@ namespace sendInvoice;
  */
 class Addon extends Card
 {
-    protected array $priceTiers = [];
+    private array $priceTiers = [];
 
     /**
      * Define a price tier for a specific quantity
