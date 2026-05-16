@@ -7,6 +7,7 @@ namespace Tests;
 require_once __DIR__ . '/../vendor/autoload.php';
 use PHPUnit\Framework\TestCase;
 use sendInvoice\Invoice;
+use sendInvoice\Config;
 
 class InvoiceTest extends TestCase
 {
@@ -14,8 +15,13 @@ class InvoiceTest extends TestCase
 
     protected function setUp(): void
     {
+        $testConfig = new Config(
+            ['testSetting' => 'testValue',],
+        );
+
         $this->invoice = new Invoice(
             'Тестовый счет',
+            $testConfig,
         );
     }
 
