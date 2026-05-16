@@ -15,6 +15,17 @@ class Invoice extends FormElement
     protected const CSS_FILE = '../styles/Invoice.css';
 
     /**
+     * Create a new instance.
+     *
+     * @param $name  Product name
+     */
+    public function __construct(
+        string $name,
+    ) {
+        parent::__construct($name);
+    }
+
+    /**
      * Render the invoice as an HTML page.
      *
      * @return HTML markup of the invoice
