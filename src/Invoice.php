@@ -36,7 +36,7 @@ class Invoice extends FormElement
      */
     public function render(): string
     {
-        $invoice  = $this->getCSS(); 
+        $invoice  = $this->getCSS();
 
         $invoice .= '
   <div class="empty-line"></div>';
@@ -57,7 +57,7 @@ class Invoice extends FormElement
   <table class="middle-table">
     <tr>
       <td><b>Предприниматель</b></td>
-      <td>__________________________(' 
+      <td>__________________________('
         . $this->config->get('BANK_DETAILS_ENTREPRENEURS_SURNAME') . ')</td>
     </tr>
   </table>';

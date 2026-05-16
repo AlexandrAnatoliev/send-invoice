@@ -43,7 +43,7 @@ class InvoiceTest extends TestCase
         $html = $this->invoice->render();
 
         $this->assertStringContainsString(
-          '<td><b>Предприниматель</b></td>', 
+          '<td><b>Предприниматель</b></td>',
           $html);
         $this->assertStringContainsString('.invoice-header {', $html);
     }
