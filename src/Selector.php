@@ -52,7 +52,7 @@ class Selector extends FormElement
     /**
      * Render the Selector as an HTML selector containing a quantity-block input.
      *
-     * @return HTML markup of the addon
+     * @return HTML markup of the selector
      */
     public function render(): string
     {
