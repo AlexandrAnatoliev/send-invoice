@@ -21,25 +21,14 @@ class Invoice extends FormElement
      */
     public function render(): string
     {
-      $invoice = '<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <title>Счёт на оплату · банковские реквизиты</title>
-  <style>';
-  
-    $invoice .= $this->getCSS(); 
+        $invoice  = $this->getCSS(); 
 
-    $invoice .= '
-  </style>
-</head>';
-
-    $invoice .= '
+        $invoice .= '
   <div class="empty-line"></div>';
 
-    $dateIn3Days = date('Y-m-d', strtotime('+3 days'));
+        $dateIn3Days = date('Y-m-d', strtotime('+3 days'));
 
-    $invoice .= '
+        $invoice .= '
   <p>Оплатить не позднее ' . $dateIn3Days . '</p>
 
   <p>Оплата данного счёта означает согласие с условиями поставки товара.<br>
@@ -55,10 +44,7 @@ class Invoice extends FormElement
       <td><b>Предприниматель</b></td>
       <td>__________________________(' . $bankDetails['entrepreneurs_surname'] . ')</td>
     </tr>
-  </table>
-</div>
-</body>
-</html>';
-    return $invoice;
+  </table>';
+        return $invoice;
     }
 }

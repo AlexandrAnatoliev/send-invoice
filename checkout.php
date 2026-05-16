@@ -18,8 +18,9 @@ $invoice = new Invoice('invoice');
   <link rel="stylesheet" href="styles/index.css">
 </head>
 <body>
-  <?= $invoice->render() ?>
   <div class="calculator">
+    <?= $invoice->render() ?>
+
     <div class="button">
       <a href="<?= $sourcePath ?>" >Вернуться</a>
     </div>
