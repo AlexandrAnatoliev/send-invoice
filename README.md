@@ -77,8 +77,8 @@
     * [x] названий товаров
     * [x] картинок товаров
     * [x] цен товаров
-* [ ] Хранение паролей и ключей в .env
-* [ ] Основной код скрыт в отдельных PHP-файлах
+* [x] Хранение паролей и ключей в .env
+* [x] Основной код скрыт в отдельных PHP-файлах
 * [ ] Строгая типизация, управление выводом ошибок
 * [ ] Закрыт прямой доступ к .env и служебным файлам через .htaccess
 
@@ -114,6 +114,9 @@
 ├── checkout.php
 ├── composer.json
 ├── composer.lock
+├── configs
+│   ├── .env
+│   └── .env.example
 ├── coverage/
 ├── group1
 │   ├── img
@@ -145,16 +148,21 @@
 ├── src/
 │   ├── Addon.php
 │   ├── Card.php
+│   ├── Config.php
 │   ├── FormElement.php
+│   ├── Invoice.php
 │   ├── Item.php
 │   └── Selector.php
 ├── styles/
 │   ├── Card.css
-│   ├── Selector.css
-│   └── index.css
+│   ├── index.css
+│   ├── Invoice.css
+│   └── Selector.css
 ├── tests
 │   ├── AddonTest.php
+│   ├── ConfigTest.php
 │   ├── HealthTest.php
+│   ├── InvoiceTest.php
 │   ├── ItemTest.php
 │   └── SelectorTest.php
 └── vendor
@@ -199,6 +207,12 @@ classDiagram
     + render() string
   }
 
+  class Invoice {
+    - config: Config
+    + Invoice(name: string, config: Config)
+    + render() string
+  }
+
   class Card {
     # price: int
     # image: string
@@ -219,6 +233,7 @@ classDiagram
   }
 
   FormElement  <|-- Selector
+  FormElement  <|-- Invoice
   FormElement  <|-- Card
   Card <|-- Item
   Card <|-- Addon
