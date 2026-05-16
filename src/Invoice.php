@@ -57,7 +57,8 @@ class Invoice extends FormElement
   <table class="middle-table">
     <tr>
       <td><b>Предприниматель</b></td>
-      <td>__________________________(' . $bankDetails['entrepreneurs_surname'] . ')</td>
+      <td>__________________________(' 
+        . $this->config->get('BANK_DETAILS_ENTREPRENEURS_SURNAME') . ')</td>
     </tr>
   </table>';
         return $invoice;
