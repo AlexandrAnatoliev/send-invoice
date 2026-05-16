@@ -13,16 +13,20 @@ namespace sendInvoice;
 class Invoice extends FormElement
 {
     protected const CSS_FILE = '../styles/Invoice.css';
+    private Config $config;
 
     /**
      * Create a new instance.
      *
-     * @param $name  Product name
+     * @param $name   Invoice name
+     * @param $config Settings config
      */
     public function __construct(
         string $name,
+        Config $config,
     ) {
         parent::__construct($name);
+        $this->config = $config;
     }
 
     /**
