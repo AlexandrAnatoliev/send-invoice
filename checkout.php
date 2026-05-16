@@ -5,9 +5,14 @@ declare(strict_types=1);
 require_once __DIR__ . '/vendor/autoload.php';
 
 use sendInvoice\Invoice;
+use sendInvoice\Config;
 
 $sourcePath = htmlspecialchars($_POST['source_path']) ?? '';
-$invoice = new Invoice('invoice');
+$config = new Config();
+$invoice = new Invoice(
+  'invoice',
+  $config,
+);
 ?>
 
 <!DOCTYPE html>
