@@ -2,7 +2,17 @@
 
 declare(strict_types=1);
 
+require_once __DIR__ . '/vendor/autoload.php';
+
+use sendInvoice\Invoice;
+use sendInvoice\Config;
+
 $sourcePath = htmlspecialchars($_POST['source_path']) ?? '';
+$config = new Config();
+$invoice = new Invoice(
+  'invoice',
+  $config,
+);
 ?>
 
 <!DOCTYPE html>
@@ -14,9 +24,12 @@ $sourcePath = htmlspecialchars($_POST['source_path']) ?? '';
 </head>
 <body>
   <div class="calculator">
+    <?= $invoice->render() ?>
+
     <div class="button">
       <a href="<?= $sourcePath ?>" >Вернуться</a>
     </div>
+
   </div>
 </body>
 </html>

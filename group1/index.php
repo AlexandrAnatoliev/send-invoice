@@ -119,8 +119,15 @@ $selector = new Selector(
     <br>
 
     <div class="button">
+      <a href="">Сбросить</a>
+    </div>
+
+    <br>
+
+    <div class="button">
       <a href="../index.html" >Вернуться на главную страницу</a>
     </div>
+
   </div>
 </body>
 </html>

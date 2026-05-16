@@ -7,11 +7,10 @@ class Config
     private array $env;
 
     /**
-     * При создании инициализирует массив с настройками
-     * либо из переменной окружения $_ENV
-     * либо из тестового массива
+     * Initialises the settings array from the $_ENV environment
+     * variable or from test array.
      *
-     * @param  $env - Тестовый массив
+     * @param  $env - Test array (optional)
      */
     public function __construct(?array $env = null)
     {
@@ -26,11 +25,11 @@ class Config
     }
 
     /**
-     * Возвращает значение настроек конфига по ключу
+     * Returns the configuration value for the given key.
      *
-     * @param  $key     - Ключ
-     * @param  $default - Дефолтное значение (если ключ не найден)
-     * @return Значение настроек конфига
+     * @param  $key     - Configuration key
+     * @param  $default - Default value (used if the key is not found)
+     * @return Configuration value
      */
     public function get($key, $default = 'Заполните настройки'): string
     {

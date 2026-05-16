@@ -25,7 +25,6 @@ class ItemTest extends TestCase
     {
         $html = $this->item->render();
 
-        // Проверяем структуру label и наличие обязательных элементов
         $this->assertStringContainsString('<label class="card">', $html);
         $this->assertStringContainsString('type="radio"', $html);
         $this->assertStringContainsString('name="itemName"', $html);
@@ -33,7 +32,6 @@ class ItemTest extends TestCase
         $this->assertStringContainsString('123 456 ₽', $html); // number_format
         $this->assertStringContainsString('img/test.jpg', $html);
 
-        // Проверяем data-атрибуты
         $this->assertStringContainsString('data-price="123456"', $html);
         $this->assertStringContainsString('data-name="' . htmlspecialchars($this->item->getName()) . '"', $html);
     }
@@ -41,7 +39,6 @@ class ItemTest extends TestCase
     public function testDataNameShouldBeProductNameNotPrice(): void
     {
         $html = $this->item->render();
-        // Дополнительно убедимся, что старый баг не вернулся
         $this->assertStringNotContainsString('data-name="123456"', $html);
         $this->assertStringContainsString('data-name="Тестовый товар"', $html);
     }

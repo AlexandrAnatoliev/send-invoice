@@ -10,9 +10,9 @@ namespace sendInvoice;
 class Selector extends FormElement
 {
     protected const CSS_FILE = '../styles/Selector.css';
-    protected int $min;
-    protected int $max;
-    protected int $step;
+    private int $min;
+    private int $max;
+    private int $step;
 
     /**
      * Create a new instance.
@@ -52,7 +52,7 @@ class Selector extends FormElement
     /**
      * Render the Selector as an HTML selector containing a quantity-block input.
      *
-     * @return HTML markup of the addon
+     * @return HTML markup of the selector
      */
     public function render(): string
     {
