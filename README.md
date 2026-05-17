@@ -3,7 +3,7 @@
   <h1>send-invoice: Калькулятор заказа с генерацией счёта и отправкой на email</h1>
 
   ![Stars](https://img.shields.io/github/stars/AlexandrAnatoliev/send-invoice.svg?style=flat)
-  ![Version 0.15.0](https://img.shields.io/badge/Version-0.15.0-orange.svg)
+  ![Version 0.15.1](https://img.shields.io/badge/Version-0.15.1-orange.svg)
   ![Forks](https://img.shields.io/github/forks/AlexandrAnatoliev/send-invoice.svg?style=flat)
   ![GitHub repo size](https://img.shields.io/github/repo-size/AlexandrAnatoliev/send-invoice)
   
@@ -211,6 +211,7 @@ classDiagram
     - config: Config
     + Invoice(name: string, config: Config)
     + render() string
+    + renderMainTable() string
   }
 
   class Card {
