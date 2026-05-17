@@ -76,32 +76,32 @@ class Invoice extends FormElement
   <table class="main-table">
     <tr>
       <td class="cell-bank-name" style="border-bottom: none;">
-        ' . $bankDetails['recipient_bank'] . '<br><br>
+        ' . $this->config->get('BANK_DETAILS_RECIPIENT_BANK') . '<br><br>
       </td>
       <td class="cell-bik-label" style="vertical-align: top;">БИК</td>
       <td class="cell-bik-value" style="border-bottom: none; vertical-align: top;">
-        ' . $bankDetails['bank_identification_code'] . '
+        ' . $this->config->get('BANK_DETAILS_BANK_IDENTIFICATION_CODE') . '
       </td>
     </tr>
     <tr>
       <td class="cell-bank-name" style="border-top: none;">Банк получателя</td>
       <td class="cell-bik-label">Сч. №</td>
       <td class="cell-bik-value" style="border-top: none;">
-        ' . $bankDetails['correspondent_bank_account'] . '
+        ' . $this->config->get('BANK_DETAILS_CORRESPONDENT_BANK_ACCOUNT') . '
       </td>
     </tr>
     <tr>
       <td class="cell-inn-kpp">
-        <span class="inn-cell">ИНН ' . $bankDetails['inn'] . '</span>
+        <span class="inn-cell">ИНН ' . $this->config->get('BANK_DETAILS_INN') . '</span>
         <span class="kpp-cell">КПП </span>
       </td>
       <td class="cell-account-label" style="vertical-align: top;" rowspan="2">Сч. №</td>
       <td class="cell-account-value" style="vertical-align: top;" rowspan="2">
-        ' . $bankDetails['recipients_bank_account'] . '
+        ' . $this->config->get('BANK_DETAILS_RECIPIENTS_BANK_ACCOUNT') . '
       </td>
     </tr>
-    <tr>
-      <td class="cell-recipient">' . $bankDetails['ip_name'] . '<br><br>Получатель</td>
+    <tr>BANK_DETAILS_IP_NAME
+      <td class="cell-recipient">' . $this->config->get('BANK_DETAILS_IP_NAME') . '<br><br>Получатель</td>
     </tr>
   </table>';
   }
