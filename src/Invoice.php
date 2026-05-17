@@ -3,10 +3,7 @@
 namespace sendInvoice;
 
 /**
- * Card represents a product card for the order calculator.
- *
- * Each card includes a name, price,
- * and an image path.
+ * Represents a invoice.
  *
  * @package sendInvoice
  */
@@ -71,7 +68,7 @@ class Invoice extends FormElement
    *
    * @return HTML markup
    */
-  function renderMainTable(): string
+  public function renderMainTable(): string
   {
     return '
   <!-- ПЕРВАЯ ТАБЛИЦА — банковские реквизиты -->
