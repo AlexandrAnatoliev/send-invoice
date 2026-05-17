@@ -38,6 +38,8 @@ class Invoice extends FormElement
   {
     $invoice  = $this->getCSS();
 
+    $invoice .= $this->renderMainTable();
+
     $invoice .= '
   <div class="empty-line"></div>';
 
@@ -100,7 +102,7 @@ class Invoice extends FormElement
         ' . $this->config->get('BANK_DETAILS_RECIPIENTS_BANK_ACCOUNT') . '
       </td>
     </tr>
-    <tr>BANK_DETAILS_IP_NAME
+    <tr>
       <td class="cell-recipient">' . $this->config->get('BANK_DETAILS_IP_NAME') . '<br><br>Получатель</td>
     </tr>
   </table>';
