@@ -7,7 +7,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 use sendInvoice\Invoice;
 use sendInvoice\Config;
 
-$sourcePath = htmlspecialchars($_POST['source_path']) ?? '';
+$sourcePath = htmlspecialchars($_POST['source_path'] ?? '');
 $config = new Config();
 $invoice = new Invoice(
   'invoice',
