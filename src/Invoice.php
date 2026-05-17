@@ -12,33 +12,33 @@ namespace sendInvoice;
  */
 class Invoice extends FormElement
 {
-    protected const CSS_FILE = '../styles/Invoice.css';
-    private Config $config;
+  protected const CSS_FILE = '../styles/Invoice.css';
+  private Config $config;
 
-    /**
-     * Create a new instance.
-     *
-     * @param $name   Invoice name
-     * @param $config Settings config
-     */
-    public function __construct(
-        string $name,
-        Config $config,
-    ) {
-        parent::__construct($name);
-        $this->config = $config;
-    }
+  /**
+   * Create a new instance.
+   *
+   * @param $name   Invoice name
+   * @param $config Settings config
+   */
+  public function __construct(
+    string $name,
+    Config $config,
+  ) {
+    parent::__construct($name);
+    $this->config = $config;
+  }
 
-    /**
-     * Render the invoice as an HTML page.
-     *
-     * @return HTML markup of the invoice
-     */
-    public function render(): string
-    {
-        $invoice  = $this->getCSS();
+  /**
+   * Render the invoice as an HTML page.
+   *
+   * @return HTML markup of the invoice
+   */
+  public function render(): string
+  {
+    $invoice  = $this->getCSS();
 
-        $invoice .= '
+    $invoice .= '
   <div class="empty-line"></div>';
 
         $dateIn3Days = date('Y-m-d', strtotime('+3 days'));
@@ -53,7 +53,7 @@ class Invoice extends FormElement
   <div class="empty-line"></div>
 
   <div class="divider"></div>
-  
+
   <table class="middle-table">
     <tr>
       <td><b>Предприниматель</b></td>
@@ -61,6 +61,48 @@ class Invoice extends FormElement
         . $this->config->get('BANK_DETAILS_ENTREPRENEURS_SURNAME') . ')</td>
     </tr>
   </table>';
-        return $invoice;
-    }
+    return $invoice;
+  }
+
+  /**
+   * Render the Main Table as an HTML.
+   *
+   * @return HTML markup
+   */
+  function renderMainTable(): string
+  {
+    return '
+  <!-- ПЕРВАЯ ТАБЛИЦА — банковские реквизиты -->
+  <table class="main-table">
+    <tr>
+      <td class="cell-bank-name" style="border-bottom: none;">
+        ' . $bankDetails['recipient_bank'] . '<br><br>
+      </td>
+      <td class="cell-bik-label" style="vertical-align: top;">БИК</td>
+      <td class="cell-bik-value" style="border-bottom: none; vertical-align: top;">
+        ' . $bankDetails['bank_identification_code'] . '
+      </td>
+    </tr>
+    <tr>
+      <td class="cell-bank-name" style="border-top: none;">Банк получателя</td>
+      <td class="cell-bik-label">Сч. №</td>
+      <td class="cell-bik-value" style="border-top: none;">
+        ' . $bankDetails['correspondent_bank_account'] . '
+      </td>
+    </tr>
+    <tr>
+      <td class="cell-inn-kpp">
+        <span class="inn-cell">ИНН ' . $bankDetails['inn'] . '</span>
+        <span class="kpp-cell">КПП </span>
+      </td>
+      <td class="cell-account-label" style="vertical-align: top;" rowspan="2">Сч. №</td>
+      <td class="cell-account-value" style="vertical-align: top;" rowspan="2">
+        ' . $bankDetails['recipients_bank_account'] . '
+      </td>
+    </tr>
+    <tr>
+      <td class="cell-recipient">' . $bankDetails['ip_name'] . '<br><br>Получатель</td>
+    </tr>
+  </table>';
+  }
 }
