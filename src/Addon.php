@@ -72,7 +72,7 @@ class Addon extends Card
                     value="' . htmlspecialchars($this->getName()) . '"
                     data-price="' . htmlspecialchars($this->getPrice()) . '"
                     data-name="' . htmlspecialchars($this->getName()) . '">
-            <img src="' . htmlspecialchars($this->getImage()) 
+            <img src="' . htmlspecialchars($this->getImage())
               . '" alt="' . htmlspecialchars($this->getName()) . '">
             <span class="title">' . htmlspecialchars($this->getName()) . '</span>
             <span class="price">' . number_format($this->getPrice(), 0, ',', ' ') . ' ₽</span>
