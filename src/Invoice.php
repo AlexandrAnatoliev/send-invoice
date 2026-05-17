@@ -60,7 +60,7 @@ class Invoice extends FormElement
     <tr>
       <td><b>Предприниматель</b></td>
       <td>__________________________('
-        . $this->config->get('BANK_DETAILS_ENTREPRENEURS_SURNAME') . ')</td>
+        . $this->config->get('ENTREPRENEURS_SURNAME') . ')</td>
     </tr>
   </table>';
     return $invoice;
@@ -78,32 +78,32 @@ class Invoice extends FormElement
   <table class="main-table">
     <tr>
       <td class="cell-bank-name" style="border-bottom: none;">
-        ' . $this->config->get('BANK_DETAILS_RECIPIENT_BANK') . '<br><br>
+        ' . $this->config->get('RECIPIENT_BANK') . '<br><br>
       </td>
       <td class="cell-bik-label" style="vertical-align: top;">БИК</td>
       <td class="cell-bik-value" style="border-bottom: none; vertical-align: top;">
-        ' . $this->config->get('BANK_DETAILS_BANK_IDENTIFICATION_CODE') . '
+        ' . $this->config->get('BANK_IDENTIFICATION_CODE') . '
       </td>
     </tr>
     <tr>
       <td class="cell-bank-name" style="border-top: none;">Банк получателя</td>
       <td class="cell-bik-label">Сч. №</td>
       <td class="cell-bik-value" style="border-top: none;">
-        ' . $this->config->get('BANK_DETAILS_CORRESPONDENT_BANK_ACCOUNT') . '
+        ' . $this->config->get('CORRESPONDENT_BANK_ACCOUNT') . '
       </td>
     </tr>
     <tr>
       <td class="cell-inn-kpp">
-        <span class="inn-cell">ИНН ' . $this->config->get('BANK_DETAILS_INN') . '</span>
+        <span class="inn-cell">ИНН ' . $this->config->get('INN') . '</span>
         <span class="kpp-cell">КПП </span>
       </td>
       <td class="cell-account-label" style="vertical-align: top;" rowspan="2">Сч. №</td>
       <td class="cell-account-value" style="vertical-align: top;" rowspan="2">
-        ' . $this->config->get('BANK_DETAILS_RECIPIENTS_BANK_ACCOUNT') . '
+        ' . $this->config->get('RECIPIENTS_BANK_ACCOUNT') . '
       </td>
     </tr>
     <tr>
-      <td class="cell-recipient">' . $this->config->get('BANK_DETAILS_IP_NAME') . '<br><br>Получатель</td>
+      <td class="cell-recipient">' . $this->config->get('IP_NAME') . '<br><br>Получатель</td>
     </tr>
   </table>';
   }
