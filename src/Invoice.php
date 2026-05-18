@@ -11,6 +11,8 @@ class Invoice extends FormElement
 {
   protected const CSS_FILE = '../styles/Invoice.css';
   private Config $config;
+  private string $phoneNumber;
+  private string $customerName;
 
   /**
    * Create a new instance.
@@ -21,9 +23,13 @@ class Invoice extends FormElement
   public function __construct(
     string $name,
     Config $config,
+    string $phoneNumber,
+    string $customerName,
   ) {
     parent::__construct($name);
     $this->config = $config;
+    $this->phoneNumber = $phoneNumber;
+    $this->customerName = $customerName;
   }
 
   /**
@@ -37,8 +43,8 @@ class Invoice extends FormElement
 
     $invoice .= $this->renderMainTable();
     $invoice .= $this->renderMiddleTable(
-      '89261234567',
-      'Имя Покупателя');
+      $this->phoneNumber,
+      $this->customerName);
 
     $invoice .= '
   <div class="empty-line"></div>';

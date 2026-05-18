@@ -22,6 +22,8 @@ class InvoiceTest extends TestCase
     $this->invoice = new Invoice(
       'Тестовый счет',
       $testConfig,
+      '89261234567',
+      'Имя Покупателя',
     );
   }
 
