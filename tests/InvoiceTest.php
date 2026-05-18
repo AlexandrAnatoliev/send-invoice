@@ -65,4 +65,13 @@ class InvoiceTest extends TestCase
       'Счет на оплату № Б-',
       $html);
   }
+
+  public function testFormatPhoneNumber(): void
+  {
+    $phoneNumber = $this->invoice->formatPhoneNumber('89261234567');
+
+    $this->assertStringContainsString(
+      '+7 (926) 123-45-67',
+      $phoneNumber);
+  }
 }

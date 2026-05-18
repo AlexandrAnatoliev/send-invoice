@@ -107,15 +107,42 @@ class Invoice extends FormElement
 
   public function getInvoiceNumber(): string 
   {
-    return 'Счет на оплату № Б-' . date('Ymd-His') . ' от ' . date('d.m.Y');
+    $months = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
+      'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
+
+    $currentRussianDate = date('j') . ' ' . $months[date('n') - 1] 
+      . ' ' . date('Y') . ' г.';
+
+    return 'Счет на оплату № Б-' . date('Ymd-His') 
+      . ' от ' . $currentRussianDate;
   }
-  public function getMiddleTableHTML(): string 
+
+  public function formatPhoneNumber(string $phoneNumber): string
   {
-    $middleTableHTML = '
+    // '89261234567';
+    $phoneNumber = preg_replace('/\D/', '', $phoneNumber);
+    // 89261234567
+    $phoneNumber = '+7' . substr($phoneNumber, 1); 
+    // +79261234567
+    
+    $formatted = sprintf(
+      '+7 (%s) %s-%s-%s',
+      substr($phoneNumber, 2, 3),   // 926
+      substr($phoneNumber, 5, 3),   // 123
+      substr($phoneNumber, 8, 2),   // 45
+      substr($phoneNumber, 10, 2)   // 67
+    );
+    // +7 (926) 123-45-67
+    return $formatted;
+  }
+
+  public function renderMiddleTable(): string 
+  {
+    $middleTable = '
   <div class="empty-line"></div>
 
   <div class="invoice-header">
-    Счет на оплату № Б-' . $orderNumber . ' от ' . getCurrentRussianDate() . '
+   ' . $this->getInvoiceNumber() . ' 
   </div>
 
   <div class="empty-line"></div>
@@ -135,7 +162,7 @@ class Invoice extends FormElement
     );
     // +7 (926) 123-45-67
 
-    $middleTableHTML .= '
+    $middleTable .= '
   <table class="middle-table">
     <tr>
       <td class="label-cell">Поставщик<br>(Исполнитель):</td>
@@ -150,6 +177,6 @@ class Invoice extends FormElement
       <td class="value-cell">' . $bankDetails['payment_basis'] . '</td>
     </tr>
   </table>';
-    return $middleTableHTML;
+    return $middleTable;
   }
 }
