@@ -119,15 +119,15 @@ class Invoice extends FormElement
    *
    * @return Invoice number
    */
-  public function getInvoiceNumber(): string 
+  public function getInvoiceNumber(): string
   {
     $months = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
       'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
 
-    $currentRussianDate = date('j') . ' ' . $months[date('n') - 1] 
+    $currentRussianDate = date('j') . ' ' . $months[date('n') - 1]
       . ' ' . date('Y') . ' г.';
 
-    return 'Счет на оплату № Б-' . date('Ymd-His') 
+    return 'Счет на оплату № Б-' . date('Ymd-His')
       . ' от ' . $currentRussianDate;
   }
 
@@ -139,21 +139,20 @@ class Invoice extends FormElement
    */
   public function formatPhoneNumber(string $customerPhone): string
   {
-    // '89261234567';
+    /* '89261234567'; */
     $customerPhone = preg_replace('/\D/', '', $customerPhone);
-    // 89261234567
-    $customerPhone = '+7' . substr($customerPhone, 1); 
-    // +79261234567
+    /* 89261234567 */
+    $customerPhone = '+7' . substr($customerPhone, 1);
+    /* +79261234567 */
 
-    $formatted = sprintf(
+    return sprintf(
       '+7 (%s) %s-%s-%s',
       substr($customerPhone, 2, 3),   // 926
       substr($customerPhone, 5, 3),   // 123
       substr($customerPhone, 8, 2),   // 45
       substr($customerPhone, 10, 2)   // 67
     );
-    // +7 (926) 123-45-67
-    return $formatted;
+    /* +7 (926) 123-45-67 */
   }
 
   /**
@@ -161,13 +160,13 @@ class Invoice extends FormElement
    *
    * @return HTML markup
    */
-  public function renderMiddleTable(): string 
+  public function renderMiddleTable(): string
   {
     $middleTable = '
   <div class="empty-line"></div>
 
   <div class="invoice-header">
-   ' . $this->getInvoiceNumber() . ' 
+   ' . $this->getInvoiceNumber() . '
   </div>
 
   <div class="empty-line"></div>
@@ -180,7 +179,7 @@ class Invoice extends FormElement
   <table class="middle-table">
     <tr>
       <td class="label-cell">Поставщик<br>(Исполнитель):</td>
-      <td class="value-cell">' 
+      <td class="value-cell">'
         . $this->config->get('IP_FULL_NAME') . '</td>
     </tr>
     <tr>
