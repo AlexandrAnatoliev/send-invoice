@@ -36,6 +36,9 @@ class Invoice extends FormElement
     $invoice  = $this->getCSS();
 
     $invoice .= $this->renderMainTable();
+    $invoice .= $this->renderMiddleTable(
+      '89261234567',
+      'Имя Покупателя');
 
     $invoice .= '
   <div class="empty-line"></div>';
