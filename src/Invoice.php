@@ -124,7 +124,7 @@ class Invoice extends FormElement
     // 89261234567
     $phoneNumber = '+7' . substr($phoneNumber, 1); 
     // +79261234567
-    
+
     $formatted = sprintf(
       '+7 (%s) %s-%s-%s',
       substr($phoneNumber, 2, 3),   // 926
@@ -138,6 +138,7 @@ class Invoice extends FormElement
 
   public function renderMiddleTable(
     string $phoneNumber,
+    string $customerName,
   ): string 
   {
     $middleTable = '
@@ -157,7 +158,8 @@ class Invoice extends FormElement
   <table class="middle-table">
     <tr>
       <td class="label-cell">Поставщик<br>(Исполнитель):</td>
-      <td class="value-cell">' . $bankDetails['ip_full_name'] . '</td>
+      <td class="value-cell">' 
+        . $this->config->get('IP_FULL_NAME') . '</td>
     </tr>
     <tr>
       <td class="label-cell">Покупатель<br>(Заказчик):</td>

@@ -77,10 +77,13 @@ class InvoiceTest extends TestCase
 
   public function testRenderMiddleTable(): void
   {
-    $html = $this->invoice->renderMiddleTable('89261234567');
+    $html = $this->invoice->renderMiddleTable(
+      '89261234567',
+      'Имя Покупателя');
 
-    $this->assertStringContainsString(
-      '+7 (926) 123-45-67',
+    $this->assertStringContainsString('<table class="middle-table">', 
       $html);
+    $this->assertStringContainsString('+7 (926) 123-45-67', $html);
+    $this->assertStringContainsString('Имя Покупателя', $html);
   }
 }
