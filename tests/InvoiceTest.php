@@ -74,4 +74,13 @@ class InvoiceTest extends TestCase
       '+7 (926) 123-45-67',
       $phoneNumber);
   }
+
+  public function testRenderMiddleTable(): void
+  {
+    $html = $this->invoice->renderMiddleTable('89261234567');
+
+    $this->assertStringContainsString(
+      '+7 (926) 123-45-67',
+      $html);
+  }
 }

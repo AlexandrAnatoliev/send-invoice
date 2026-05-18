@@ -136,7 +136,9 @@ class Invoice extends FormElement
     return $formatted;
   }
 
-  public function renderMiddleTable(): string 
+  public function renderMiddleTable(
+    string $phoneNumber,
+  ): string 
   {
     $middleTable = '
   <div class="empty-line"></div>
@@ -149,18 +151,7 @@ class Invoice extends FormElement
 
   <div class="divider"></div>';
 
-    // '89261234567';
-    $phone = preg_replace('/\D/', '', $customerPhone);          // 89261234567
-    $phone = '+7' . substr($phone, 1);                     // +79261234567
-
-    $formatted = sprintf(
-      '+7 (%s) %s-%s-%s',
-      substr($phone, 2, 3),   // 926
-      substr($phone, 5, 3),   // 123
-      substr($phone, 8, 2),   // 45
-      substr($phone, 10, 2)   // 67
-    );
-    // +7 (926) 123-45-67
+    $formatted = $this->formatPhoneNumber($phoneNumber);
 
     $middleTable .= '
   <table class="middle-table">
