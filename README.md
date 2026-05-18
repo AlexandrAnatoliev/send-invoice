@@ -85,7 +85,7 @@
 #### 4. Счёт на оплату
 
 * [ ] Бланк строгой формы (как в 1С), чёткие рамки
-* [ ] Нумерация: Счёт № Б-123456-987654 от ДД.ММ.ГГГГ
+* [x] Нумерация: Счёт № Б-123456-987654 от ДД.ММ.ГГГГ
 * [ ] Реквизиты продавца из конфига, реквизиты покупателя из формы
 * [ ] Каждая выбранная позиция — отдельной строкой
 * [ ] Отправка счёта в формате PDF как вложение
@@ -209,9 +209,14 @@ classDiagram
 
   class Invoice {
     - config: Config
-    + Invoice(name: string, config: Config)
+    - customerPhone: string
+    - customerName: string
+    + Invoice(name: string, config: Config, customerPhone: string, customerName: string)
     + render() string
     + renderMainTable() string
+    + getInvoiceNumber() string 
+    + formatPhoneNumber(customerPhone: string) string
+    + renderMiddleTable() string 
   }
 
   class Card {
