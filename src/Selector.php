@@ -20,7 +20,7 @@ class Selector extends FormElement
      * @param $name Selector name
      * @param $min  Selector min value
      * @param $max  Selector max value
-     * @param $step Selector oscillation step
+     * @param $step Selector increment step
      */
     public function __construct(
         string $name,

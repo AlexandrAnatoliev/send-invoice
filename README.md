@@ -232,10 +232,10 @@ classDiagram
   }
 
   class Addon {
-    # priceTiers: array
+    - priceTiers: array
     + setPriceTier(quantity: int, price: int)
     + render() string
-    + getPrice(quantity: int = null) int
+    + getPrice(quantity = null) int
   }
 
   FormElement  <|-- Selector

@@ -3,10 +3,10 @@
 namespace sendInvoice;
 
 /**
- * Addon represents a addon product card for the order calculator.
+ * Addon represents a add-on product card for the order calculator.
  *
  * Each addon includes a name, price,
- * and an image path. It can render itself as an HTML checkbox-button label
+ * and an image path. It can render itself as an HTML checkbox label
  * and provides static CSS injection.
  *
  * @package sendInvoice
@@ -29,8 +29,8 @@ class Addon extends Card
   /**
    * Get price based on quantity
    *
-   * @param  $quantity - quantity of items
-   * @return price
+   * @param  ?int $quantity - quantity of items
+   * @return int
    */
   public function getPrice($quantity = null): int
   {

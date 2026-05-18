@@ -3,7 +3,7 @@
 namespace sendInvoice;
 
 /**
- * Represents a invoice.
+ * Represents an invoice.
  *
  * @package sendInvoice
  */
@@ -35,7 +35,7 @@ class Invoice extends FormElement
   }
 
   /**
-   * Render the invoice as an HTML page.
+   * Render the invoice as an HTML.
    *
    * @return HTML markup of the invoice
    */
@@ -157,7 +157,7 @@ class Invoice extends FormElement
   }
 
   /**
-   * Render the Middle Table as an HTML.
+   * Render the Middle Table as an HTML markup.
    *
    * @return HTML markup
    */

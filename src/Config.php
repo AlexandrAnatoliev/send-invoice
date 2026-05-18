@@ -8,9 +8,9 @@ class Config
 
     /**
      * Initialises the settings array from the $_ENV environment
-     * variable or from test array.
+     * array or from test array.
      *
-     * @param  $env - Test array (optional)
+     * @param array<string, string>|null $env - Test array (optional)
      */
     public function __construct(?array $env = null)
     {
@@ -27,8 +27,8 @@ class Config
     /**
      * Returns the configuration value for the given key.
      *
-     * @param  $key     - Configuration key
-     * @param  $default - Default value (used if the key is not found)
+     * @param  string $key  Configuration key
+     * @param  $default     Default value (used if the key is not found)
      * @return Configuration value
      */
     public function get(string $key, $default = 'Заполните настройки'): string

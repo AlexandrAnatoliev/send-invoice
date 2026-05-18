@@ -7,7 +7,6 @@ namespace sendInvoice;
  *
  * Each item includes a name, price,
  * and an image path. It can render itself as an HTML radio-button label
- * and provides static CSS injection.
  *
  * @package sendInvoice
  */
