@@ -12,6 +12,8 @@ $config = new Config();
 $invoice = new Invoice(
   'invoice',
   $config,
+  '89261234567',
+  'Имя Покупателя',
 );
 ?>
 
