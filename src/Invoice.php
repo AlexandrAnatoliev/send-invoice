@@ -114,6 +114,11 @@ class Invoice extends FormElement
   </table>';
   }
 
+  /**
+   * Render the invoice number as string.
+   *
+   * @return Invoice number
+   */
   public function getInvoiceNumber(): string 
   {
     $months = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
@@ -126,6 +131,12 @@ class Invoice extends FormElement
       . ' от ' . $currentRussianDate;
   }
 
+  /**
+   * Format phone number
+   *
+   * @param $customerPhone Phone number in '89261234567' format
+   * @return Phone number in '+7 (926) 123-45-67' format
+   */
   public function formatPhoneNumber(string $customerPhone): string
   {
     // '89261234567';
