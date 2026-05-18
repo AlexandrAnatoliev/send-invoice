@@ -22,6 +22,8 @@ class InvoiceTest extends TestCase
     $this->invoice = new Invoice(
       'Тестовый счет',
       $testConfig,
+      '89261234567',
+      'Имя Покупателя',
     );
   }
 
@@ -55,5 +57,33 @@ class InvoiceTest extends TestCase
     $this->assertStringContainsString(
       '<table class="main-table">',
       $html);
+  }
+
+  public function testGetInvoiceNumber(): void
+  {
+    $html = $this->invoice->getInvoiceNumber();
+
+    $this->assertStringContainsString(
+      'Счет на оплату № Б-',
+      $html);
+  }
+
+  public function testFormatPhoneNumber(): void
+  {
+    $phoneNumber = $this->invoice->formatPhoneNumber('89261234567');
+
+    $this->assertStringContainsString(
+      '+7 (926) 123-45-67',
+      $phoneNumber);
+  }
+
+  public function testRenderMiddleTable(): void
+  {
+    $html = $this->invoice->renderMiddleTable();
+
+    $this->assertStringContainsString('<table class="middle-table">',
+      $html);
+    $this->assertStringContainsString('+7 (926) 123-45-67', $html);
+    $this->assertStringContainsString('Имя Покупателя', $html);
   }
 }

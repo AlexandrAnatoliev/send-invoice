@@ -3,7 +3,7 @@
   <h1>send-invoice: Калькулятор заказа с генерацией счёта и отправкой на email</h1>
 
   ![Stars](https://img.shields.io/github/stars/AlexandrAnatoliev/send-invoice.svg?style=flat)
-  ![Version 0.15.1](https://img.shields.io/badge/Version-0.15.1-orange.svg)
+  ![Version 0.16.0](https://img.shields.io/badge/Version-0.16.0-orange.svg)
   ![Forks](https://img.shields.io/github/forks/AlexandrAnatoliev/send-invoice.svg?style=flat)
   ![GitHub repo size](https://img.shields.io/github/repo-size/AlexandrAnatoliev/send-invoice)
   
@@ -48,8 +48,8 @@
 
 #### 2. Фронтенд
 
-* [x] Html страница для выбора категории товаров
-* [ ] php страница для оформления заказа
+* [x] HTML-страница для выбора категории товаров
+* [ ] PHP-страница для оформления заказа
   * [x] Радиокнопки для выбора основного товара
   * [x] Чекбоксы для дополнительных опций
   * [x] Тиражное ценообразование для дополнительных опций
@@ -85,7 +85,7 @@
 #### 4. Счёт на оплату
 
 * [ ] Бланк строгой формы (как в 1С), чёткие рамки
-* [ ] Нумерация: Счёт № Б-123456-987654 от ДД.ММ.ГГГГ
+* [x] Нумерация: Счёт № Б-12345678-987654 от ДД.ММ.ГГГГ
 * [ ] Реквизиты продавца из конфига, реквизиты покупателя из формы
 * [ ] Каждая выбранная позиция — отдельной строкой
 * [ ] Отправка счёта в формате PDF как вложение
@@ -209,9 +209,14 @@ classDiagram
 
   class Invoice {
     - config: Config
-    + Invoice(name: string, config: Config)
+    - customerPhone: string
+    - customerName: string
+    + Invoice(name: string, config: Config, customerPhone: string, customerName: string)
     + render() string
     + renderMainTable() string
+    + getInvoiceNumber() string 
+    + formatPhoneNumber(customerPhone: string) string
+    + renderMiddleTable() string 
   }
 
   class Card {
@@ -227,10 +232,10 @@ classDiagram
   }
 
   class Addon {
-    # priceTiers: array
+    - priceTiers: array
     + setPriceTier(quantity: int, price: int)
     + render() string
-    + getPrice(quantity: int = null) int
+    + getPrice(quantity = null) int
   }
 
   FormElement  <|-- Selector
@@ -239,6 +244,16 @@ classDiagram
   Card <|-- Item
   Card <|-- Addon
 
+```
+
+```mermaid
+classDiagram
+  
+  class Config {
+    - env: array
+    + Config(env = null: ?array )
+    + get(key: string, default = 'Заполните настройки') string
+  }
 ```
 
 <div align="center">
