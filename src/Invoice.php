@@ -11,7 +11,7 @@ class Invoice extends FormElement
 {
   protected const CSS_FILE = '../styles/Invoice.css';
   private Config $config;
-  private string $phoneNumber;
+  private string $customerPhone;
   private string $customerName;
 
   /**
@@ -23,12 +23,12 @@ class Invoice extends FormElement
   public function __construct(
     string $name,
     Config $config,
-    string $phoneNumber,
+    string $customerPhone,
     string $customerName,
   ) {
     parent::__construct($name);
     $this->config = $config;
-    $this->phoneNumber = $phoneNumber;
+    $this->customerPhone = $customerPhone;
     $this->customerName = $customerName;
   }
 
@@ -43,7 +43,7 @@ class Invoice extends FormElement
 
     $invoice .= $this->renderMainTable();
     $invoice .= $this->renderMiddleTable(
-      $this->phoneNumber,
+      $this->customerPhone,
       $this->customerName);
 
     $invoice .= '
@@ -126,27 +126,27 @@ class Invoice extends FormElement
       . ' от ' . $currentRussianDate;
   }
 
-  public function formatPhoneNumber(string $phoneNumber): string
+  public function formatPhoneNumber(string $customerPhone): string
   {
     // '89261234567';
-    $phoneNumber = preg_replace('/\D/', '', $phoneNumber);
+    $customerPhone = preg_replace('/\D/', '', $customerPhone);
     // 89261234567
-    $phoneNumber = '+7' . substr($phoneNumber, 1); 
+    $customerPhone = '+7' . substr($customerPhone, 1); 
     // +79261234567
 
     $formatted = sprintf(
       '+7 (%s) %s-%s-%s',
-      substr($phoneNumber, 2, 3),   // 926
-      substr($phoneNumber, 5, 3),   // 123
-      substr($phoneNumber, 8, 2),   // 45
-      substr($phoneNumber, 10, 2)   // 67
+      substr($customerPhone, 2, 3),   // 926
+      substr($customerPhone, 5, 3),   // 123
+      substr($customerPhone, 8, 2),   // 45
+      substr($customerPhone, 10, 2)   // 67
     );
     // +7 (926) 123-45-67
     return $formatted;
   }
 
   public function renderMiddleTable(
-    string $phoneNumber,
+    string $customerPhone,
     string $customerName,
   ): string 
   {
@@ -161,7 +161,7 @@ class Invoice extends FormElement
 
   <div class="divider"></div>';
 
-    $formatted = $this->formatPhoneNumber($phoneNumber);
+    $formatted = $this->formatPhoneNumber($customerPhone);
 
     $middleTable .= '
   <table class="middle-table">

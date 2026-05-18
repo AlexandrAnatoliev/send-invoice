@@ -7,13 +7,23 @@ require_once __DIR__ . '/vendor/autoload.php';
 use sendInvoice\Invoice;
 use sendInvoice\Config;
 
+$location = 'Location: index.html';
+
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    header($location);
+    exit;
+}
+
 $sourcePath = htmlspecialchars($_POST['source_path'] ?? '');
+$customerName   = htmlspecialchars($_POST['customer_name'] ?? '');
+$customerPhone  = htmlspecialchars($_POST['customer_phone'] ?? '');
+
 $config = new Config();
 $invoice = new Invoice(
   'invoice',
   $config,
-  '89261234567',
-  'Имя Покупателя',
+  $customerPhone,
+  $customerName,
 );
 ?>
 
