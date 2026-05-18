@@ -104,4 +104,52 @@ class Invoice extends FormElement
     </tr>
   </table>';
   }
+
+  public function getInvoiceNumber(): string 
+  {
+    return 'Счет на оплату № Б-' . date('Ymd-His') . ' от ' . date('d.m.Y');
+  }
+  public function getMiddleTableHTML(): string 
+  {
+    $middleTableHTML = '
+  <div class="empty-line"></div>
+
+  <div class="invoice-header">
+    Счет на оплату № Б-' . $orderNumber . ' от ' . getCurrentRussianDate() . '
+  </div>
+
+  <div class="empty-line"></div>
+
+  <div class="divider"></div>';
+
+    // '89261234567';
+    $phone = preg_replace('/\D/', '', $customerPhone);          // 89261234567
+    $phone = '+7' . substr($phone, 1);                     // +79261234567
+
+    $formatted = sprintf(
+      '+7 (%s) %s-%s-%s',
+      substr($phone, 2, 3),   // 926
+      substr($phone, 5, 3),   // 123
+      substr($phone, 8, 2),   // 45
+      substr($phone, 10, 2)   // 67
+    );
+    // +7 (926) 123-45-67
+
+    $middleTableHTML .= '
+  <table class="middle-table">
+    <tr>
+      <td class="label-cell">Поставщик<br>(Исполнитель):</td>
+      <td class="value-cell">' . $bankDetails['ip_full_name'] . '</td>
+    </tr>
+    <tr>
+      <td class="label-cell">Покупатель<br>(Заказчик):</td>
+      <td class="value-cell">' . $customerName . ', тел: ' . $formatted . '</td>
+    </tr>
+    <tr>
+      <td class="label-cell">Основание:</td>
+      <td class="value-cell">' . $bankDetails['payment_basis'] . '</td>
+    </tr>
+  </table>';
+    return $middleTableHTML;
+  }
 }

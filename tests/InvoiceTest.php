@@ -56,4 +56,13 @@ class InvoiceTest extends TestCase
       '<table class="main-table">',
       $html);
   }
+
+  public function testGetInvoiceNumber(): void
+  {
+    $html = $this->invoice->getInvoiceNumber();
+
+    $this->assertStringContainsString(
+      'Счет на оплату № Б-',
+      $html);
+  }
 }
