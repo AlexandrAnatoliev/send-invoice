@@ -163,11 +163,12 @@ class Invoice extends FormElement
     </tr>
     <tr>
       <td class="label-cell">Покупатель<br>(Заказчик):</td>
-      <td class="value-cell">' . $customerName . ', тел: ' . $formatted . '</td>
+      <td class="value-cell">' . $customerName . ', тел: '
+        . $formatted . '</td>
     </tr>
     <tr>
       <td class="label-cell">Основание:</td>
-      <td class="value-cell">' . $bankDetails['payment_basis'] . '</td>
+      <td class="value-cell">' . $this->config->get('PAYMENT_BASIS') . '</td>
     </tr>
   </table>';
     return $middleTable;
