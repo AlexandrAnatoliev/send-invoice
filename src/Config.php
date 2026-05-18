@@ -31,7 +31,7 @@ class Config
      * @param  $default - Default value (used if the key is not found)
      * @return Configuration value
      */
-    public function get($key, $default = 'Заполните настройки'): string
+    public function get(string $key, $default = 'Заполните настройки'): string
     {
         return $this->env[$key] ?? getenv($key) ?: $default;
     }

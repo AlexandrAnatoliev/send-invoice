@@ -3,7 +3,7 @@
 namespace sendInvoice;
 
 /**
- * FormElement represents an element for the order display.
+ * FormElement represents an instance for the order display.
  *
  * Each FormElement includes a name
  *
@@ -17,7 +17,7 @@ abstract class FormElement
     /**
      * Create a new instance.
      *
-     * @param $name  Product name
+     * @param $name  Element name
      */
     public function __construct(
         string $name,
@@ -28,7 +28,7 @@ abstract class FormElement
     abstract public function render(): string;
 
     /**
-     * Return a <style> tag with the contents of the card CSS file.
+     * Return a <style> tag with the contents of the CSS file.
      *
      * If the file does not exist, an empty <style> tag is returned.
      *
@@ -47,6 +47,11 @@ abstract class FormElement
         return '<style>' . $cssContent . '</style>';
     }
 
+    /**
+     * Return instance name.
+     *
+     * @return Instance name
+     */
     public function getName(): string
     {
         return $this->name;
