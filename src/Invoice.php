@@ -139,7 +139,7 @@ class Invoice extends FormElement
    */
   public function formatPhoneNumber(string $customerPhone): string
   {
-    /* '89261234567'; */
+    /* '89261234567' */
     $customerPhone = preg_replace('/\D/', '', $customerPhone);
     /* 89261234567 */
     $customerPhone = '+7' . substr($customerPhone, 1);
