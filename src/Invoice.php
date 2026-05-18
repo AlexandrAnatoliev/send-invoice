@@ -17,8 +17,10 @@ class Invoice extends FormElement
   /**
    * Create a new instance.
    *
-   * @param $name   Invoice name
-   * @param $config Settings config
+   * @param $name           Invoice name
+   * @param $config         Settings config
+   * @param $customerPhone  Customer phone
+   * @param $customerName   Customer name
    */
   public function __construct(
     string $name,
@@ -42,9 +44,7 @@ class Invoice extends FormElement
     $invoice  = $this->getCSS();
 
     $invoice .= $this->renderMainTable();
-    $invoice .= $this->renderMiddleTable(
-      $this->customerPhone,
-      $this->customerName);
+    $invoice .= $this->renderMiddleTable();
 
     $invoice .= '
   <div class="empty-line"></div>';
@@ -145,10 +145,12 @@ class Invoice extends FormElement
     return $formatted;
   }
 
-  public function renderMiddleTable(
-    string $customerPhone,
-    string $customerName,
-  ): string 
+  /**
+   * Render the Middle Table as an HTML.
+   *
+   * @return HTML markup
+   */
+  public function renderMiddleTable(): string 
   {
     $middleTable = '
   <div class="empty-line"></div>
@@ -161,7 +163,7 @@ class Invoice extends FormElement
 
   <div class="divider"></div>';
 
-    $formatted = $this->formatPhoneNumber($customerPhone);
+    $formatted = $this->formatPhoneNumber($this->customerPhone);
 
     $middleTable .= '
   <table class="middle-table">
@@ -172,7 +174,7 @@ class Invoice extends FormElement
     </tr>
     <tr>
       <td class="label-cell">Покупатель<br>(Заказчик):</td>
-      <td class="value-cell">' . $customerName . ', тел: '
+      <td class="value-cell">' . $this->customerName . ', тел: '
         . $formatted . '</td>
     </tr>
     <tr>
