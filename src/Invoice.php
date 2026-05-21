@@ -37,6 +37,16 @@ class Invoice extends FormElement
     $this->items = $items;
   }
 
+  public function getItems(): array
+  {
+    return $this->items;
+  }
+
+  public function addItem(Item $item): void
+  {
+    $this->items[$item->getName()] = $item;
+  }
+
   /**
    * Render the invoice as an HTML.
    *

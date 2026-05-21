@@ -8,6 +8,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 use PHPUnit\Framework\TestCase;
 use sendInvoice\Invoice;
 use sendInvoice\Config;
+use sendInvoice\Item;
 
 class InvoiceTest extends TestCase
 {
@@ -113,5 +114,20 @@ class InvoiceTest extends TestCase
     $num = $this->invoice->num2words(1500.50);
 
     $this->assertSame("одна тысяча пятьсот рублей 50 копеек", $num);
+  }
+
+  public function testAddItem(): void
+  {
+    $item = new Item(
+      'Тестовый товар',
+      123456,
+      'img/test.jpg',
+    );
+
+    $num      = $this->invoice->addItem($item);
+    $itemName = $item->getName();
+
+    $this->assertSame($item,
+      $this->invoice->getItems()['Тестовый товар']);
   }
 }
