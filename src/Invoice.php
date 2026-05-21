@@ -194,4 +194,79 @@ class Invoice extends FormElement
   </table>';
     return $middleTable;
   }
+
+  public function renderItemsTable (): string 
+  {
+    $itemsTable = '
+  <table class="items-table">
+    <thead>
+      <tr>
+        <th class="col-right">№</th>
+        <th class="col-left">Наименование товаров, работ, услуг</th>
+        <th class="col-right">Кол-во</th>
+        <th class="col-center">Ед. изм.</th>
+        <th class="col-right">Цена</th>
+        <th class="col-right">Всего</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="col-right">1</td>
+        <td class="col-left">' . $items[$itemNameKey]['name'] . '</td>
+        <td class="col-right">' . $quantity . '</td>
+        <td class="col-center">шт.</td>
+        <td class="col-right">' . number_format($items[$itemNameKey]['price'], 2, ',', ' ') . '</td>
+        <td class="col-right">' . number_format($items[$itemNameKey]['price'] * $quantity, 2, ',', ' ') . '</td>
+      </tr>';
+
+    $total = $items[$itemNameKey]['price'] * $quantity;
+    $rowNumber = 1;
+
+    foreach ($selectedAddons as $addonKey) {
+      if (isset($addons[$addonKey])) {
+        $rowNumber++;
+        $addonPrice = getPrice(
+          $addon_prices,
+          $addonKey,
+          $quantity
+        );
+        $addonSum = $addonPrice * $quantity;
+        $total += $addonSum;
+
+        $itemsTable .= '
+          <tr>
+            <td class="col-right">' . $rowNumber . '</td>
+            <td class="col-left">' . htmlspecialchars($addons[$addonKey]['name']) . '</td>
+            <td class="col-right">' . $quantity . '</td>
+            <td class="col-center">шт.</td>
+            <td class="col-right">' . number_format($addonPrice, 2, ',', ' ') . '</td>
+            <td class="col-right">' . number_format($addonSum, 2, ',', ' ') . '</td>
+          </tr>';
+      }
+    }
+
+    $itemsTable .= '
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="5" style="text-align:right; font-weight:bold;">Итого к оплате:</td>
+        <td class="col-right" style="font-weight:bold;">' . number_format($total, 2, ',', ' ') . '</td>
+      </tr>
+      <tr>
+        <td colspan="5" style="text-align:right; font-weight:bold;">Без налога (НДС)</td>
+        <td class="col-right" style="font-weight:bold;">—</td>
+      </tr>
+    </tfoot>
+  </table>';
+
+    $totalInWords = num2words($total);
+
+    $itemsTable .= '
+  <div class="empty-line"></div>
+
+  <p>Всего наименований ' . $rowNumber . ', на сумму ' . number_format($total, 2, ',', ' ') . ' руб<br>
+  <b>(' . $totalInWords . '</b>)</p>';
+
+    return $itemsTable;
+  }
 }
