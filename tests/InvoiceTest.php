@@ -122,4 +122,9 @@ class InvoiceTest extends TestCase
     $this->assertSame("одна тысяча пятьсот рублей 50 копеек", $num);
   }
 
+  public function testGetItem(): void
+  {
+    $this->assertSame('Тестовый товар',
+      $this->invoice->getItem()->getName());
+  }
 }
