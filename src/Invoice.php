@@ -13,7 +13,7 @@ class Invoice extends FormElement
   private Config $config;
   private string $customerPhone;
   private string $customerName;
-  private array $items;
+  private Item $selectedItem;
 
   /**
    * Create a new instance.
@@ -22,29 +22,25 @@ class Invoice extends FormElement
    * @param $config         Settings config
    * @param $customerPhone  Customer phone
    * @param $customerName   Customer name
+   * @param $selectedItem   Selected item
    */
   public function __construct(
     string $name,
     Config $config,
     string $customerPhone,
     string $customerName,
-    array $items,
+    Item $selectedItem,
   ) {
     parent::__construct($name);
     $this->config = $config;
     $this->customerPhone = $customerPhone;
     $this->customerName = $customerName;
-    $this->items = $items;
+    $this->selectedItem = $selectedItem;
   }
 
-  public function getItems(): array
+  public function getItem(): Item
   {
-    return $this->items;
-  }
-
-  public function addItem(Item $item): void
-  {
-    $this->items[$item->getName()] = $item;
+    return $this->selectedItem;
   }
 
   /**
@@ -210,6 +206,8 @@ class Invoice extends FormElement
 
   public function renderItemsTable(): string 
   {
+    $item = $this->getItem();
+
     $itemsTable = '
   <table class="items-table">
     <thead>

@@ -20,12 +20,18 @@ class InvoiceTest extends TestCase
       ['testSetting' => 'testValue',],
     );
 
+    $item = new Item(
+      'Тестовый товар',
+      123456,
+      'img/test.jpg',
+    );
+
     $this->invoice = new Invoice(
       'Тестовый счет',
       $testConfig,
       '89261234567',
       'Имя Покупателя',
-      [],
+      $item,
     );
   }
 
@@ -116,18 +122,4 @@ class InvoiceTest extends TestCase
     $this->assertSame("одна тысяча пятьсот рублей 50 копеек", $num);
   }
 
-  public function testAddItem(): void
-  {
-    $item = new Item(
-      'Тестовый товар',
-      123456,
-      'img/test.jpg',
-    );
-
-    $num      = $this->invoice->addItem($item);
-    $itemName = $item->getName();
-
-    $this->assertSame($item,
-      $this->invoice->getItems()['Тестовый товар']);
-  }
 }
