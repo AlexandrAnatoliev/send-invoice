@@ -54,6 +54,7 @@ class Invoice extends FormElement
 
     $invoice .= $this->renderMainTable();
     $invoice .= $this->renderMiddleTable();
+    $invoice .= $this->renderItemsTable();
 
     $invoice .= '
   <div class="empty-line"></div>';

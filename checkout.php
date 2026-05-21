@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 require_once __DIR__ . '/vendor/autoload.php';
-require_once 'utils/selector.php';
+require_once 'utils/session.php';
 
 use sendInvoice\Invoice;
 use sendInvoice\Config;
