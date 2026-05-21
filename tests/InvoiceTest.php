@@ -106,4 +106,11 @@ class InvoiceTest extends TestCase
 
     $this->assertSame("рублей", $num);
   }
+
+  public function testNum2words(): void
+  {
+    $num = $this->invoice->num2words(1500.50);
+
+    $this->assertSame("одна тысяча пятьсот рублей 50 копеек", $num);
+  }
 }
