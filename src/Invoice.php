@@ -259,7 +259,7 @@ class Invoice extends FormElement
     </tfoot>
   </table>';
 
-    $totalInWords = num2words($total);
+    $totalInWords = $this->num2words($total);
 
     $itemsTable .= '
   <div class="empty-line"></div>
