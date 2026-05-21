@@ -86,4 +86,12 @@ class InvoiceTest extends TestCase
     $this->assertStringContainsString('+7 (926) 123-45-67', $html);
     $this->assertStringContainsString('Имя Покупателя', $html);
   }
+
+  public function testRenderItemsTable(): void
+  {
+    $html = $this->invoice->renderItemsTable();
+
+    $this->assertStringContainsString('<table class="items-table">',
+      $html);
+  }
 }

@@ -195,7 +195,7 @@ class Invoice extends FormElement
     return $middleTable;
   }
 
-  public function renderItemsTable (): string 
+  public function renderItemsTable(): string 
   {
     $itemsTable = '
   <table class="items-table">
