@@ -24,6 +24,7 @@ class InvoiceTest extends TestCase
       $testConfig,
       '89261234567',
       'Имя Покупателя',
+      [],
     );
   }
 

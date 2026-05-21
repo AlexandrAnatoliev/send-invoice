@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 require_once __DIR__ . '/vendor/autoload.php';
+require_once 'utils/selector.php';
 
 use sendInvoice\Invoice;
 use sendInvoice\Config;
@@ -19,6 +20,11 @@ $customerName   = htmlspecialchars($_POST['customer_name'] ?? '');
 $customerPhone  = htmlspecialchars($_POST['customer_phone'] ?? '');
 
 $config = new Config();
+
+$item1 = $_SESSION['item1_session'];
+$item2 = $_SESSION['item2_session'];
+$item3 = $_SESSION['item3_session'];
+
 $invoice = new Invoice(
   'invoice',
   $config,

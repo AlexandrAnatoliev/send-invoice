@@ -13,6 +13,7 @@ class Invoice extends FormElement
   private Config $config;
   private string $customerPhone;
   private string $customerName;
+  private array $items;
 
   /**
    * Create a new instance.
@@ -27,11 +28,13 @@ class Invoice extends FormElement
     Config $config,
     string $customerPhone,
     string $customerName,
+    array $items,
   ) {
     parent::__construct($name);
     $this->config = $config;
     $this->customerPhone = $customerPhone;
     $this->customerName = $customerName;
+    $this->items = $items;
   }
 
   /**
