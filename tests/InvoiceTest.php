@@ -94,4 +94,16 @@ class InvoiceTest extends TestCase
     $this->assertStringContainsString('<table class="items-table">',
       $html);
   }
+
+  public function testMorph(): void
+  {
+    $num = $this->invoice->morph(
+      "12",
+      "рубль",
+      "рубля",
+      "рублей",
+    );
+
+    $this->assertSame("рублей", $num);
+  }
 }

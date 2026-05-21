@@ -269,4 +269,35 @@ class Invoice extends FormElement
 
     return $itemsTable;
   }
+
+  /**
+   * Вспомогательная функция для склонения слов в зависимости от числа.
+   *
+   * @param  $n   - число, для которого нужно подобрать форму слова
+   * @param  $f1  - форма для числа 1 (рубль, копейка)
+   * @param  $f2  - форма для чисел 2-4 (рубля, копейки)
+   * @param  $f5  - форма для чисел 5-20 и 0 (рублей, копеек)
+   * @return      - одна из трёх форм слова в зависимости от числа
+   */
+  public function morph(
+    int|string $n,
+    string $f1,
+    string $f2,
+    string $f5
+  ): string
+  {
+    $n = abs(intval($n)) % 100;
+    $answer = $f5;
+
+    if ($n > 10 && $n < 20) {
+        return $answer;
+    }
+    $n = $n % 10;
+    if ($n > 1 && $n < 5) {
+        $answer = $f2;
+    } elseif ($n == 1) {
+        $answer = $f1;
+    }
+    return $answer;
+  }
 }
