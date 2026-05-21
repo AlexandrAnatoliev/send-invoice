@@ -42,6 +42,7 @@ $invoice = new Invoice(
   $config,
   $customerPhone,
   $customerName,
+  $selectedItem,
 );
 ?>
 

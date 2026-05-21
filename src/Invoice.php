@@ -223,14 +223,17 @@ class Invoice extends FormElement
     <tbody>
       <tr>
         <td class="col-right">1</td>
-        <td class="col-left">' . $items[$itemNameKey]['name'] . '</td>
+        <td class="col-left">' . $this->selectedItem->getName() . '</td>
         <td class="col-right">' . $quantity . '</td>
         <td class="col-center">шт.</td>
-        <td class="col-right">' . number_format($items[$itemNameKey]['price'], 2, ',', ' ') . '</td>
-        <td class="col-right">' . number_format($items[$itemNameKey]['price'] * $quantity, 2, ',', ' ') . '</td>
+        <td class="col-right">' . number_format(
+          $this->selectedItem->getPrice(), 2, ',', ' ') . '</td>
+        <td class="col-right">' . number_format(
+          $this->selectedItem->getPrice() * $quantity, 2, ',', ' ')
+          . '</td>
       </tr>';
 
-    $total = $items[$itemNameKey]['price'] * $quantity;
+    $total = $this->selectedItem->getPrice() * $quantity;
     $rowNumber = 1;
 
     foreach ($selectedAddons as $addonKey) {
