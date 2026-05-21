@@ -68,9 +68,7 @@ $selector = new Selector(
     step: 50,
 );
 
-$_SESSION['item1_session'] = $item1;
-$_SESSION['item2_session'] = $item2;
-$_SESSION['item3_session'] = $item3;
+$_SESSION['items_session'] = [$item1, $item2, $item3];
 ?>
 
 <!DOCTYPE html>

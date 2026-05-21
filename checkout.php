@@ -22,16 +22,10 @@ $itemNameKey    = htmlspecialchars($_POST['itemName'] ?? '');
 
 $config = new Config();
 
-$item1 = $_SESSION['item1_session'];
-$item2 = $_SESSION['item2_session'];
-$item3 = $_SESSION['item3_session'];
-
-$itemArr[$item1->getName()] = $item1;
-$itemArr[$item2->getName()] = $item2;
-$itemArr[$item3->getName()] = $item3;
+$items = $_SESSION['items_session'];
 
 $selectedItem;
-foreach ($itemArr as $item) {
+foreach ($items as $item) {
   if ($item->getName() == $itemNameKey) {
     $selectedItem = $item;
   }
