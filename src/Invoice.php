@@ -234,16 +234,16 @@ class Invoice extends FormElement
       <tr>
         <td class="col-right">1</td>
         <td class="col-left">' . $this->selectedItem->getName() . '</td>
-        <td class="col-right">' . $quantity . '</td>
+        <td class="col-right">' . $this->quantity . '</td>
         <td class="col-center">шт.</td>
         <td class="col-right">' . number_format(
           $this->selectedItem->getPrice(), 2, ',', ' ') . '</td>
         <td class="col-right">' . number_format(
-          $this->selectedItem->getPrice() * $quantity, 2, ',', ' ')
+          $this->selectedItem->getPrice() * $this->quantity, 2, ',', ' ')
           . '</td>
       </tr>';
 
-    $total = $this->selectedItem->getPrice() * $quantity;
+    $total = $this->selectedItem->getPrice() * $this->quantity;
     $rowNumber = 1;
 
     foreach ($selectedAddons as $addonKey) {
@@ -252,16 +252,16 @@ class Invoice extends FormElement
         $addonPrice = getPrice(
           $addon_prices,
           $addonKey,
-          $quantity
+          $this->quantity
         );
-        $addonSum = $addonPrice * $quantity;
+        $addonSum = $addonPrice * $this->quantity;
         $total += $addonSum;
 
         $itemsTable .= '
           <tr>
             <td class="col-right">' . $rowNumber . '</td>
             <td class="col-left">' . htmlspecialchars($addons[$addonKey]['name']) . '</td>
-            <td class="col-right">' . $quantity . '</td>
+            <td class="col-right">' . $this->quantity . '</td>
             <td class="col-center">шт.</td>
             <td class="col-right">' . number_format($addonPrice, 2, ',', ' ') . '</td>
             <td class="col-right">' . number_format($addonSum, 2, ',', ' ') . '</td>
