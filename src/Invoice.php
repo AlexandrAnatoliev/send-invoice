@@ -54,6 +54,11 @@ class Invoice extends FormElement
     return $this->quantity;
   }
 
+  public function getSelectedAddons(): array
+  {
+    return $this->selectedAddons;
+  }
+
   /**
    * Render the invoice as an HTML.
    *

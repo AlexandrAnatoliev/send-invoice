@@ -33,6 +33,7 @@ class InvoiceTest extends TestCase
       'Имя Покупателя',
       $item,
       123,
+      ['key' => 'value'],
     );
   }
 
@@ -40,6 +41,8 @@ class InvoiceTest extends TestCase
   {
     $this->assertSame('Тестовый счет', $this->invoice->getName());
     $this->assertSame(123, $this->invoice->getQuantity());
+    $this->assertSame(['key' => 'value'],
+      $this->invoice->getSelectedAddons());
   }
 
   public function testGetCSSReturnsValidStyleTag(): void
