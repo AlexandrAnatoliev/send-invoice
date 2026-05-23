@@ -14,6 +14,7 @@ class Invoice extends FormElement
   private string $customerPhone;
   private string $customerName;
   private Item $selectedItem;
+  private int $quantity,
 
   /**
    * Create a new instance.
@@ -23,6 +24,7 @@ class Invoice extends FormElement
    * @param $customerPhone  Customer phone
    * @param $customerName   Customer name
    * @param $selectedItem   Selected item
+   * @param $quantity       Quantity of items
    */
   public function __construct(
     string $name,
@@ -30,17 +32,24 @@ class Invoice extends FormElement
     string $customerPhone,
     string $customerName,
     Item $selectedItem,
+    int $quantity,
   ) {
     parent::__construct($name);
     $this->config = $config;
     $this->customerPhone = $customerPhone;
     $this->customerName = $customerName;
     $this->selectedItem = $selectedItem;
+    $this->quantity = $quantity;
   }
 
   public function getItem(): Item
   {
     return $this->selectedItem;
+  }
+
+  public function getQuantity(): int
+  {
+    return $this->quantity;
   }
 
   /**
