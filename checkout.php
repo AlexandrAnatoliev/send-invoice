@@ -19,7 +19,8 @@ $sourcePath     = htmlspecialchars($_POST['source_path'] ?? '');
 $customerName   = htmlspecialchars($_POST['customer_name'] ?? '');
 $customerPhone  = htmlspecialchars($_POST['customer_phone'] ?? '');
 $itemNameKey    = htmlspecialchars($_POST['itemName'] ?? '');
-$quantity       = (int)htmlspecialchars($_POST['quantity'] ?? '');
+$quantity       = (int) htmlspecialchars($_POST['quantity'] ?? '');
+$selectedAddons = $_POST['addons'] ?? [];
 
 $config = new Config();
 
@@ -39,6 +40,7 @@ $invoice = new Invoice(
   $customerName,
   $selectedItem,
   $quantity,
+  $selectedAddons,
 );
 ?>
 

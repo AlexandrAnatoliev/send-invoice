@@ -15,7 +15,7 @@ class Invoice extends FormElement
   private string $customerName;
   private Item $selectedItem;
   private int $quantity;
-
+  private array $selectedAddons;
   /**
    * Create a new instance.
    *
@@ -33,6 +33,7 @@ class Invoice extends FormElement
     string $customerName,
     Item $selectedItem,
     int $quantity,
+    array $selectedAddons,
   ) {
     parent::__construct($name);
     $this->config = $config;
@@ -40,6 +41,7 @@ class Invoice extends FormElement
     $this->customerName = $customerName;
     $this->selectedItem = $selectedItem;
     $this->quantity = $quantity;
+    $this->selectedAddons = $selectedAddons;
   }
 
   public function getItem(): Item
