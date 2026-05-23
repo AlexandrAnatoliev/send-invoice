@@ -32,12 +32,14 @@ class InvoiceTest extends TestCase
       '89261234567',
       'Имя Покупателя',
       $item,
+      123,
     );
   }
 
   public function testConstructorFieldsIsValid(): void
   {
     $this->assertSame('Тестовый счет', $this->invoice->getName());
+    $this->assertSame(123, $this->invoice->getQuantity());
   }
 
   public function testGetCSSReturnsValidStyleTag(): void

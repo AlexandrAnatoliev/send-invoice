@@ -14,7 +14,7 @@ class Invoice extends FormElement
   private string $customerPhone;
   private string $customerName;
   private Item $selectedItem;
-  private int $quantity,
+  private int $quantity;
 
   /**
    * Create a new instance.
