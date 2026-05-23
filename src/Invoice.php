@@ -253,7 +253,7 @@ class Invoice extends FormElement
     $total = $this->selectedItem->getPrice() * $this->quantity;
     $rowNumber = 1;
 
-    foreach ($selectedAddons as $addonKey) {
+    foreach ($this->getSelectedAddons() as $addonKey) {
       if (isset($addons[$addonKey])) {
         $rowNumber++;
         $addonPrice = getPrice(
