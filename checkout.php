@@ -11,8 +11,8 @@ use sendInvoice\Config;
 $location = 'Location: index.html';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header($location);
-    exit;
+  header($location);
+  exit;
 }
 
 $sourcePath     = htmlspecialchars($_POST['source_path'] ?? '');
@@ -27,13 +27,18 @@ $config = new Config();
 $items = $_SESSION['items_session'];
 $addons = $_SESSION['addons_session'];
 
-$selectedItem;
+$selectedItem = null;
 foreach ($items as $item) {
   if ($item->getName() == $itemNameKey) {
     $selectedItem = $item;
+    break;
   }
 }
- 
+
+if ($selectedItem == null) {
+  exit;
+}
+
 $invoice = new Invoice(
   'invoice',
   $config,
