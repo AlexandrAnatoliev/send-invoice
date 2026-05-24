@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 require_once __DIR__ . '/vendor/autoload.php';
-require_once 'utils/session.php';
+require_once __DIR__ . '/utils/session.php';
 
 use sendInvoice\Invoice;
 use sendInvoice\Config;
@@ -19,7 +19,7 @@ $sourcePath     = htmlspecialchars($_POST['source_path'] ?? '');
 $customerName   = htmlspecialchars($_POST['customer_name'] ?? '');
 $customerPhone  = htmlspecialchars($_POST['customer_phone'] ?? '');
 $itemNameKey    = htmlspecialchars($_POST['itemName'] ?? '');
-$quantity       = (int) htmlspecialchars($_POST['quantity'] ?? '');
+$quantity       = (int) ($_POST['quantity'] ?? '');
 $selectedAddons = $_POST['addons'] ?? [];
 
 $config = new Config();

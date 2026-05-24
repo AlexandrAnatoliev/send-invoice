@@ -259,13 +259,13 @@ class Invoice extends FormElement
         <td class="col-right">' . $this->quantity . '</td>
         <td class="col-center">шт.</td>
         <td class="col-right">' . number_format(
-          $this->selectedItem->getPrice(), 2, ',', ' ') . '</td>
+          $this->selectedItem->getPrice($this->quantity), 2, ',', ' ') . '</td>
         <td class="col-right">' . number_format(
-          $this->selectedItem->getPrice() * $this->quantity, 2, ',', ' ')
+          $this->selectedItem->getPrice($this->quantity) * $this->quantity, 2, ',', ' ')
           . '</td>
       </tr>';
 
-    $total = $this->selectedItem->getPrice() * $this->quantity;
+    $total = $this->selectedItem->getPrice($this->quantity) * $this->quantity;
     $rowNumber = 1;
 
     foreach ($this->getSelectedAddons() as $addonKey) {
@@ -283,7 +283,7 @@ class Invoice extends FormElement
             <td class="col-right">' . $this->quantity . '</td>
             <td class="col-center">шт.</td>
             <td class="col-right">' . number_format($this
-              ->getAddons()[$addonKey]->getPrice(), 2, ',', ' ') . '</td>
+              ->getAddons()[$addonKey]->getPrice($this->quantity), 2, ',', ' ') . '</td>
             <td class="col-right">' . number_format($addonSum, 2, ',', ' ') . '</td>
           </tr>';
       }
