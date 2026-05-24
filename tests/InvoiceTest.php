@@ -40,7 +40,7 @@ class InvoiceTest extends TestCase
       'Имя Покупателя',
       $item,
       123,
-      ['key' => 'value'],
+      ['key' => 'Тестовый товар'],
       [$addon->name => $addon],
     );
   }
@@ -49,7 +49,7 @@ class InvoiceTest extends TestCase
   {
     $this->assertSame('Тестовый счет', $this->invoice->getName());
     $this->assertSame(123, $this->invoice->getQuantity());
-    $this->assertSame(['key' => 'value'],
+    $this->assertSame(['key' => 'Тестовый товар'],
       $this->invoice->getSelectedAddons());
     $this->assertSame([$addon->name => $addon],
       $this->invoice->getAddons());
@@ -141,10 +141,10 @@ class InvoiceTest extends TestCase
 
     $this->assertStringContainsString('<table class="items-table">',
       $html);
-    $this->assertSame('value',
+    $this->assertSame('Тестовый товар',
       $this->invoice->getSelectedAddons()['key']);
     foreach ($this->invoice->getSelectedAddons() as $addonKey) {
-      $this->assertSame('value', $addonKey);
+      $this->assertSame('Тестовый товар', $addonKey);
     }
   }
 }
