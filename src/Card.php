@@ -37,7 +37,7 @@ abstract class Card extends FormElement
     }
 
     /**
-     * Get price based on quantity
+     * Get price
      *
      * @param  ?int $quantity - quantity of items
      * @return int

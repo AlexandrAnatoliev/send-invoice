@@ -4,6 +4,11 @@ declare(strict_types=1);
 
 namespace sendInvoice;
 
+/**
+ * Class for order to save settings.
+ *
+ * @package sendInvoice
+ */
 class Config
 {
     private array $env;

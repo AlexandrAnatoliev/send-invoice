@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace sendInvoice;
 
 /**
- * FormElement represents an instance for the order display.
+ * Base class for order form UI elements that render HTML.
  *
  * Each FormElement includes a name
  *

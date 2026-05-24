@@ -29,7 +29,7 @@ class Invoice extends FormElement
    * @param $selectedItem   Selected item
    * @param $quantity       Quantity of items
    * @param $selectedAddons Selected addon names
-   * @param $addons         Addons array
+   * @param $addons         Array <string, Addon>
    */
   public function __construct(
     string $name,
@@ -72,7 +72,7 @@ class Invoice extends FormElement
   }
 
   /**
-   * Render the invoice as an HTML.
+   * Render the invoice as HTML.
    *
    * @return HTML markup of the invoice
    */
@@ -111,7 +111,7 @@ class Invoice extends FormElement
   }
 
   /**
-   * Render the Main Table as an HTML.
+   * Render the Main Table as HTML.
    *
    * @return HTML markup
    */
@@ -153,9 +153,9 @@ class Invoice extends FormElement
   }
 
   /**
-   * Render the invoice number as string.
+   * Render the invoice number.
    *
-   * @return Invoice number
+   * @return string
    */
   public function getInvoiceNumber(): string
   {
@@ -317,13 +317,13 @@ class Invoice extends FormElement
   }
 
   /**
-   * Вспомогательная функция для склонения слов в зависимости от числа.
+   * Picks the corrects Russian plural form for a number.
    *
-   * @param  $n   - число, для которого нужно подобрать форму слова
-   * @param  $f1  - форма для числа 1 (рубль, копейка)
-   * @param  $f2  - форма для чисел 2-4 (рубля, копейки)
-   * @param  $f5  - форма для чисел 5-20 и 0 (рублей, копеек)
-   * @return      - одна из трёх форм слова в зависимости от числа
+   * @param  $n   - Number
+   * @param  $f1  - Form for 1 (рубль, копейка)
+   * @param  $f2  - Form for 2-4 (рубля, копейки)
+   * @param  $f5  - Form for 5-20 and 0 (рублей, копеек)
+   * @return      - string
    */
   public function morph(
     int|string $n,
@@ -348,12 +348,10 @@ class Invoice extends FormElement
   }
 
   /**
-   * Преобразует число (сумму в рублях) в строку прописью.
+   * Convert an amount to Russian words.
    *
-   * @param  $num - сумма, которую нужно преобразовать.
-   *                Может быть числом с плавающей точкой
-   *                (например, 1500.50) или строкой.
-   * @return      - сумма прописью в формате:
+   * @param  $num - Amount.
+   * @return      - string e.g:
    *                "одна тысяча пятьсот рублей 50 копеек"
    */
   public function num2words(float|int|string $num): string
