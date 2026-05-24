@@ -266,13 +266,15 @@ class Invoice extends FormElement
     foreach ($this->getSelectedAddons() as $addonKey) {
       if (isset($this->getAddons()[$addonKey])) {
         $rowNumber++;
-        $addonSum = $this->getAddons()[$addonKey]->getPrice($this->quantity) * $this->quantity;
+        $addonSum = $this->getAddons()[$addonKey]
+                         ->getPrice($this->quantity)
+                       * $this->quantity;
         $total += $addonSum;
 
         $itemsTable .= '
           <tr>
             <td class="col-right">' . $rowNumber . '</td>
-            <td class="col-left">' . htmlspecialchars($addons[$addonKey]['name']) . '</td>
+            <td class="col-left">' . $this->getAddons()[$addonKey]->getName() . '</td>
             <td class="col-right">' . $this->quantity . '</td>
             <td class="col-center">шт.</td>
             <td class="col-right">' . number_format($addonPrice, 2, ',', ' ') . '</td>
