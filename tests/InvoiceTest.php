@@ -149,5 +149,7 @@ class InvoiceTest extends TestCase
     $this->assertTrue(true);
     $this->assertSame('Тестовая услуга',
       $this->invoice->getAddons()['Тестовая услуга']->getName());
+    $this->assertTrue(isset(
+      $this->invoice->getAddons()['Тестовая услуга']));
   }
 }
