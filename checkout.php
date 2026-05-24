@@ -25,6 +25,7 @@ $selectedAddons = $_POST['addons'] ?? [];
 $config = new Config();
 
 $items = $_SESSION['items_session'];
+$addons = $_SESSION['addons_session'];
 
 $selectedItem;
 foreach ($items as $item) {
@@ -41,7 +42,9 @@ $invoice = new Invoice(
   $selectedItem,
   $quantity,
   $selectedAddons,
+  $addons,
 );
+
 ?>
 
 <!DOCTYPE html>
