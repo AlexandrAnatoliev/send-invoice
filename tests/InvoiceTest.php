@@ -8,6 +8,8 @@ require_once __DIR__ . '/../vendor/autoload.php';
 use PHPUnit\Framework\TestCase;
 use sendInvoice\Invoice;
 use sendInvoice\Config;
+use sendInvoice\Item;
+use sendInvoice\Addon;
 
 class InvoiceTest extends TestCase
 {
@@ -19,17 +21,38 @@ class InvoiceTest extends TestCase
       ['testSetting' => 'testValue',],
     );
 
+    $item = new Item(
+      'Тестовый товар',
+      123456,
+      'img/test.jpg',
+    );
+
+    $addon = new Addon(
+      'Тестовая услуга',
+      123456,
+      'img/test.jpg',
+    );
+
     $this->invoice = new Invoice(
       'Тестовый счет',
       $testConfig,
       '89261234567',
       'Имя Покупателя',
+      $item,
+      123,
+      ['key' => 'Тестовый товар'],
+      ['Тестовая услуга' => $addon],
     );
   }
 
   public function testConstructorFieldsIsValid(): void
   {
     $this->assertSame('Тестовый счет', $this->invoice->getName());
+    $this->assertSame(123, $this->invoice->getQuantity());
+    $this->assertSame(['key' => 'Тестовый товар'],
+      $this->invoice->getSelectedAddons());
+    $this->assertSame('Тестовая услуга',
+      $this->invoice->getAddons()['Тестовая услуга']->getName());
   }
 
   public function testGetCSSReturnsValidStyleTag(): void
@@ -85,5 +108,48 @@ class InvoiceTest extends TestCase
       $html);
     $this->assertStringContainsString('+7 (926) 123-45-67', $html);
     $this->assertStringContainsString('Имя Покупателя', $html);
+  }
+
+  public function testMorph(): void
+  {
+    $num = $this->invoice->morph(
+      "12",
+      "рубль",
+      "рубля",
+      "рублей",
+    );
+
+    $this->assertSame("рублей", $num);
+  }
+
+  public function testNum2words(): void
+  {
+    $num = $this->invoice->num2words(1500.50);
+
+    $this->assertSame("одна тысяча пятьсот рублей 50 копеек", $num);
+  }
+
+  public function testGetItem(): void
+  {
+    $this->assertSame('Тестовый товар',
+      $this->invoice->getItem()->getName());
+  }
+
+  public function testRenderItemsTable(): void
+  {
+    $html = $this->invoice->renderItemsTable();
+
+    $this->assertStringContainsString('<table class="items-table">',
+      $html);
+    $this->assertSame('Тестовый товар',
+      $this->invoice->getSelectedAddons()['key']);
+    foreach ($this->invoice->getSelectedAddons() as $addonKey) {
+      $this->assertSame('Тестовый товар', $addonKey);
+    }
+    $this->assertTrue(true);
+    $this->assertSame('Тестовая услуга',
+      $this->invoice->getAddons()['Тестовая услуга']->getName());
+    $this->assertTrue(isset(
+      $this->invoice->getAddons()['Тестовая услуга']));
   }
 }

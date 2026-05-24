@@ -1,13 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace sendInvoice;
 
 /**
- * Addon represents a add-on product card for the order calculator.
+ * Addon represents an add-on product card for the order calculator.
  *
  * Each addon includes a name, price,
- * and an image path. It can render itself as an HTML checkbox label
- * and provides static CSS injection.
+ * and an image path. It can render itself as HTML checkbox label
  *
  * @package sendInvoice
  */
@@ -56,7 +57,7 @@ class Addon extends Card
   }
 
   /**
-   * Render the addon as an HTML label containing a checkbox input.
+   * Render the addon as HTML label containing a checkbox input.
    *
    * The check-box element carries data-price (raw integer) and data-name
    * (HTML-escaped) attributes for JavaScript consumption. The visible
@@ -70,7 +71,7 @@ class Addon extends Card
           <label class="card small">
             <input type="checkbox" name="addons[]"
                     value="' . htmlspecialchars($this->getName()) . '"
-                    data-price="' . htmlspecialchars($this->getPrice()) . '"
+                    data-price="' . $this->getPrice() . '"
                     data-name="' . htmlspecialchars($this->getName()) . '">
             <img src="' . htmlspecialchars($this->getImage())
               . '" alt="' . htmlspecialchars($this->getName()) . '">

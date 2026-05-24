@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace sendInvoice;
 
 /**
@@ -50,7 +52,7 @@ class Selector extends FormElement
     }
 
     /**
-     * Render the Selector as an HTML selector containing a quantity-block input.
+     * Render the Selector as an HTML selector containing a quantity-block selector.
      *
      * @return HTML markup of the selector
      */

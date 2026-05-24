@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 require_once __DIR__ . '/../vendor/autoload.php';
+require_once '../utils/session.php';
 
 use sendInvoice\Item;
 use sendInvoice\Addon;
@@ -65,7 +66,14 @@ $selector = new Selector(
     min: 0,
     max: 1000,
     step: 50,
-)
+);
+
+$_SESSION['items_session'] = [$item1, $item2, $item3];
+$_SESSION['addons_session'] = [
+  $addon1->getName() => $addon1,
+  $addon2->getName() => $addon2,
+  $addon3->getName() => $addon3,
+];
 ?>
 
 <!DOCTYPE html>

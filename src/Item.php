@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace sendInvoice;
 
 /**
@@ -27,7 +29,7 @@ class Item extends Card
           <label class="card">
             <input type="radio" name="itemName"
                     value="' . htmlspecialchars($this->getName()) . '"
-                    data-price="' . htmlspecialchars($this->getPrice()) . '"
+                    data-price="' . $this->getPrice() . '"
                     data-name="' . htmlspecialchars($this->getName()) . '"
                     required>
             <img src="' . htmlspecialchars($this->getImage())

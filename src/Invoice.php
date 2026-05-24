@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace sendInvoice;
 
 /**
@@ -13,7 +15,10 @@ class Invoice extends FormElement
   private Config $config;
   private string $customerPhone;
   private string $customerName;
-
+  private Item $selectedItem;
+  private int $quantity;
+  private array $selectedAddons;
+  private array $addons;
   /**
    * Create a new instance.
    *
@@ -21,21 +26,53 @@ class Invoice extends FormElement
    * @param $config         Settings config
    * @param $customerPhone  Customer phone
    * @param $customerName   Customer name
+   * @param $selectedItem   Selected item
+   * @param $quantity       Quantity of items
+   * @param $selectedAddons Selected addon names
+   * @param $addons         Array <string, Addon>
    */
   public function __construct(
     string $name,
     Config $config,
     string $customerPhone,
     string $customerName,
+    Item $selectedItem,
+    int $quantity,
+    array $selectedAddons,
+    array $addons,
   ) {
     parent::__construct($name);
     $this->config = $config;
     $this->customerPhone = $customerPhone;
     $this->customerName = $customerName;
+    $this->selectedItem = $selectedItem;
+    $this->quantity = $quantity;
+    $this->selectedAddons = $selectedAddons;
+    $this->addons = $addons;
+  }
+
+  public function getItem(): Item
+  {
+    return $this->selectedItem;
+  }
+
+  public function getQuantity(): int
+  {
+    return $this->quantity;
+  }
+
+  public function getSelectedAddons(): array
+  {
+    return $this->selectedAddons;
+  }
+
+  public function getAddons(): array
+  {
+    return $this->addons;
   }
 
   /**
-   * Render the invoice as an HTML.
+   * Render the invoice as HTML.
    *
    * @return HTML markup of the invoice
    */
@@ -45,6 +82,7 @@ class Invoice extends FormElement
 
     $invoice .= $this->renderMainTable();
     $invoice .= $this->renderMiddleTable();
+    $invoice .= $this->renderItemsTable();
 
     $invoice .= '
   <div class="empty-line"></div>';
@@ -73,7 +111,7 @@ class Invoice extends FormElement
   }
 
   /**
-   * Render the Main Table as an HTML.
+   * Render the Main Table as HTML.
    *
    * @return HTML markup
    */
@@ -115,9 +153,9 @@ class Invoice extends FormElement
   }
 
   /**
-   * Render the invoice number as string.
+   * Render the invoice number.
    *
-   * @return Invoice number
+   * @return string
    */
   public function getInvoiceNumber(): string
   {
@@ -193,5 +231,184 @@ class Invoice extends FormElement
     </tr>
   </table>';
     return $middleTable;
+  }
+
+  /**
+   * Render the Items Table as an HTML markup.
+   *
+   * @return HTML markup
+   */
+  public function renderItemsTable(): string 
+  {
+    $item = $this->getItem();
+
+    $itemsTable = '
+  <table class="items-table">
+    <thead>
+      <tr>
+        <th class="col-right">№</th>
+        <th class="col-left">Наименование товаров, работ, услуг</th>
+        <th class="col-right">Кол-во</th>
+        <th class="col-center">Ед. изм.</th>
+        <th class="col-right">Цена</th>
+        <th class="col-right">Всего</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="col-right">1</td>
+        <td class="col-left">' . $this->selectedItem->getName() . '</td>
+        <td class="col-right">' . $this->quantity . '</td>
+        <td class="col-center">шт.</td>
+        <td class="col-right">' . number_format(
+          $this->selectedItem->getPrice($this->quantity), 2, ',', ' ') . '</td>
+        <td class="col-right">' . number_format(
+          $this->selectedItem->getPrice($this->quantity) * $this->quantity, 2, ',', ' ')
+          . '</td>
+      </tr>';
+
+    $total = $this->selectedItem->getPrice($this->quantity) * $this->quantity;
+    $rowNumber = 1;
+
+    foreach ($this->getSelectedAddons() as $addonKey) {
+      if (isset($this->getAddons()[$addonKey])) {
+        $rowNumber++;
+        $addonSum = $this->getAddons()[$addonKey]
+                         ->getPrice($this->quantity)
+                       * $this->quantity;
+        $total += $addonSum;
+
+        $itemsTable .= '
+          <tr>
+            <td class="col-right">' . $rowNumber . '</td>
+            <td class="col-left">' . $this->getAddons()[$addonKey]->getName() . '</td>
+            <td class="col-right">' . $this->quantity . '</td>
+            <td class="col-center">шт.</td>
+            <td class="col-right">' . number_format($this
+              ->getAddons()[$addonKey]->getPrice($this->quantity), 2, ',', ' ') . '</td>
+            <td class="col-right">' . number_format($addonSum, 2, ',', ' ') . '</td>
+          </tr>';
+      }
+    }
+
+    $itemsTable .= '
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="5" style="text-align:right; font-weight:bold;">Итого к оплате:</td>
+        <td class="col-right" style="font-weight:bold;">' . number_format($total, 2, ',', ' ') . '</td>
+      </tr>
+      <tr>
+        <td colspan="5" style="text-align:right; font-weight:bold;">Без налога (НДС)</td>
+        <td class="col-right" style="font-weight:bold;">—</td>
+      </tr>
+    </tfoot>
+  </table>';
+
+    $totalInWords = $this->num2words($total);
+
+    $itemsTable .= '
+  <div class="empty-line"></div>
+
+  <p>Всего наименований ' . $rowNumber . ', на сумму ' . number_format($total, 2, ',', ' ') . ' руб<br>
+  <b>(' . $totalInWords . '</b>)</p>';
+
+    return $itemsTable;
+  }
+
+  /**
+   * Picks the corrects Russian plural form for a number.
+   *
+   * @param  $n   - Number
+   * @param  $f1  - Form for 1 (рубль, копейка)
+   * @param  $f2  - Form for 2-4 (рубля, копейки)
+   * @param  $f5  - Form for 5-20 and 0 (рублей, копеек)
+   * @return      - string
+   */
+  public function morph(
+    int|string $n,
+    string $f1,
+    string $f2,
+    string $f5
+  ): string
+  {
+    $n = abs(intval($n)) % 100;
+    $answer = $f5;
+
+    if ($n > 10 && $n < 20) {
+        return $answer;
+    }
+    $n = $n % 10;
+    if ($n > 1 && $n < 5) {
+        $answer = $f2;
+    } elseif ($n == 1) {
+        $answer = $f1;
+    }
+    return $answer;
+  }
+
+  /**
+   * Convert an amount to Russian words.
+   *
+   * @param  $num - Amount.
+   * @return      - string e.g:
+   *                "одна тысяча пятьсот рублей 50 копеек"
+   */
+  public function num2words(float|int|string $num): string
+  {
+    $nul = 'ноль';
+    $ten = [
+        ['', 'один', 'два', 'три', 'четыре', 'пять', 'шесть', 'семь', 'восемь', 'девять'],
+        ['', 'одна', 'две', 'три', 'четыре', 'пять', 'шесть', 'семь', 'восемь', 'девять'],
+    ];
+    $a20 = ['десять', 'одиннадцать', 'двенадцать', 'тринадцать', 'четырнадцать', 'пятнадцать', 'шестнадцать', 'семнадцать', 'восемнадцать', 'девятнадцать'];
+    $tens = ['', '', 'двадцать', 'тридцать', 'сорок', 'пятьдесят', 'шестьдесят', 'семьдесят', 'восемьдесят', 'девяносто'];
+    $hundred = ['', 'сто', 'двести', 'триста', 'четыреста', 'пятьсот', 'шестьсот', 'семьсот', 'восемьсот', 'девятьсот'];
+    $unit = [
+        ['копейка', 'копейки', 'копеек', 1],
+        ['рубль', 'рубля', 'рублей', 0],
+        ['тысяча', 'тысячи', 'тысяч', 1],
+        ['миллион', 'миллиона', 'миллионов', 0],
+        ['миллиард', 'миллиарда', 'миллиардов', 0],
+    ];
+
+    if (!is_numeric($num)) {
+        return 'ноль рублей 00 копеек';
+    }
+
+    $num = round($num, 2);
+    [$rub, $kop] = explode('.', sprintf("%015.2f", $num));
+
+    $out = [];
+    if (intval($rub) > 0) {
+        foreach (str_split($rub, 3) as $uk => $v) {
+            if (!intval($v)) {
+                continue;
+            }
+
+            $uk = sizeof($unit) - $uk - 1;
+            $gender = $unit[$uk][3];
+
+            [$i1, $i2, $i3] = array_map('intval', str_split($v, 1));
+
+            $out[] = $hundred[$i1];
+            if ($i2 > 1) {
+                $out[] = $tens[$i2] . ' ' . $ten[$gender][$i3];
+            } else {
+                $out[] = ($i2 > 0) ? $a20[$i3] : $ten[$gender][$i3];
+            }
+
+            if ($uk > 1) {
+                $out[] = $this->morph($v, $unit[$uk][0], $unit[$uk][1], $unit[$uk][2]);
+            }
+        }
+    } else {
+        $out[] = $nul;
+    }
+
+    $out[] = $this->morph(intval($rub), $unit[1][0], $unit[1][1], $unit[1][2]);
+    $out[] = $kop . ' ' . $this->morph($kop, $unit[0][0], $unit[0][1], $unit[0][2]);
+
+    return trim(preg_replace('/ {2,}/', ' ', implode(' ', $out)));
   }
 }
