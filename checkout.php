@@ -24,18 +24,25 @@ $selectedAddons = $_POST['addons'] ?? [];
 
 $config = new Config();
 
-$items = $_SESSION['items_session'];
+$items = $_SESSION['items_session'] ?? [];
+
+if ($items === []) {
+  header($location);
+  exit;
+}
+
 $addons = $_SESSION['addons_session'];
 
 $selectedItem = null;
 foreach ($items as $item) {
-  if ($item->getName() == $itemNameKey) {
+  if ($item->getName() === $itemNameKey) {
     $selectedItem = $item;
     break;
   }
 }
 
-if ($selectedItem == null) {
+if ($selectedItem === null) {
+  header($location);
   exit;
 }
 
