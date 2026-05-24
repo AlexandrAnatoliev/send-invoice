@@ -9,6 +9,7 @@ use PHPUnit\Framework\TestCase;
 use sendInvoice\Invoice;
 use sendInvoice\Config;
 use sendInvoice\Item;
+use sendInvoice\Addon;
 
 class InvoiceTest extends TestCase
 {
@@ -26,6 +27,12 @@ class InvoiceTest extends TestCase
       'img/test.jpg',
     );
 
+    $this->addon = new Addon(
+      'Тестовый товар',
+      123456,
+      'img/test.jpg',
+    );
+
     $this->invoice = new Invoice(
       'Тестовый счет',
       $testConfig,
@@ -34,6 +41,7 @@ class InvoiceTest extends TestCase
       $item,
       123,
       ['key' => 'value'],
+      [$addon->name => $addon],
     );
   }
 
@@ -43,6 +51,8 @@ class InvoiceTest extends TestCase
     $this->assertSame(123, $this->invoice->getQuantity());
     $this->assertSame(['key' => 'value'],
       $this->invoice->getSelectedAddons());
+    $this->assertSame([$addon->name => $addon],
+      $this->invoice->getAddons());
   }
 
   public function testGetCSSReturnsValidStyleTag(): void
