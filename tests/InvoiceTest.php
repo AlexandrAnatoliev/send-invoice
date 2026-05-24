@@ -41,7 +41,7 @@ class InvoiceTest extends TestCase
       $item,
       123,
       ['key' => 'Тестовый товар'],
-      [$addon],
+      ['Тестовая услуга' => $addon],
     );
   }
 
@@ -52,7 +52,7 @@ class InvoiceTest extends TestCase
     $this->assertSame(['key' => 'Тестовый товар'],
       $this->invoice->getSelectedAddons());
     $this->assertSame('Тестовая услуга',
-      $this->invoice->getAddons()[0]->getName());
+      $this->invoice->getAddons()['Тестовая услуга']->getName());
   }
 
   public function testGetCSSReturnsValidStyleTag(): void
@@ -147,5 +147,7 @@ class InvoiceTest extends TestCase
       $this->assertSame('Тестовый товар', $addonKey);
     }
     $this->assertTrue(true);
+    $this->assertSame('Тестовая услуга',
+      $this->invoice->getAddons()['Тестовая услуга']->getName());
   }
 }
