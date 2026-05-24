@@ -143,5 +143,8 @@ class InvoiceTest extends TestCase
       $html);
     $this->assertSame('value',
       $this->invoice->getSelectedAddons()['key']);
+    foreach ($this->invoice->getSelectedAddons() as $addonKey) {
+      $this->assertSame('value', $addonKey);
+    }
   }
 }
