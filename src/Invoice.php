@@ -16,6 +16,7 @@ class Invoice extends FormElement
   private Item $selectedItem;
   private int $quantity;
   private array $selectedAddons;
+  private array $addons;
   /**
    * Create a new instance.
    *
@@ -25,6 +26,8 @@ class Invoice extends FormElement
    * @param $customerName   Customer name
    * @param $selectedItem   Selected item
    * @param $quantity       Quantity of items
+   * @param $selectedAddons Selected addon names
+   * @param $addons         Addons array
    */
   public function __construct(
     string $name,
@@ -34,6 +37,7 @@ class Invoice extends FormElement
     Item $selectedItem,
     int $quantity,
     array $selectedAddons,
+    array $addons,
   ) {
     parent::__construct($name);
     $this->config = $config;
@@ -42,6 +46,7 @@ class Invoice extends FormElement
     $this->selectedItem = $selectedItem;
     $this->quantity = $quantity;
     $this->selectedAddons = $selectedAddons;
+    $this->addons = $addons;
   }
 
   public function getItem(): Item
@@ -57,6 +62,11 @@ class Invoice extends FormElement
   public function getSelectedAddons(): array
   {
     return $this->selectedAddons;
+  }
+
+  public function getAddons(): array
+  {
+    return $this->addons;
   }
 
   /**
