@@ -69,7 +69,11 @@ $selector = new Selector(
 );
 
 $_SESSION['items_session'] = [$item1, $item2, $item3];
-$_SESSION['addons_session'] = [$addon1, $addon2, $addon3];
+$_SESSION['addons_session'] = [
+  $addon1->getName() => $addon1,
+  $addon2->getName() => $addon2,
+  $addon3->getName() => $addon3,
+];
 ?>
 
 <!DOCTYPE html>
