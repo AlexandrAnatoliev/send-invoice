@@ -110,14 +110,6 @@ class InvoiceTest extends TestCase
     $this->assertStringContainsString('Имя Покупателя', $html);
   }
 
-  public function testRenderItemsTable(): void
-  {
-    $html = $this->invoice->renderItemsTable();
-
-    $this->assertStringContainsString('<table class="items-table">',
-      $html);
-  }
-
   public function testMorph(): void
   {
     $num = $this->invoice->morph(
@@ -141,5 +133,15 @@ class InvoiceTest extends TestCase
   {
     $this->assertSame('Тестовый товар',
       $this->invoice->getItem()->getName());
+  }
+
+  public function testRenderItemsTable(): void
+  {
+    $html = $this->invoice->renderItemsTable();
+
+    $this->assertStringContainsString('<table class="items-table">',
+      $html);
+    $this->assertSame('value',
+      $this->invoice->getSelectedAddons()['key']);
   }
 }
