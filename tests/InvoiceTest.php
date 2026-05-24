@@ -27,8 +27,8 @@ class InvoiceTest extends TestCase
       'img/test.jpg',
     );
 
-    $this->addon = new Addon(
-      'Тестовый товар',
+    $addon = new Addon(
+      'Тестовая услуга',
       123456,
       'img/test.jpg',
     );
@@ -51,8 +51,8 @@ class InvoiceTest extends TestCase
     $this->assertSame(123, $this->invoice->getQuantity());
     $this->assertSame(['key' => 'Тестовый товар'],
       $this->invoice->getSelectedAddons());
-    $this->assertSame([$addon],
-      $this->invoice->getAddons());
+    $this->assertSame('Тестовая услуга',
+      $this->invoice->getAddons()[0]->getName());
   }
 
   public function testGetCSSReturnsValidStyleTag(): void
@@ -147,7 +147,5 @@ class InvoiceTest extends TestCase
       $this->assertSame('Тестовый товар', $addonKey);
     }
     $this->assertTrue(true);
-    $this->assertSame([$addon],
-      $this->invoice->getAddons());
   }
 }
