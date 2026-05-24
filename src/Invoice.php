@@ -277,7 +277,8 @@ class Invoice extends FormElement
             <td class="col-left">' . $this->getAddons()[$addonKey]->getName() . '</td>
             <td class="col-right">' . $this->quantity . '</td>
             <td class="col-center">шт.</td>
-            <td class="col-right">' . number_format($this->getAddons()[$addonKey]->getPrice(), 2, ',', ' ') . '</td>
+            <td class="col-right">' . number_format($this
+              ->getAddons()[$addonKey]->getPrice(), 2, ',', ' ') . '</td>
             <td class="col-right">' . number_format($addonSum, 2, ',', ' ') . '</td>
           </tr>';
       }
