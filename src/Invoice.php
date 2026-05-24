@@ -231,6 +231,11 @@ class Invoice extends FormElement
     return $middleTable;
   }
 
+  /**
+   * Render the Items Table as an HTML markup.
+   *
+   * @return HTML markup
+   */
   public function renderItemsTable(): string 
   {
     $item = $this->getItem();

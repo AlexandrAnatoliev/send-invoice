@@ -3,7 +3,7 @@
   <h1>send-invoice: Калькулятор заказа с генерацией счёта и отправкой на email</h1>
 
   ![Stars](https://img.shields.io/github/stars/AlexandrAnatoliev/send-invoice.svg?style=flat)
-  ![Version 0.16.0](https://img.shields.io/badge/Version-0.16.0-orange.svg)
+  ![Version 0.17.0](https://img.shields.io/badge/Version-0.17.0-orange.svg)
   ![Forks](https://img.shields.io/github/forks/AlexandrAnatoliev/send-invoice.svg?style=flat)
   ![GitHub repo size](https://img.shields.io/github/repo-size/AlexandrAnatoliev/send-invoice)
   
@@ -84,10 +84,10 @@
 
 #### 4. Счёт на оплату
 
-* [ ] Бланк строгой формы (как в 1С), чёткие рамки
+* [x] Бланк строгой формы (как в 1С), чёткие рамки
 * [x] Нумерация: Счёт № Б-12345678-987654 от ДД.ММ.ГГГГ
-* [ ] Реквизиты продавца из конфига, реквизиты покупателя из формы
-* [ ] Каждая выбранная позиция — отдельной строкой
+* [x] Реквизиты продавца из конфига, реквизиты покупателя из формы
+* [x] Каждая выбранная позиция — отдельной строкой
 * [ ] Отправка счёта в формате PDF как вложение
 * [ ] Копия письма администратору
 * [ ] qr-code для оплаты
@@ -211,12 +211,31 @@ classDiagram
     - config: Config
     - customerPhone: string
     - customerName: string
-    + Invoice(name: string, config: Config, customerPhone: string, customerName: string)
+    - selectedItem: Item 
+    - quantity: int 
+    - selectedAddons: array 
+    - addons: array 
+    + Invoice(
+      name: string,
+      config: Config,
+      customerPhone: string,
+      customerName: string,
+      selectedItem: Item,
+      quantity: int,
+      selectedAddons: array,
+      addons: array) 
+    + getItem() Item
+    + getQuantity() int
+    + getSelectedAddons() array
+    + getAddons() array
     + render() string
     + renderMainTable() string
     + getInvoiceNumber() string 
     + formatPhoneNumber(customerPhone: string) string
     + renderMiddleTable() string 
+    + renderItemsTable() string
+    + morph(n: int|string, f1: string, f2: string, f5: string) string
+    + num2words(num: float|int|string ) string
   }
 
   class Card {
