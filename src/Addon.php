@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace sendInvoice;
 
 /**
@@ -70,7 +72,7 @@ class Addon extends Card
           <label class="card small">
             <input type="checkbox" name="addons[]"
                     value="' . htmlspecialchars($this->getName()) . '"
-                    data-price="' . htmlspecialchars($this->getPrice()) . '"
+                    data-price="' . $this->getPrice() . '"
                     data-name="' . htmlspecialchars($this->getName()) . '">
             <img src="' . htmlspecialchars($this->getImage())
               . '" alt="' . htmlspecialchars($this->getName()) . '">
