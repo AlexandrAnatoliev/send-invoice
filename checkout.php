@@ -20,7 +20,7 @@ $customerName   = htmlspecialchars($_POST['customer_name'] ?? '');
 $customerPhone  = htmlspecialchars($_POST['customer_phone'] ?? '');
 $itemNameKey    = htmlspecialchars($_POST['itemName'] ?? '');
 $quantity       = (int) ($_POST['quantity'] ?? '');
-$selectedAddons = $_POST['addons'] ?? [];
+$selectedAddons = $_POST['selectedAddons'] ?? [];
 
 $config = new Config();
 
