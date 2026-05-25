@@ -222,7 +222,7 @@ class Invoice extends FormElement
     </tr>
     <tr>
       <td class="label-cell">Покупатель<br>(Заказчик):</td>
-      <td class="value-cell">' . $this->customerName . ', тел: '
+      <td class="value-cell">' . htmlspecialchars($this->customerName) . ', тел: '
         . $formatted . '</td>
     </tr>
     <tr>
