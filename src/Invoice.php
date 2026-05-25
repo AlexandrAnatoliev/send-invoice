@@ -317,7 +317,7 @@ class Invoice extends FormElement
   }
 
   /**
-   * Picks the corrects Russian plural form for a number.
+   * Picks the correct Russian plural form for a number.
    *
    * @param  $n   - Number
    * @param  $f1  - Form for 1 (рубль, копейка)
