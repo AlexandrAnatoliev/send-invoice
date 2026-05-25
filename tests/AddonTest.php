@@ -27,7 +27,7 @@ class AddonTest extends TestCase
 
         $this->assertStringContainsString('<label class="card small">', $html);
         $this->assertStringContainsString('type="checkbox"', $html);
-        $this->assertStringContainsString('name="addons[]"', $html);
+        $this->assertStringContainsString('name="selectedAddons[]"', $html);
         $this->assertStringContainsString('Тестовый товар', $html);
         $this->assertStringContainsString('123 456 ₽', $html); // number_format
         $this->assertStringContainsString('img/test.jpg', $html);

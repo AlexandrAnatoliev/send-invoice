@@ -222,7 +222,7 @@ class Invoice extends FormElement
     </tr>
     <tr>
       <td class="label-cell">Покупатель<br>(Заказчик):</td>
-      <td class="value-cell">' . $this->customerName . ', тел: '
+      <td class="value-cell">' . htmlspecialchars($this->customerName) . ', тел: '
         . $formatted . '</td>
     </tr>
     <tr>
@@ -317,7 +317,7 @@ class Invoice extends FormElement
   }
 
   /**
-   * Picks the corrects Russian plural form for a number.
+   * Picks the correct Russian plural form for a number.
    *
    * @param  $n   - Number
    * @param  $f1  - Form for 1 (рубль, копейка)

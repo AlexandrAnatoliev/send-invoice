@@ -2,21 +2,21 @@
 
 /**
  * =====================================================================
- * session.php - Инициализация PHP сессии
+ * session.php - PHP session bootstrap
  * =====================================================================
  *
- * Назначение:
- *   Единая точка старта сессии для всех страниц проекта.
- *   Гарантирует, что сессия запущена ровно один раз,
- *   даже если файл подключается несколько раз.
+ * Purpose:
+ *   Single entry point to start a session for all project pages.
+ *   Ensures the session is started exactly once, even if this file
+ *   is included multiple times.
  *
- * Использование:
+ * Usage:
  *   require_once 'utils/session.php';
  *
- * Что делает:
- *   - Проверяет, не запущена ли уже сессия
- *   - Если нет - запускает новую сессию
- *   - Если да - ничего не делает (безопасное подключение)
+ * Behaviour:
+ *   - Checks whether a session is already active
+ *   - If not, starts a new session
+ *   - If yes, does nothing (safe to include repeatedly)
  */
 
 declare(strict_types=1);
