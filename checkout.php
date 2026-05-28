@@ -59,14 +59,28 @@ $invoice = new Invoice(
   $addons,
 );
 
+$emailContent  = "<h1>✓ Заказ оформлен!</h1>";
+$emailContent .= "<p>Наш менеджер свяжется с вами дополнительно.</p>";
+
 // Отправка покупателю (с PDF-вложением)
 $resultCustomer = sendEmail(
   $customerEmail,
   $customerName,
   $invoice->getInvoiceNumber(),
-  $invoice->getInvoiceNumber(),
+  $emailContent,
   //     $pdfContent,       // PDF-вложение
   //     $pdfFilename
+  $config
+);
+
+// Отправка админу (с PDF-вложением)
+$resultAdmin = sendEmail(
+  $config->get('ADMIN_EMAIL'),
+  $config->get('ADMIN_NAME'),
+  "Копия: " . $invoice->getInvoiceNumber(),
+  $emailContent,
+//   $pdfContent,
+//   $pdfFilename
   $config
 );
 ?>
