@@ -3,7 +3,7 @@
   <h1>send-invoice: Калькулятор заказа с генерацией счёта и отправкой на email</h1>
 
   ![Stars](https://img.shields.io/github/stars/AlexandrAnatoliev/send-invoice.svg?style=flat)
-  ![Version 0.17.1](https://img.shields.io/badge/Version-0.17.1-orange.svg)
+  ![Version 0.18.0](https://img.shields.io/badge/Version-0.18.0-orange.svg)
   ![Forks](https://img.shields.io/github/forks/AlexandrAnatoliev/send-invoice.svg?style=flat)
   ![GitHub repo size](https://img.shields.io/github/repo-size/AlexandrAnatoliev/send-invoice)
   
@@ -166,6 +166,7 @@
 │   ├── ItemTest.php
 │   └── SelectorTest.php
 ├── utils
+│   ├── mailer.php
 │   └── session.php
 └── vendor
     ├── autoload.php
@@ -175,6 +176,7 @@
     ├── myclabs
     ├── nikic
     ├── phar-io
+    ├── phpmailer
     ├── phpoption
     ├── phpunit
     ├── sebastian
@@ -328,6 +330,7 @@ classDiagram
 * Composer: менеджер пакетов PHP
 * Библиотеки (устанавливаются через Composer):
   * vlucas/phpdotenv: версия 5.6 и выше
+  * phpmailer/phpmailer: версия 7.0 и выше
 
 <div align="center">
   <h3>Установка Composer</h3>

@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 require_once __DIR__ . '/../vendor/autoload.php';
-require_once '../utils/session.php';
+require_once __DIR__ . '/../utils/session.php';
 
 use sendInvoice\Item;
 use sendInvoice\Addon;
@@ -87,7 +87,7 @@ $_SESSION['addons_session'] = [
   <div class="calculator">
     <h1>Калькулятор услуг</h1>
     <form id="orderForm" action="../checkout.php" method="post">
-      <!-- Блок выбора основного тарифа (Радио) -->
+      <!-- Main product selection (radio) -->
       <h2>1. Выберите сувенир</h2>
       <div class="radio-group">
         <?= Item::getCSS() ?>
@@ -96,7 +96,7 @@ $_SESSION['addons_session'] = [
         <?= $item3->render() ?>
       </div>
 
-      <!-- Блок дополнительных услуг (Чекбоксы) -->
+      <!-- Add-ons (checkboxes) -->
       <h2>2. Выберите нанесение</h2>
       <div class="checkbox-group">
         <?= $addon1->render() ?>
@@ -104,20 +104,20 @@ $_SESSION['addons_session'] = [
         <?= $addon3->render() ?>
       </div>
 
-      <!-- Количество / Срок -->
+      <!-- Quantity -->
       <h2>3. Нужное количество</h2>
       <div class="quantity-block">
         <?= Selector::getCSS() ?>
         <?= $selector->render() ?>
       </div>
 
-      <!-- Данные покупателя -->
+      <!-- Customer details -->
       <h2>4. Ваши данные для получения счёта на оплату на почту</h2>
       <input type="text" name="customer_name" placeholder="Наименование организации для счёта" required>
       <input type="email" name="customer_email" placeholder="Email для отправки счета" required>
       <input type="tel" name="customer_phone" placeholder="Телефон контакта" required>
 
-      <!-- Из какой группы вызывается checkout -->
+      <!-- Source group path for checkout “back” link -->
       <input type="hidden" name="source_path"
         value="<?= htmlspecialchars($_SERVER['SCRIPT_NAME']) ?>">
 
