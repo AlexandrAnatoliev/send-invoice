@@ -92,6 +92,16 @@ $resultCustomer = sendEmail(
         (<strong><?= htmlspecialchars($config->get('ADMIN_NAME')) ?></strong>)</p>
     </div>
 
+    <?php if (!$resultCustomer) : ?>
+      <div class="email-status email-error">
+        <strong>⚠ Внимание!</strong> Письмо не было отправлено. Проверьте настройки почты.
+      </div>
+    <?php else : ?>
+      <div class="email-status email-success">
+        <strong>✓ Письмо успешно отправлено!</strong> Проверьте папку «Спам», если не видите письма.
+      </div>
+    <?php endif; ?>
+
     <?= $invoice->render() ?>
 
     <br>
