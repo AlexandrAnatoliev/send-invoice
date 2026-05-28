@@ -106,7 +106,7 @@ $resultAdmin = sendEmail(
         (<strong><?= htmlspecialchars($config->get('ADMIN_NAME')) ?></strong>)</p>
     </div>
 
-    <?php if (!$resultCustomer) : ?>
+    <?php if (!$resultCustomer || !$resultAdmin) : ?>
       <div class="email-status email-error">
         <strong>⚠ Внимание!</strong> Письмо не было отправлено. Проверьте настройки почты.
       </div>
