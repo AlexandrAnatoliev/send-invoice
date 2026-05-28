@@ -64,7 +64,7 @@ $resultCustomer = sendEmail(
     $customerEmail,
     $customerName,
     $invoice->getInvoiceNumber(),
-    'HTML-содержимое письма',
+    $invoice->getInvoiceNumber(),
 //     $pdfContent,       // PDF-вложение
 //     $pdfFilename
     $config
@@ -80,6 +80,7 @@ $resultCustomer = sendEmail(
 </head>
 <body>
   <div class="calculator">
+    <h1>✓ Заказ оформлен!</h1>
     <?= $invoice->render() ?>
 
     <br>
