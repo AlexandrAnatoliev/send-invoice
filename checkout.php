@@ -61,13 +61,13 @@ $invoice = new Invoice(
 
 // Отправка покупателю (с PDF-вложением)
 $resultCustomer = sendEmail(
-    $customerEmail,
-    $customerName,
-    $invoice->getInvoiceNumber(),
-    $invoice->getInvoiceNumber(),
-//     $pdfContent,       // PDF-вложение
-//     $pdfFilename
-    $config
+  $customerEmail,
+  $customerName,
+  $invoice->getInvoiceNumber(),
+  $invoice->getInvoiceNumber(),
+  //     $pdfContent,       // PDF-вложение
+  //     $pdfFilename
+  $config
 );
 ?>
 
@@ -81,6 +81,17 @@ $resultCustomer = sendEmail(
 <body>
   <div class="calculator">
     <h1>✓ Заказ оформлен!</h1>
+
+    <div class="success-message">
+      <p>Наш менеджер свяжется с вами дополнительно.</p><br>
+      <p>Счет отправлен на <strong><?= htmlspecialchars($customerEmail) ?></strong>
+      <?php if (!empty($customerPhone)) : ?>
+          (<strong><?= htmlspecialchars($customerPhone) ?></strong>)
+      <?php endif; ?></p>
+      <p>Копия на <strong><?= htmlspecialchars($config->get('ADMIN_EMAIL')) ?></strong>
+        (<strong><?= htmlspecialchars($config->get('ADMIN_NAME')) ?></strong>)</p>
+    </div>
+
     <?= $invoice->render() ?>
 
     <br>
