@@ -36,13 +36,13 @@ function sendEmail(
   try {
     $mail->SMTPDebug    = SMTP::DEBUG_OFF;
     $mail->isSMTP();
-    $mail->Host         = $config->get('MAILER_HOST');
+    $mail->Host         = $config->get('HOST');
     $mail->SMTPAuth     = true;
-    $mail->Username     = $config->get('MAILER_USERNAME');
-    $mail->Password     = $config->get('MAILER_PASSWORD');
-    $mail->SMTPSecure   = $config->get('MAILER_ENCRYPTION');
-    $mail->Port         = $config->get('MAILER_PORT');
-    $mail->CharSet      = $config->get('MAILER_CHARSET');
+    $mail->Username     = $config->get('USERNAME');
+    $mail->Password     = $config->get('PASSWORD');
+    $mail->SMTPSecure   = $config->get('ENCRYPTION');
+    $mail->Port         = $config->get('PORT');
+    $mail->CharSet      = $config->get('CHARSET');
     $mail->SMTPOptions  = [
       'ssl' => [
         'verify_peer'       => false,
@@ -51,9 +51,9 @@ function sendEmail(
       ],
     ];
 
-    $mail->setFrom($config->get('MAILER_USERNAME'), 'Калькулятор заказа');
+    $mail->setFrom($config->get('USERNAME'), 'Калькулятор заказа');
     $mail->addAddress($toEmail, $toName);
-    $mail->addReplyTo($config->get('MAILER_USERNAME'), 'Поддержка');
+    $mail->addReplyTo($config->get('USERNAME'), 'Поддержка');
     $mail->isHTML(true);
     $mail->Subject = $subject;
     $mail->Body    = $htmlBody;
