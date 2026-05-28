@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace sendInvoice;
 
 /**
- * Class for order to save settings.
+ * Loads application settings from environment variables or a test array.
  *
  * @package sendInvoice
  */

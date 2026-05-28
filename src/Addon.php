@@ -8,7 +8,7 @@ namespace sendInvoice;
  * Addon represents an add-on product card for the order calculator.
  *
  * Each addon includes a name, price,
- * and an image path. It can render itself as HTML checkbox label
+ * and an image path. It can render itself as an HTML checkbox label
  *
  * @package sendInvoice
  */

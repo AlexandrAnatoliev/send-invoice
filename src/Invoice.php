@@ -118,7 +118,7 @@ class Invoice extends FormElement
   public function renderMainTable(): string
   {
     return '
-  <!-- ПЕРВАЯ ТАБЛИЦА — банковские реквизиты -->
+  <!-- First table: bank details -->
   <table class="main-table">
     <tr>
       <td class="cell-bank-name" style="border-bottom: none;">
@@ -320,9 +320,9 @@ class Invoice extends FormElement
    * Picks the correct Russian plural form for a number.
    *
    * @param  $n   - Number
-   * @param  $f1  - Form for 1 (рубль, копейка)
-   * @param  $f2  - Form for 2-4 (рубля, копейки)
-   * @param  $f5  - Form for 5-20 and 0 (рублей, копеек)
+   * @param  $f1  Singular form (e.g. ruble, kopek)
+   * @param  $f2  Form for 2–4 (e.g. rubles, kopeks)
+   * @param  $f5  Form for 5–20 and 0 (e.g. rubles, kopeks)
    * @return      - string
    */
   public function morph(
@@ -351,8 +351,7 @@ class Invoice extends FormElement
    * Convert an amount to Russian words.
    *
    * @param  $num - Amount.
-   * @return      - string e.g:
-   *                "одна тысяча пятьсот рублей 50 копеек"
+   * @return string e.g. "one thousand five hundred rubles 50 kopeks" (Russian output)
    */
   public function num2words(float|int|string $num): string
   {

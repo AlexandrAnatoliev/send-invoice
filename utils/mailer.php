@@ -10,25 +10,24 @@ use PHPMailer\PHPMailer\Exception;
 use sendInvoice\Config;
 
 /**
- * Отправляет HTML-письмо получателю через настроенный SMTP-сервер
- * с прикреплённым PDF-файлом счёта.
+ * Sends an HTML email to the recipient via the configured SMTP server.
  *
- * @param string $toEmail      - Email получателя
- * @param string $toName       - Имя получателя
- * @param string $subject      - Тема письма
- * @param string $htmlBody     - HTML-содержимое письма
-//  * @param string $pdfContent   - Бинарное содержимое PDF (опционально)
- * @param string $pdfFilename  - Имя PDF-файла (опционально)
- * @param Config $config         Settings config
- * @return true|false
+ * Optional PDF attachment support is prepared but commented out below.
+ *
+ * @param string $toEmail  Recipient email address
+ * @param string $toName   Recipient display name
+ * @param string $subject  Email subject
+ * @param string $htmlBody HTML message body
+ * @param Config $config   Application configuration
+ * @return bool True on success, false on failure
  */
 function sendEmail(
   string $toEmail,
   string $toName,
   string $subject,
   string $htmlBody,
-  //     string $pdfContent = '',
-//   string $pdfFilename = 'invoice.pdf',
+  // string $pdfContent = '',
+  // string $pdfFilename = 'invoice.pdf',
   Config $config
 ): bool {
   $mail   = new PHPMailer(true);
@@ -59,7 +58,7 @@ function sendEmail(
     $mail->Body    = $htmlBody;
     $mail->AltBody = strip_tags($htmlBody);
 
-    // Прикрепляем PDF, если он передан
+    // Attach PDF when $pdfContent is provided (see commented parameters above)
 //     if (!empty($pdfContent)) {
 //       $mail->addStringAttachment(
 //         $pdfContent,
@@ -67,7 +66,7 @@ function sendEmail(
 //         'base64',
 //         'application/pdf'
 //       );
-   // }
+//     }
 
     $mail->send();
     return true;

@@ -62,18 +62,18 @@ $invoice = new Invoice(
 $emailContent  = "<h1>✓ Заказ оформлен!</h1>";
 $emailContent .= "<p>Наш менеджер свяжется с вами дополнительно.</p>";
 
-// Отправка покупателю (с PDF-вложением)
+// Send to customer (PDF attachment optional — see utils/mailer.php)
 $resultCustomer = sendEmail(
   $customerEmail,
   $customerName,
   $invoice->getInvoiceNumber(),
   $emailContent,
-  //     $pdfContent,       // PDF-вложение
-  //     $pdfFilename
+  // $pdfContent,
+  // $pdfFilename,
   $config
 );
 
-// Отправка админу (с PDF-вложением)
+// Send copy to admin
 $resultAdmin = sendEmail(
   $config->get('ADMIN_EMAIL'),
   $config->get('ADMIN_NAME'),
