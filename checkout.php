@@ -63,7 +63,7 @@ $invoice = new Invoice(
 $resultCustomer = sendEmail(
     $customerEmail,
     $customerName,
-    'Тема письма',
+    $invoice->getInvoiceNumber(),
     'HTML-содержимое письма',
 //     $pdfContent,       // PDF-вложение
 //     $pdfFilename
