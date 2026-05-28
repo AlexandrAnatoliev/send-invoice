@@ -69,3 +69,7 @@ button:hover, .button:hover {
   display: block;
 }
 
+.success-message {
+  text-align: center;
+  margin-bottom: 20px;
+}
