@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/vendor/autoload.php';
 require_once __DIR__ . '/utils/session.php';
+require_once __DIR__ . '/utils/mailer.php';
 
 use sendInvoice\Invoice;
 use sendInvoice\Config;
@@ -21,6 +22,7 @@ $customerPhone  = htmlspecialchars($_POST['customer_phone'] ?? '');
 $itemNameKey    = htmlspecialchars($_POST['itemName'] ?? '');
 $quantity       = (int) ($_POST['quantity'] ?? '');
 $selectedAddons = $_POST['selectedAddons'] ?? [];
+$customerEmail  = htmlspecialchars($_POST['customer_email'] ?? '');
 
 $config = new Config();
 
@@ -57,6 +59,16 @@ $invoice = new Invoice(
   $addons,
 );
 
+// Отправка покупателю (с PDF-вложением)
+$resultCustomer = sendEmail(
+    $customerEmail,
+    $customerName,
+    'Тема письма',
+    'HTML-содержимое письма',
+//     $pdfContent,       // PDF-вложение
+//     $pdfFilename
+    $config
+);
 ?>
 
 <!DOCTYPE html>
