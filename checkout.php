@@ -5,6 +5,7 @@ declare(strict_types=1);
 require_once __DIR__ . '/vendor/autoload.php';
 require_once __DIR__ . '/utils/session.php';
 require_once __DIR__ . '/utils/mailer.php';
+require_once __DIR__ . '/utils/generatePDF.php';
 
 use sendInvoice\Invoice;
 use sendInvoice\Config;
@@ -59,6 +60,10 @@ $invoice = new Invoice(
   $addons,
 );
 
+// Генерация PDF
+$pdfContent = generatePDF($invoice->render());
+$pdfFilename = "Счёт_" . date('Ymd-His') . ".pdf";
+
 $emailContent  = "<h1>✓ Заказ оформлен!</h1>";
 $emailContent .= "<p>Наш менеджер свяжется с вами дополнительно.</p>";
 
@@ -68,8 +73,8 @@ $resultCustomer = sendEmail(
   $customerName,
   $invoice->getInvoiceNumber(),
   $emailContent,
-  // $pdfContent,
-  // $pdfFilename,
+  $pdfContent,
+  $pdfFilename,
   $config
 );
 
@@ -79,8 +84,8 @@ $resultAdmin = sendEmail(
   $config->get('ADMIN_NAME'),
   "Копия: " . $invoice->getInvoiceNumber(),
   $emailContent,
-//   $pdfContent,
-//   $pdfFilename
+  $pdfContent,
+  $pdfFilename,
   $config
 );
 ?>

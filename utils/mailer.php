@@ -14,11 +14,13 @@ use sendInvoice\Config;
  *
  * Optional PDF attachment support is prepared but commented out below.
  *
- * @param string $toEmail  Recipient email address
- * @param string $toName   Recipient display name
- * @param string $subject  Email subject
- * @param string $htmlBody HTML message body
- * @param Config $config   Application configuration
+ * @param string $toEmail     Recipient email address
+ * @param string $toName      Recipient display name
+ * @param string $subject     Email subject
+ * @param string $htmlBody    HTML message body
+ * @param string $pdfContent  PDF content
+ * @param string $pdfFilename PDF file name
+ * @param Config $config      Application configuration
  * @return bool True on success, false on failure
  */
 function sendEmail(
@@ -26,8 +28,8 @@ function sendEmail(
   string $toName,
   string $subject,
   string $htmlBody,
-  // string $pdfContent = '',
-  // string $pdfFilename = 'invoice.pdf',
+  string $pdfContent = '',
+  string $pdfFilename = 'invoice.pdf',
   Config $config
 ): bool {
   $mail   = new PHPMailer(true);
@@ -58,15 +60,15 @@ function sendEmail(
     $mail->Body    = $htmlBody;
     $mail->AltBody = strip_tags($htmlBody);
 
-    // Attach PDF when $pdfContent is provided (see commented parameters above)
-//     if (!empty($pdfContent)) {
-//       $mail->addStringAttachment(
-//         $pdfContent,
-//         $pdfFilename,
-//         'base64',
-//         'application/pdf'
-//       );
-//     }
+//     Attach PDF when $pdfContent is provided (see commented parameters above)
+    if (!empty($pdfContent)) {
+      $mail->addStringAttachment(
+        $pdfContent,
+        $pdfFilename,
+        'base64',
+        'application/pdf'
+      );
+    }
 
     $mail->send();
     return true;
