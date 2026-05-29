@@ -3,7 +3,7 @@
   <h1>send-invoice: Калькулятор заказа с генерацией счёта и отправкой на email</h1>
 
   ![Stars](https://img.shields.io/github/stars/AlexandrAnatoliev/send-invoice.svg?style=flat)
-  ![Version 0.18.0](https://img.shields.io/badge/Version-0.18.0-orange.svg)
+  ![Version 0.19.0](https://img.shields.io/badge/Version-0.19.0-orange.svg)
   ![Forks](https://img.shields.io/github/forks/AlexandrAnatoliev/send-invoice.svg?style=flat)
   ![GitHub repo size](https://img.shields.io/github/repo-size/AlexandrAnatoliev/send-invoice)
   
@@ -43,8 +43,8 @@
 
 #### 1. Общая информация
 
-* [ ] PHP-калькулятор заказа, без онлайн-оплаты, с отправкой счёта на email
-* [ ] Два типа пользователей: Покупатель и Администратор
+* [x] PHP-калькулятор заказа, без онлайн-оплаты, с отправкой счёта на email
+* [x] Два типа пользователей: Покупатель и Администратор
 
 #### 2. Фронтенд
 
@@ -88,8 +88,8 @@
 * [x] Нумерация: Счёт № Б-12345678-987654 от ДД.ММ.ГГГГ
 * [x] Реквизиты продавца из конфига, реквизиты покупателя из формы
 * [x] Каждая выбранная позиция — отдельной строкой
-* [ ] Отправка счёта в формате PDF как вложение
-* [ ] Копия письма администратору
+* [x] Отправка счёта в формате PDF как вложение
+* [x] Копия письма администратору
 * [ ] QR-code для оплаты
 
 #### 5. Документация и развёртывание
@@ -139,7 +139,7 @@
 │   │       ├── lychee_pen.jpg
 │   │       ├── ocean_pen.jpg
 │   │       └── senator_pen.jpg
-│   └── index.php
+│   └── index.ph 
 ├── img
 │   └── lychee_pen.jpg
 ├── index.html
@@ -166,21 +166,26 @@
 │   ├── ItemTest.php
 │   └── SelectorTest.php
 ├── utils
+│   ├── generatePDF.php
 │   ├── mailer.php
 │   └── session.php
 └── vendor
     ├── autoload.php
     ├── bin
     ├── composer
+    ├── dompdf
     ├── graham-campbell
+    ├── masterminds
     ├── myclabs
     ├── nikic
     ├── phar-io
     ├── phpmailer
     ├── phpoption
     ├── phpunit
+    ├── sabberworm
     ├── sebastian
     ├── symfony
+    ├── thecodingmachine
     ├── theseer
     └── vlucas
 ```
@@ -331,6 +336,7 @@ classDiagram
 * Библиотеки (устанавливаются через Composer):
   * vlucas/phpdotenv: версия 5.6 и выше
   * phpmailer/phpmailer: версия 7.0 и выше
+  * dompdf/dompdf: версия 3.1 и выше
 
 <div align="center">
   <h3>Установка Composer</h3>

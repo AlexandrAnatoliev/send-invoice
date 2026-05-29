@@ -8,14 +8,14 @@ use Dompdf\Dompdf;
 use Dompdf\Options;
 
 /**
- * Генерирует PDF из HTML-шаблона счёта.
+ * Generate PDF from HTML invoice.
  *
- * Функция настраивает Dompdf для корректной работы с кириллицей,
- * устанавливает формат A4 и отступы, рендерит PDF и возвращает
- * его содержимое в виде строки.
+ * This function configures Dompdf to handle Cyrillic characters
+ * correctly, sets A4 format and margins, renders the PDF, and
+ * returns its contents as string
  *
- * @param  string $html - полный HTML-документ счёта
- * @return string       - бинарное содержимое PDF-файла
+ * @param  string $html - the full HTML-docs of the invoice
+ * @return string       - binary contents of the PDF-file
  */
 function generatePDF(string $html): string
 {
