@@ -20,7 +20,7 @@ function generatePDF(string $html): string
   $options = new Options();
   $options->set('isRemoteEnabled', true);
   $options->set('defaultFont', 'dejavu sans');
-  $options->set('chroot', __DIR__);
+  $options->set('chroot', dirname(__DIR__));
 
   $dompdf = new Dompdf($options);
   $dompdf->loadHtml($html);
