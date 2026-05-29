@@ -2,8 +2,6 @@
 
 declare(strict_types=1);
 
-require_once __DIR__ . '/../vendor/autoload.php';
-
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
@@ -14,11 +12,13 @@ use sendInvoice\Config;
  *
  * Optional PDF attachment support is prepared but commented out below.
  *
- * @param string $toEmail  Recipient email address
- * @param string $toName   Recipient display name
- * @param string $subject  Email subject
- * @param string $htmlBody HTML message body
- * @param Config $config   Application configuration
+ * @param string $toEmail     Recipient email address
+ * @param string $toName      Recipient display name
+ * @param string $subject     Email subject
+ * @param string $htmlBody    HTML message body
+ * @param Config $config      Application configuration
+ * @param string $pdfContent  PDF content
+ * @param string $pdfFilename PDF file name
  * @return bool True on success, false on failure
  */
 function sendEmail(
@@ -26,9 +26,9 @@ function sendEmail(
   string $toName,
   string $subject,
   string $htmlBody,
-  // string $pdfContent = '',
-  // string $pdfFilename = 'invoice.pdf',
-  Config $config
+  Config $config,
+  string $pdfContent = '',
+  string $pdfFilename = 'invoice.pdf',
 ): bool {
   $mail   = new PHPMailer(true);
 
@@ -58,15 +58,15 @@ function sendEmail(
     $mail->Body    = $htmlBody;
     $mail->AltBody = strip_tags($htmlBody);
 
-    // Attach PDF when $pdfContent is provided (see commented parameters above)
-//     if (!empty($pdfContent)) {
-//       $mail->addStringAttachment(
-//         $pdfContent,
-//         $pdfFilename,
-//         'base64',
-//         'application/pdf'
-//       );
-//     }
+//     Attach PDF when $pdfContent is provided (see commented parameters above)
+    if (!empty($pdfContent)) {
+      $mail->addStringAttachment(
+        $pdfContent,
+        $pdfFilename,
+        'base64',
+        'application/pdf'
+      );
+    }
 
     $mail->send();
     return true;
