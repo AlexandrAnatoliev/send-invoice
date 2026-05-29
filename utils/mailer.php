@@ -16,9 +16,9 @@ use sendInvoice\Config;
  * @param string $toName      Recipient display name
  * @param string $subject     Email subject
  * @param string $htmlBody    HTML message body
+ * @param Config $config      Application configuration
  * @param string $pdfContent  PDF content
  * @param string $pdfFilename PDF file name
- * @param Config $config      Application configuration
  * @return bool True on success, false on failure
  */
 function sendEmail(
@@ -26,9 +26,9 @@ function sendEmail(
   string $toName,
   string $subject,
   string $htmlBody,
+  Config $config,
   string $pdfContent = '',
   string $pdfFilename = 'invoice.pdf',
-  Config $config
 ): bool {
   $mail   = new PHPMailer(true);
 

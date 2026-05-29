@@ -73,9 +73,9 @@ $resultCustomer = sendEmail(
   $customerName,
   $invoice->getInvoiceNumber(),
   $emailContent,
+  $config,
   $pdfContent,
   $pdfFilename,
-  $config
 );
 
 // Send copy to admin
@@ -84,9 +84,9 @@ $resultAdmin = sendEmail(
   $config->get('ADMIN_NAME'),
   "Копия: " . $invoice->getInvoiceNumber(),
   $emailContent,
+  $config,
   $pdfContent,
   $pdfFilename,
-  $config
 );
 ?>
 
