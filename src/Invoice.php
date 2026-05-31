@@ -74,7 +74,7 @@ class Invoice extends FormElement
   /**
    * Render the invoice as HTML.
    *
-   * @return HTML markup of the invoice
+   * @return array
    */
   public function render(): string
   {
@@ -113,7 +113,7 @@ class Invoice extends FormElement
   /**
    * Render the Main Table as HTML.
    *
-   * @return HTML markup
+   * @return array
    */
   public function renderMainTable(): string
   {
@@ -173,13 +173,22 @@ class Invoice extends FormElement
    * Format phone number
    *
    * @param $customerPhone Phone number in '89261234567' format
-   * @return Phone number in '+7 (926) 123-45-67' format
+   * @return array Phone number in '+7 (926) 123-45-67' format
    */
   public function formatPhoneNumber(string $customerPhone): string
   {
     /* '89261234567' */
     $customerPhone = preg_replace('/\D/', '', $customerPhone);
     /* 89261234567 */
+    
+    if (strlen($customerPhone) == 10) {
+      $customerPhone = 7 . $customerPhone;
+    }
+
+    if (strlen($customerPhone) < 10) {
+      return $customerPhone;
+    }
+
     $customerPhone = '+7' . substr($customerPhone, 1);
     /* +79261234567 */
 
@@ -196,7 +205,7 @@ class Invoice extends FormElement
   /**
    * Render the Middle Table as an HTML markup.
    *
-   * @return HTML markup
+   * @return string
    */
   public function renderMiddleTable(): string
   {
@@ -236,7 +245,7 @@ class Invoice extends FormElement
   /**
    * Render the Items Table as an HTML markup.
    *
-   * @return HTML markup
+   * @return string
    */
   public function renderItemsTable(): string
   {

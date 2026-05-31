@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace sendInvoice;
 
+use JsonSerializable;
+
 /**
  * Addon represents an add-on product card for the order calculator.
  *
@@ -12,7 +14,7 @@ namespace sendInvoice;
  *
  * @package sendInvoice
  */
-class Addon extends Card
+class Addon extends Card implements JsonSerializable
 {
   private array $priceTiers = [];
 
@@ -28,6 +30,16 @@ class Addon extends Card
   }
 
   /**
+   * Get price tiers
+   *
+   * @return array
+   */
+  public function getPriceTiers(): array
+  {
+    return $this->priceTiers;
+  }
+
+  /**
    * Get price based on quantity
    *
    * @param  ?int $quantity - quantity of items
@@ -35,12 +47,12 @@ class Addon extends Card
    */
   public function getPrice($quantity = null): int
   {
-    if ($quantity === null) {
+    if ($quantity === null || empty($this->priceTiers) ) {
       return $this->price;
     }
 
-    if (empty($this->priceTiers)) {
-      return $this->price;
+    if ($quantity === 0) {
+      return 0;
     }
 
     $price = $this->price;
@@ -48,12 +60,13 @@ class Addon extends Card
     ksort($tiers);
 
     foreach ($tiers as $tiersQuantity => $priceValue) {
+      $maxTierPrice = $priceValue;
       if ($quantity <= $tiersQuantity) {
         $price = $priceValue;
         break;
       }
     }
-    return $price;
+    return $maxTierPrice ?? $price;
   }
 
   /**
@@ -63,7 +76,7 @@ class Addon extends Card
    * (HTML-escaped) attributes for JavaScript consumption. The visible
    * price is formatted with a thousands separator and the Ruble sign.
    *
-   * @return HTML markup of the addon
+   * @return array
    */
   public function render(): string
   {
@@ -78,5 +91,21 @@ class Addon extends Card
             <span class="title">' . htmlspecialchars($this->getName()) . '</span>
             <span class="price">' . number_format($this->getPrice(), 0, ',', ' ') . ' ₽</span>
           </label>';
+  }
+
+  /**
+   * Specify data which should be serialized to JSON
+   *
+   * Called automatically by json_encode() when encoding instance
+   * of this class.
+   *
+   * @return array
+   */
+  public function jsonSerialize(): array
+  {
+    return [
+      'name'        => $this->getName(),
+      'priceTiers'  => $this->getPriceTiers(),
+    ];
   }
 }

@@ -94,10 +94,20 @@ class InvoiceTest extends TestCase
   public function testFormatPhoneNumber(): void
   {
     $phoneNumber = $this->invoice->formatPhoneNumber('89261234567');
+    $this->assertSame('+7 (926) 123-45-67', $phoneNumber);
 
-    $this->assertStringContainsString(
-      '+7 (926) 123-45-67',
-      $phoneNumber);
+    $phoneNumber = $this->invoice->formatPhoneNumber('+79261234567');
+    $this->assertSame('+7 (926) 123-45-67', $phoneNumber);
+
+    $phoneNumber = $this->invoice->formatPhoneNumber(
+      '+792612345678987654321');
+    $this->assertSame('+7 (926) 123-45-67', $phoneNumber);
+
+    $phoneNumber = $this->invoice->formatPhoneNumber('9261234567');
+    $this->assertSame('+7 (926) 123-45-67', $phoneNumber);
+
+    $phoneNumber = $this->invoice->formatPhoneNumber('123456');
+    $this->assertSame('123456', $phoneNumber);
   }
 
   public function testRenderMiddleTable(): void

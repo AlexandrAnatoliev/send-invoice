@@ -34,9 +34,9 @@ class Config
     /**
      * Returns the configuration value for the given key.
      *
-     * @param  string $key  Configuration key
-     * @param  $default     Default value (used if the key is not found)
-     * @return Configuration value
+     * @param  string $key      Configuration key
+     * @param  mixed  $default  Default value (used if the key is not found)
+     * @return string
      */
     public function get(string $key, $default = 'Заполните настройки'): string
     {

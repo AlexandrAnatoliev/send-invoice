@@ -82,6 +82,15 @@ $_SESSION['addons_session'] = [
   <meta charset="UTF-8">
   <title>send-invoice: group2</title>
   <link rel="stylesheet" href="../styles/index.css">
+
+  <script>
+    window.addonPrices = <?= json_encode([
+      $addon1->getName() => $addon1,
+      $addon2->getName() => $addon2,
+      $addon3->getName() => $addon3
+    ], JSON_UNESCAPED_UNICODE) ?>;
+  </script>
+  <script src="/send-invoice/js/calculator.js" defer></script>
 </head>
 <body>
   <div class="calculator">
