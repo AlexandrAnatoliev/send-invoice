@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace sendInvoice;
 
+use JsonSerializable;
+
 /**
  * Addon represents an add-on product card for the order calculator.
  *
@@ -12,7 +14,7 @@ namespace sendInvoice;
  *
  * @package sendInvoice
  */
-class Addon extends Card
+class Addon extends Card implements JsonSerializable
 {
   private array $priceTiers = [];
 
@@ -78,5 +80,13 @@ class Addon extends Card
             <span class="title">' . htmlspecialchars($this->getName()) . '</span>
             <span class="price">' . number_format($this->getPrice(), 0, ',', ' ') . ' ₽</span>
           </label>';
+  }
+  public function jsonSerialize(): array
+  {
+    return [
+      'name'  => $this->getName(),
+      'price' => $this->getPrice(),
+      // не включаем внутренние/защищённые свойства
+    ];
   }
 }
