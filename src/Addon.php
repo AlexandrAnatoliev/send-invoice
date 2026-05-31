@@ -47,16 +47,12 @@ class Addon extends Card implements JsonSerializable
    */
   public function getPrice($quantity = null): int
   {
-    if ($quantity === null) {
+    if ($quantity === null || empty($this->priceTiers) ) {
       return $this->price;
     }
 
     if ($quantity === 0) {
       return 0;
-    }
-
-    if (empty($this->priceTiers)) {
-      return $this->price;
     }
 
     $price = $this->price;
@@ -100,11 +96,11 @@ class Addon extends Card implements JsonSerializable
   /**
    * Specify data which should be serialized to JSON
    *
-   * Called automatically by json_encode() when encoding instance 
+   * Called automatically by json_encode() when encoding instance
    * of this class.
    *
    * @return array
-   */ 
+   */
   public function jsonSerialize(): array
   {
     return [
