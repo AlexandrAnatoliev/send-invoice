@@ -108,6 +108,6 @@ class AddonTest extends TestCase
         300 => 24,
         500 => 22,
         1000 => 20,
-      ], $this->addon->getPriceTier());
+      ], $this->addon->getPriceTiers());
   }
 }

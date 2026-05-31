@@ -34,7 +34,7 @@ class Addon extends Card implements JsonSerializable
    *
    * @return array
    */
-  public function getPriceTier(): array
+  public function getPriceTiers(): array
   {
     return $this->priceTiers;
   }
@@ -95,7 +95,7 @@ class Addon extends Card implements JsonSerializable
   {
     return [
       'name'  => $this->getName(),
-      'price' => $this->getPrice(),
+      'price' => $this->getPriceTiers(),
       // не включаем внутренние/защищённые свойства
     ];
   }
