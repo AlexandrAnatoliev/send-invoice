@@ -61,7 +61,7 @@ function updateAddonPricesDisplay() {
   const qtySelect = document.getElementById('quantity');
   if (!qtySelect) return;
 
-  const qty = parseInt(qtySelect.value) || 50;
+  const qty = Number.parseInt(qtySelect.value) || 50;
 
   const addonCards = document.querySelectorAll('.checkbox-group .card');
 
