@@ -185,6 +185,10 @@ class Invoice extends FormElement
       $customerPhone = 7 . $customerPhone;
     }
 
+    if (strlen($customerPhone) < 10) {
+      return $customerPhone;
+    }
+
     $customerPhone = '+7' . substr($customerPhone, 1);
     /* +79261234567 */
 
