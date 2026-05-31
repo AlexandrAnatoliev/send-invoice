@@ -51,6 +51,10 @@ class Addon extends Card implements JsonSerializable
       return $this->price;
     }
 
+    if ($quantity === 0) {
+      return 0;
+    }
+
     if (empty($this->priceTiers)) {
       return $this->price;
     }

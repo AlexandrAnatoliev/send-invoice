@@ -130,4 +130,9 @@ class AddonTest extends TestCase
         ]
       ], $this->addon->jsonSerialize());
   } 
+
+  public function testGetPriceWithZeroQuantityReturnsZero(): void
+  {
+    $this->assertSame(0, $this->addon->getPrice(0));
+  }
 }
