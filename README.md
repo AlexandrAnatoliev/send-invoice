@@ -254,6 +254,7 @@ classDiagram
   class Addon {
     - priceTiers: array
     + setPriceTier(quantity: int, price: int)
+    + getPriceTier() array
     + render() string
     + getPrice(quantity = null) int
   }
