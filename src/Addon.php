@@ -64,12 +64,13 @@ class Addon extends Card implements JsonSerializable
     ksort($tiers);
 
     foreach ($tiers as $tiersQuantity => $priceValue) {
+      $maxTierPrice = $priceValue;
       if ($quantity <= $tiersQuantity) {
         $price = $priceValue;
         break;
       }
     }
-    return $price;
+    return $maxTierPrice ?? $price;
   }
 
   /**

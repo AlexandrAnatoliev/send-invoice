@@ -135,4 +135,14 @@ class AddonTest extends TestCase
   {
     $this->assertSame(0, $this->addon->getPrice(0));
   }
+
+  public function testGetPriceWithQuantityMoreMaxReturnMinPrice(): void
+  {
+    $this->addon->setPriceTier(100, 46);
+    $this->addon->setPriceTier(200, 36);
+    $this->addon->setPriceTier(300, 34);
+    $this->addon->setPriceTier(500, 31);
+    $this->addon->setPriceTier(1000, 28);
+    $this->assertSame(28, $this->addon->getPrice(1500));
+  }
 }
