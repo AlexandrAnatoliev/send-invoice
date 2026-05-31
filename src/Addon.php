@@ -91,12 +91,20 @@ class Addon extends Card implements JsonSerializable
             <span class="price">' . number_format($this->getPrice(), 0, ',', ' ') . ' ₽</span>
           </label>';
   }
+
+  /**
+   * Specify data which should be serialized to JSON
+   *
+   * Called automatically by json_encode() when encoding instance 
+   * of this class.
+   *
+   * @@return array
+   */ 
   public function jsonSerialize(): array
   {
     return [
-      'name'  => $this->getName(),
-      'price' => $this->getPriceTiers(),
-      // не включаем внутренние/защищённые свойства
+      'name'        => $this->getName(),
+      'priceTiers'  => $this->getPriceTiers(),
     ];
   }
 }
