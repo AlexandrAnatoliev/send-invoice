@@ -139,7 +139,56 @@ $_SESSION['addons_session'] = [
   </div>
 </body>
 </html>
+
 <script>
-const addonPrices = <?= json_encode([$addon1, $addon2, $addon3],
-  JSON_UNESCAPED_UNICODE) ?>;
+const addonPrices = <?= json_encode([
+  $addon1->getName() => $addon1,
+  $addon2->getName() => $addon2,
+  $addon3->getName() => $addon3
+], JSON_UNESCAPED_UNICODE) ?>;
+
+// Получить цену аддона для заданного количества по логике из invoice.php
+function getAddonPrice(addonKey, quantity) {
+  if (!addonPrices[addonKey]) return 0;
+  const tiers = addonPrices[addonKey];
+  let price = tiers.price1.value; // значение по умолчанию
+  for (const tierKey in tiers) {
+    const tier = tiers[tierKey];
+    price = tier.value;
+    if (tier.circulation > quantity) break;
+  }
+  return price;
+}
+
+// Обновить отображаемую цену в карточках всех аддонов
+function updateAddonPricesDisplay() {
+  const qty = parseInt(document.getElementById('quantity').value) || 50;
+  const addonCards = document.querySelectorAll('.checkbox-group .card');
+  addonCards.forEach(card => {
+  const checkbox = card.querySelector('input[type="checkbox"]');
+  if (!checkbox) return;
+  const addonKey = checkbox.value;
+  const price = getAddonPrice(addonKey, qty);
+  const priceSpan = card.querySelector('.price');
+  if (priceSpan) {
+    priceSpan.textContent = '+' + new Intl.NumberFormat('ru-RU').format(price) + ' ₽';
+  }
+  });
+}
+
+// Обновить отображаемую цену в карточках всех аддонов
+function updateAddonPricesDisplay() {
+  const qty = parseInt(document.getElementById('quantity').value) || 50;
+  const addonCards = document.querySelectorAll('.checkbox-group .card');
+  addonCards.forEach(card => {
+  const checkbox = card.querySelector('input[type="checkbox"]');
+  if (!checkbox) return;
+  const addonKey = checkbox.value;
+  const price = getAddonPrice(addonKey, qty);
+  const priceSpan = card.querySelector('.price');
+  if (priceSpan) {
+    priceSpan.textContent = '+' + new Intl.NumberFormat('ru-RU').format(price) + ' ₽';
+  }
+  });
+}
 </script>
