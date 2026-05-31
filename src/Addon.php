@@ -30,6 +30,16 @@ class Addon extends Card implements JsonSerializable
   }
 
   /**
+   * Get price tiers
+   *
+   * @return array
+   */
+  public function getPriceTier(): array
+  {
+    return $this->priceTiers;
+  }
+
+  /**
    * Get price based on quantity
    *
    * @param  ?int $quantity - quantity of items
