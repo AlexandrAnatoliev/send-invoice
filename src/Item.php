@@ -21,7 +21,7 @@ class Item extends Card
      * (HTML-escaped) attributes for JavaScript consumption. The visible
      * price is formatted with a thousands separator and the Ruble sign.
      *
-     * @return HTML markup of the item
+     * @return string
      */
     public function render(): string
     {

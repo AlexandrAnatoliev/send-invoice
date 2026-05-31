@@ -80,7 +80,7 @@ class Addon extends Card implements JsonSerializable
    * (HTML-escaped) attributes for JavaScript consumption. The visible
    * price is formatted with a thousands separator and the Ruble sign.
    *
-   * @return HTML markup of the addon
+   * @return array
    */
   public function render(): string
   {
@@ -103,7 +103,7 @@ class Addon extends Card implements JsonSerializable
    * Called automatically by json_encode() when encoding instance 
    * of this class.
    *
-   * @@return array
+   * @return array
    */ 
   public function jsonSerialize(): array
   {
