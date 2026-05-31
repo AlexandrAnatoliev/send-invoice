@@ -180,6 +180,11 @@ class Invoice extends FormElement
     /* '89261234567' */
     $customerPhone = preg_replace('/\D/', '', $customerPhone);
     /* 89261234567 */
+    
+    if (strlen($customerPhone) == 10) {
+      $customerPhone = 7 . $customerPhone;
+    }
+
     $customerPhone = '+7' . substr($customerPhone, 1);
     /* +79261234567 */
 
