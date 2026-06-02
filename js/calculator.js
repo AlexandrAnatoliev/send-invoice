@@ -96,7 +96,7 @@ function calculateTotal() {
   }
 
   // Аддоны
-  const checkedAddons = document.querySelectorAll('input[name="addons[]"]:checked');
+  const checkedAddons = document.querySelectorAll('input[name="selectedAddons[]"]:checked');
   checkedAddons.forEach(cb => {
     const addonKey = cb.value;
     const unitPrice = getAddonPrice(addonKey, qty);
@@ -142,7 +142,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  const addonCheckboxes = document.querySelectorAll('input[name="addons[]"]');
+  const addonCheckboxes = document.querySelectorAll('input[name="selectedAddons[]"]');
   addonCheckboxes.forEach(checkbox => {
     checkbox.addEventListener('change', function() {
       calculateTotal();
