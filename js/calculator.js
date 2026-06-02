@@ -61,7 +61,7 @@ function updateAddonPricesDisplay() {
   const qtySelect = document.getElementById('quantity');
   if (!qtySelect) return;
 
-  const qty = Number.parseInt(qtySelect.value) || 50;
+  const qty = Number.parseInt(qtySelect.value) || 0;
 
   const addonCards = document.querySelectorAll('.checkbox-group .card');
 
@@ -80,22 +80,37 @@ function updateAddonPricesDisplay() {
     });
 }
 
-// Расчёт итоговой суммы с учётом динамических цен аддонов
+/**
+ * Calculates and displays the total order price.
+ * 
+ * Sums the main item price (unit × quantity) plus all selected add-ons
+ * (tiered unit price × quantity). Updates the #totalPrice element with
+ * the formatted result in Russian locale.
+ * 
+ * @returns {void}
+ * 
+ * @dependency getAddonPrice - For tiered pricing of add-ons
+ * @dependency window.addonPrices - Global add-on pricing data
+ * 
+ * @requires DOM elements:
+ *   - #quantity (select) - Selected quantity
+ *   - #totalPrice (span) - Display target
+ *   - input[name="itemName"]:checked - Selected main item
+ *   - input[name="selectedAddons[]"]:checked - Selected add-ons
+ */
 function calculateTotal() {
   let total = 0;
 
   const qtySelect = document.getElementById('quantity');
   if (!qtySelect) return;
 
-  const qty = Number.parseInt(qtySelect.value) || 50;
+  const qty = Number.parseInt(qtySelect.value) || 0;
 
-  // Тариф
   const itemRadio = document.querySelector('input[name="itemName"]:checked');
   if (itemRadio) {
     total += (parseFloat(itemRadio.dataset.price) || 0) * qty;
   }
 
-  // Аддоны
   const checkedAddons = document.querySelectorAll('input[name="selectedAddons[]"]:checked');
   checkedAddons.forEach(cb => {
     const addonKey = cb.value;
