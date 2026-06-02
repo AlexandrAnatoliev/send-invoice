@@ -120,6 +120,10 @@ $_SESSION['addons_session'] = [
         <?= $selector->render() ?>
       </div>
 
+      <div class="total-block">
+        Итого: <span id="totalPrice">0</span> ₽
+      </div>
+
       <!-- Customer details -->
       <h2>4. Ваши данные для получения счёта на оплату на почту</h2>
       <input type="text" name="customer_name" placeholder="Наименование организации для счёта" required>
