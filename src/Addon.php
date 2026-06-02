@@ -14,7 +14,7 @@ use JsonSerializable;
  *
  * @package sendInvoice
  */
-class Addon extends Card implements JsonSerializable
+class Addon extends Card
 {
   private array $priceTiers = [];
 
@@ -91,21 +91,5 @@ class Addon extends Card implements JsonSerializable
             <span class="title">' . htmlspecialchars($this->getName()) . '</span>
             <span class="price">' . number_format($this->getPrice(), 0, ',', ' ') . ' ₽</span>
           </label>';
-  }
-
-  /**
-   * Specify data which should be serialized to JSON
-   *
-   * Called automatically by json_encode() when encoding instance
-   * of this class.
-   *
-   * @return array
-   */
-  public function jsonSerialize(): array
-  {
-    return [
-      'name'        => $this->getName(),
-      'priceTiers'  => $this->getPriceTiers(),
-    ];
   }
 }
