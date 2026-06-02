@@ -108,7 +108,7 @@ function calculateTotal() {
 
   const itemRadio = document.querySelector('input[name="itemName"]:checked');
   if (itemRadio) {
-    total += (parseFloat(itemRadio.dataset.price) || 0) * qty;
+    total += (Number.parseFloat(itemRadio.dataset.price) || 0) * qty;
   }
 
   const checkedAddons = document.querySelectorAll('input[name="selectedAddons[]"]:checked');
