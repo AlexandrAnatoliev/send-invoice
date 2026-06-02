@@ -80,6 +80,35 @@ function updateAddonPricesDisplay() {
     });
 }
 
+// Расчёт итоговой суммы с учётом динамических цен аддонов
+function calculateTotal() {
+  let total = 0;
+
+  const qtySelect = document.getElementById('quantity');
+  if (!qtySelect) return;
+
+  const qty = Number.parseInt(qtySelect.value) || 50;
+
+  // Тариф
+  const itemRadio = document.querySelector('input[name="itemName"]:checked');
+  if (itemRadio) {
+    total += (parseFloat(itemRadio.dataset.price) || 0) * qty;
+  }
+
+  // Аддоны
+  const checkedAddons = document.querySelectorAll('input[name="addons[]"]:checked');
+  checkedAddons.forEach(cb => {
+    const addonKey = cb.value;
+    const unitPrice = getAddonPrice(addonKey, qty);
+    total += unitPrice * qty;
+  });
+
+  const totalSpan = document.getElementById('totalPrice');
+  if (totalSpan) {
+    totalSpan.textContent = new Intl.NumberFormat('ru-RU').format(total);
+  }
+}
+
 /**
  * Initialization script that runs once the DOM is fully loaded.
  *
@@ -88,6 +117,8 @@ function updateAddonPricesDisplay() {
  * - Calls {@link updateAddonPricesDisplay} to set initial add-on prices.
  * - Attaches a 'change' event listener to the quantity selector to
  *   recalculate and update add-on prices whenever the quantity is changed.
+ * - Attaches event listeners to radio buttons and checkboxes to 
+ *   recalculate total.
  *
  * @listens DOMContentLoaded
  * @requires updateAddonPricesDisplay
@@ -97,8 +128,25 @@ document.addEventListener('DOMContentLoaded', function() {
   if (!qtySelect) return;
 
   updateAddonPricesDisplay();
+  calculateTotal();
 
   qtySelect.addEventListener('change', function() {
     updateAddonPricesDisplay();
+    calculateTotal();
+  });
+
+  const itemRadios = document.querySelectorAll('input[name="itemName"]');
+  itemRadios.forEach(radio => {
+    radio.addEventListener('change', function() {
+      calculateTotal();
+    });
+  });
+
+  const addonCheckboxes = document.querySelectorAll('input[name="addons[]"]');
+  addonCheckboxes.forEach(checkbox => {
+    checkbox.addEventListener('change', function() {
+      calculateTotal();
+    });
   });
 });
+
