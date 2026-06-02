@@ -139,7 +139,7 @@
 │   │       ├── lychee_pen.jpg
 │   │       ├── ocean_pen.jpg
 │   │       └── senator_pen.jpg
-│   └── index.ph 
+│   └── index.php
 ├── img
 │   └── lychee_pen.jpg
 ├── index.html
@@ -256,7 +256,7 @@ classDiagram
   class Addon {
     - priceTiers: array
     + setPriceTier(quantity: int, price: int)
-    + getPriceTier() array
+    + getPriceTiers() array
     + render() string
     + getPrice(quantity = null) int
   }
@@ -364,7 +364,7 @@ composer install
 * Запуск всех тестов с автоматической генерацией покрытия (HTML-отчёт в папке `coverage/`):
 
 ```
-vendor/phpunit/phpunit/phpunit
+./vendor/bin/phpunit
 ```
 
 * Обновить карту классов в `vendor/composer/autoload_*.php`

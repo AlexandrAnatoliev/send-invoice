@@ -10,8 +10,6 @@ use sendInvoice\Config;
 /**
  * Sends an HTML email to the recipient via the configured SMTP server.
  *
- * Optional PDF attachment support is prepared but commented out below.
- *
  * @param string $toEmail     Recipient email address
  * @param string $toName      Recipient display name
  * @param string $subject     Email subject
