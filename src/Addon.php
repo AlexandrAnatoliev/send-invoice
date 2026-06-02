@@ -45,12 +45,8 @@ class Addon extends Card
    */
   public function getPrice($quantity = null): int
   {
-    if ($quantity === null || empty($this->priceTiers) ) {
-      return $this->price;
-    }
-
-    if ($quantity === 0) {
-      return 0;
+    if ($quantity === null || $quantity === 0 || empty($this->priceTiers) ) {
+      return $quantity === 0 ? 0 : $this->price;
     }
 
     $tiers = $this->priceTiers;
@@ -59,7 +55,6 @@ class Addon extends Card
     $price = $this->price;
     foreach ($tiers as $tiersQuantity => $priceValue) {
       if ($quantity <= $tiersQuantity) {
-        $price = $priceValue;
         return $priceValue;
       }
       $price = $priceValue;
