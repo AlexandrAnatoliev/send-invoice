@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace sendInvoice;
 
-use JsonSerializable;
-
 /**
  * Addon represents an add-on product card for the order calculator.
  *
@@ -55,18 +53,19 @@ class Addon extends Card
       return 0;
     }
 
-    $price = $this->price;
     $tiers = $this->priceTiers;
     ksort($tiers);
 
+    $price = $this->price;
     foreach ($tiers as $tiersQuantity => $priceValue) {
-      $maxTierPrice = $priceValue;
       if ($quantity <= $tiersQuantity) {
         $price = $priceValue;
-        break;
+        return $priceValue;
       }
+      $price = $priceValue;
     }
-    return $maxTierPrice ?? $price;
+
+    return $price;
   }
 
   /**
