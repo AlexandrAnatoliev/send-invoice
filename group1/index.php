@@ -83,13 +83,13 @@ $_SESSION['addons_session'] = [
   <title>send-invoice: group1</title>
   <link rel="stylesheet" href="../styles/index.css">
 
-  <script>
-    window.addonPrices = <?= json_encode([
-      $addon1->getName() => $addon1,
-      $addon2->getName() => $addon2,
-      $addon3->getName() => $addon3
-    ], JSON_UNESCAPED_UNICODE) ?>;
-  </script>
+<script>
+window.addonPrices = <?= json_encode([
+  $addon1->getName() => $addon1->getPriceTiers(),
+  $addon2->getName() => $addon2->getPriceTiers(),
+  $addon3->getName() => $addon3->getPriceTiers(),
+], JSON_UNESCAPED_UNICODE) ?>;
+</script>
   <script src="/send-invoice/js/calculator.js" defer></script>
 </head>
 <body>
@@ -118,6 +118,10 @@ $_SESSION['addons_session'] = [
       <div class="quantity-block">
         <?= Selector::getCSS() ?>
         <?= $selector->render() ?>
+      </div>
+
+      <div class="total-block">
+        Итого: <span id="totalPrice">0</span> ₽
       </div>
 
       <!-- Customer details -->

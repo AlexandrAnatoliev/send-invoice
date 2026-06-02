@@ -156,7 +156,6 @@ class InvoiceTest extends TestCase
     foreach ($this->invoice->getSelectedAddons() as $addonKey) {
       $this->assertSame('Тестовый товар', $addonKey);
     }
-    $this->assertTrue(true);
     $this->assertSame('Тестовая услуга',
       $this->invoice->getAddons()['Тестовая услуга']->getName());
     $this->assertTrue(isset(

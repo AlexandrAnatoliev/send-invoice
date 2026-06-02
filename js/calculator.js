@@ -20,7 +20,7 @@
 function getAddonPrice(addonKey, quantity) {
   if (!addonPrices[addonKey]) return 0;
 
-  const priceTiers = addonPrices[addonKey].priceTiers;
+  const priceTiers = addonPrices[addonKey];
   if (!priceTiers) return 0;
 
   const circulations = Object.keys(priceTiers)
@@ -61,7 +61,7 @@ function updateAddonPricesDisplay() {
   const qtySelect = document.getElementById('quantity');
   if (!qtySelect) return;
 
-  const qty = Number.parseInt(qtySelect.value) || 50;
+  const qty = Number.parseInt(qtySelect.value) || 0;
 
   const addonCards = document.querySelectorAll('.checkbox-group .card');
 
@@ -81,6 +81,50 @@ function updateAddonPricesDisplay() {
 }
 
 /**
+ * Calculates and displays the total order price.
+ * 
+ * Sums the main item price (unit × quantity) plus all selected add-ons
+ * (tiered unit price × quantity). Updates the #totalPrice element with
+ * the formatted result in Russian locale.
+ * 
+ * @returns {void}
+ * 
+ * @dependency getAddonPrice - For tiered pricing of add-ons
+ * @dependency window.addonPrices - Global add-on pricing data
+ * 
+ * @requires DOM elements:
+ *   - #quantity (select) - Selected quantity
+ *   - #totalPrice (span) - Display target
+ *   - input[name="itemName"]:checked - Selected main item
+ *   - input[name="selectedAddons[]"]:checked - Selected add-ons
+ */
+function calculateTotal() {
+  let total = 0;
+
+  const qtySelect = document.getElementById('quantity');
+  if (!qtySelect) return;
+
+  const qty = Number.parseInt(qtySelect.value) || 0;
+
+  const itemRadio = document.querySelector('input[name="itemName"]:checked');
+  if (itemRadio) {
+    total += (Number.parseFloat(itemRadio.dataset.price) || 0) * qty;
+  }
+
+  const checkedAddons = document.querySelectorAll('input[name="selectedAddons[]"]:checked');
+  checkedAddons.forEach(cb => {
+    const addonKey = cb.value;
+    const unitPrice = getAddonPrice(addonKey, qty);
+    total += unitPrice * qty;
+  });
+
+  const totalSpan = document.getElementById('totalPrice');
+  if (totalSpan) {
+    totalSpan.textContent = new Intl.NumberFormat('ru-RU').format(total);
+  }
+}
+
+/**
  * Initialization script that runs once the DOM is fully loaded.
  *
  * It performs the following:
@@ -88,6 +132,8 @@ function updateAddonPricesDisplay() {
  * - Calls {@link updateAddonPricesDisplay} to set initial add-on prices.
  * - Attaches a 'change' event listener to the quantity selector to
  *   recalculate and update add-on prices whenever the quantity is changed.
+ * - Attaches event listeners to radio buttons and checkboxes to 
+ *   recalculate total.
  *
  * @listens DOMContentLoaded
  * @requires updateAddonPricesDisplay
@@ -97,8 +143,25 @@ document.addEventListener('DOMContentLoaded', function() {
   if (!qtySelect) return;
 
   updateAddonPricesDisplay();
+  calculateTotal();
 
   qtySelect.addEventListener('change', function() {
     updateAddonPricesDisplay();
+    calculateTotal();
+  });
+
+  const itemRadios = document.querySelectorAll('input[name="itemName"]');
+  itemRadios.forEach(radio => {
+    radio.addEventListener('change', function() {
+      calculateTotal();
+    });
+  });
+
+  const addonCheckboxes = document.querySelectorAll('input[name="selectedAddons[]"]');
+  addonCheckboxes.forEach(checkbox => {
+    checkbox.addEventListener('change', function() {
+      calculateTotal();
+    });
   });
 });
+

@@ -111,26 +111,6 @@ class AddonTest extends TestCase
       ], $this->addon->getPriceTiers());
   }
 
-  public function testJsonSerialize(): void
-  {
-    $this->addon->setPriceTier(100, 33);
-    $this->addon->setPriceTier(200, 26);
-    $this->addon->setPriceTier(300, 24);
-    $this->addon->setPriceTier(500, 22);
-    $this->addon->setPriceTier(1000, 20);
-    $this->assertSame(
-      [
-        'name' => 'Тестовый товар',
-        'priceTiers' => [
-          100 => 33,
-          200 => 26,
-          300 => 24,
-          500 => 22,
-          1000 => 20,
-        ]
-      ], $this->addon->jsonSerialize());
-  }
-
   public function testGetPriceWithZeroQuantityReturnsZero(): void
   {
     $this->addon->setPriceTier(100, 46);

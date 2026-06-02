@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace sendInvoice;
 
-use JsonSerializable;
-
 /**
  * Addon represents an add-on product card for the order calculator.
  *
@@ -14,7 +12,7 @@ use JsonSerializable;
  *
  * @package sendInvoice
  */
-class Addon extends Card implements JsonSerializable
+class Addon extends Card
 {
   private array $priceTiers = [];
 
@@ -47,26 +45,22 @@ class Addon extends Card implements JsonSerializable
    */
   public function getPrice($quantity = null): int
   {
-    if ($quantity === null || empty($this->priceTiers) ) {
-      return $this->price;
+    if ($quantity === null || $quantity === 0 || empty($this->priceTiers) ) {
+      return $quantity === 0 ? 0 : $this->price;
     }
 
-    if ($quantity === 0) {
-      return 0;
-    }
-
-    $price = $this->price;
     $tiers = $this->priceTiers;
     ksort($tiers);
 
+    $price = $this->price;
     foreach ($tiers as $tiersQuantity => $priceValue) {
-      $maxTierPrice = $priceValue;
       if ($quantity <= $tiersQuantity) {
-        $price = $priceValue;
-        break;
+        return $priceValue;
       }
+      $price = $priceValue;
     }
-    return $maxTierPrice ?? $price;
+
+    return $price;
   }
 
   /**
@@ -76,7 +70,7 @@ class Addon extends Card implements JsonSerializable
    * (HTML-escaped) attributes for JavaScript consumption. The visible
    * price is formatted with a thousands separator and the Ruble sign.
    *
-   * @return array
+   * @return string
    */
   public function render(): string
   {
@@ -91,21 +85,5 @@ class Addon extends Card implements JsonSerializable
             <span class="title">' . htmlspecialchars($this->getName()) . '</span>
             <span class="price">' . number_format($this->getPrice(), 0, ',', ' ') . ' ₽</span>
           </label>';
-  }
-
-  /**
-   * Specify data which should be serialized to JSON
-   *
-   * Called automatically by json_encode() when encoding instance
-   * of this class.
-   *
-   * @return array
-   */
-  public function jsonSerialize(): array
-  {
-    return [
-      'name'        => $this->getName(),
-      'priceTiers'  => $this->getPriceTiers(),
-    ];
   }
 }
