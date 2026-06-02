@@ -20,7 +20,7 @@
 function getAddonPrice(addonKey, quantity) {
   if (!addonPrices[addonKey]) return 0;
 
-  const priceTiers = addonPrices[addonKey].priceTiers;
+  const priceTiers = addonPrices[addonKey];
   if (!priceTiers) return 0;
 
   const circulations = Object.keys(priceTiers)
