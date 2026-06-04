@@ -120,6 +120,14 @@ window.addonPrices = <?= json_encode([
         <?= $selector->render() ?>
       </div>
 
+      <!-- Selected block -->
+      <div class="selected-items">
+        <h3>📋 Выбрано:</h3>
+        <ul class="selected-list" id="selectedList">
+          <li class="empty-selection">Ничего не выбрано</li>
+        </ul>
+      </div>
+
       <div class="total-block">
         Итого: <span id="totalPrice">0</span> ₽
       </div>
