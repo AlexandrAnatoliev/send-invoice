@@ -126,7 +126,7 @@ function calculateTotal() {
 
 // Обновление списка выбранных позиций с динамическими ценами
 function updateSelectedItems() {
-    const selectedItems = [];
+  const selectedItems = [];
 
   const qtySelect = document.getElementById('quantity');
   if (!qtySelect) return;
@@ -134,36 +134,36 @@ function updateSelectedItems() {
   const qty = Number.parseInt(qtySelect.value) || 0;
 
     // Выбранный тариф
-    const itemRadio = document.querySelector('input[name="itemName"]:checked');
-    if (itemRadio) {
-        selectedItems.push({
-            name: itemRadio.dataset.name,
-            price: parseFloat(itemRadio.dataset.price) || 0
-        });
-    }
+  const itemRadio = document.querySelector('input[name="itemName"]:checked');
+  if (itemRadio) {
+    selectedItems.push({
+      name: itemRadio.dataset.name,
+      price: parseFloat(itemRadio.dataset.price) || 0
+    });
+  }
 
     // Выбранные аддоны
-    const checkedAddons = document.querySelectorAll('input[name="selectedAddons[]"]:checked');
-    checkedAddons.forEach(cb => {
-        const addonKey = cb.value;
-        const price = getAddonPrice(addonKey, qty);
-        selectedItems.push({
-            name: cb.dataset.name,
-            price: price
-        });
+  const checkedAddons = document.querySelectorAll('input[name="selectedAddons[]"]:checked');
+  checkedAddons.forEach(cb => {
+    const addonKey = cb.value;
+    const price = getAddonPrice(addonKey, qty);
+    selectedItems.push({
+      name: cb.dataset.name,
+      price: price
     });
+  });
 
-    const selectedList = document.getElementById('selectedList');
-    if (selectedItems.length === 0) {
-        selectedList.innerHTML = '<li class="empty-selection">Ничего не выбрано</li>';
-    } else {
-        selectedList.innerHTML = selectedItems.map(item =>
-            `<li>
-                <span class="item-name">${item.name}</span>
-                <span class="item-price">${new Intl.NumberFormat('ru-RU').format(item.price)} руб.</span>
-            </li>`
-        ).join('');
-    }
+  const selectedList = document.getElementById('selectedList');
+  if (selectedItems.length === 0) {
+    selectedList.innerHTML = '<li class="empty-selection">Ничего не выбрано</li>';
+  } else {
+    selectedList.innerHTML = selectedItems.map(item =>
+      `<li>
+        <span class="item-name">${item.name}</span>
+        <span class="item-price">${new Intl.NumberFormat('ru-RU').format(item.price * qty)} руб.</span>
+      </li>`
+    ).join('');
+  }
 }
 
 /**
