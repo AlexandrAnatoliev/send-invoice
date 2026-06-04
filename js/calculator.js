@@ -127,7 +127,11 @@ function calculateTotal() {
 // Обновление списка выбранных позиций с динамическими ценами
 function updateSelectedItems() {
     const selectedItems = [];
-    const qty = parseInt(document.getElementById('quantity').value) || 50;
+
+  const qtySelect = document.getElementById('quantity');
+  if (!qtySelect) return;
+
+  const qty = Number.parseInt(qtySelect.value) || 0;
 
     // Выбранный тариф
     const itemRadio = document.querySelector('input[name="itemName"]:checked');
@@ -139,7 +143,7 @@ function updateSelectedItems() {
     }
 
     // Выбранные аддоны
-    const checkedAddons = document.querySelectorAll('input[name="addons[]"]:checked');
+    const checkedAddons = document.querySelectorAll('input[name="selectedAddons[]"]:checked');
     checkedAddons.forEach(cb => {
         const addonKey = cb.value;
         const price = getAddonPrice(addonKey, qty);
