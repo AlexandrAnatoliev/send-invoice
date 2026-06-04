@@ -124,7 +124,35 @@ function calculateTotal() {
   }
 }
 
-// Обновление списка выбранных позиций с динамическими ценами
+/**
+ * Updates the displayed list of selected items (main tariff and add‑ons)
+ * with dynamically calculated prices based on the currently chosen quantity.
+ *
+ * The function reads:
+ * - The quantity from a <select> element with id "quantity".
+ * - The selected tariff from a radio button with name "itemName".
+ * - The selected add‑ons from checkboxes with name "selectedAddons[]".
+ *
+ * Add‑on prices are obtained via the helper `getAddonPrice(addonKey, qty)`,
+ * allowing quantity‑dependent pricing. The total price for each item is
+ * multiplied by the quantity and formatted with `Intl.NumberFormat`.
+ *
+ * The resulting list is rendered into the element with id "selectedList".
+ * If no items are selected, a placeholder message "Ничего не выбрано"
+ * (Nothing selected) is shown instead.
+ *
+ * @function updateSelectedItems
+ * @returns {void}
+ *
+ * @requires {@link getAddonPrice} – a function that returns the price for a given add‑on key and quantity.
+ * @requires DOM elements:
+ *   - `#quantity` – <select> or other input whose `.value` is a numeric quantity.
+ *   - `input[name="itemName"]` – radio buttons for the main tariff, each with
+ *     `data-name` and `data-price` attributes.
+ *   - `input[name="selectedAddons[]"]` – checkboxes for add‑ons, each with
+ *     `value` (add‑on key) and `data-name` attributes.
+ *   - `#selectedList` – container (e.g. <ul>) where the generated <li> items are placed.
+ */
 function updateSelectedItems() {
   const selectedItems = [];
 
@@ -133,7 +161,6 @@ function updateSelectedItems() {
 
   const qty = Number.parseInt(qtySelect.value) || 0;
 
-    // Выбранный тариф
   const itemRadio = document.querySelector('input[name="itemName"]:checked');
   if (itemRadio) {
     selectedItems.push({
@@ -142,7 +169,6 @@ function updateSelectedItems() {
     });
   }
 
-    // Выбранные аддоны
   const checkedAddons = document.querySelectorAll('input[name="selectedAddons[]"]:checked');
   checkedAddons.forEach(cb => {
     const addonKey = cb.value;
