@@ -30,13 +30,11 @@ function getAddonPrice(addonKey, quantity) {
   let price = priceTiers[circulations[0]];
 
   for (const circ of circulations) {
-    if (quantity >= circ) {
-      price = priceTiers[circ];
-    } else {
-      break;
+    if (quantity <= circ) {
+      return priceTiers[circ];
     }
   }
-  return price;
+  return priceTiers[thresholds[thresholds.length - 1]];
 }
 
 /**
