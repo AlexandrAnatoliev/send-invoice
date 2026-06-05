@@ -34,7 +34,7 @@ function getAddonPrice(addonKey, quantity) {
       return priceTiers[circ];
     }
   }
-  return priceTiers[thresholds[thresholds.length - 1]];
+  return priceTiers[circulations[circulations.length - 1]];
 }
 
 /**
