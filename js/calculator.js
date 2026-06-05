@@ -32,7 +32,7 @@ function getAddonPrice(addonKey, quantity) {
       return priceTiers[circ];
     }
   }
-  return priceTiers[circulations[circulations.length - 1]];
+  return priceTiers[circulations.at(-1)];
 }
 
 /**
@@ -161,7 +161,7 @@ function updateSelectedItems() {
   if (itemRadio) {
     selectedItems.push({
       name: itemRadio.dataset.name,
-      price: parseFloat(itemRadio.dataset.price) || 0
+      price: Number.parseFloat(itemRadio.dataset.price) || 0
     });
   }
 
