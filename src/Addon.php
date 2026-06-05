@@ -45,7 +45,7 @@ class Addon extends Card
    */
   public function getPrice($quantity = null): int
   {
-    if ($quantity === null || $quantity === 0 || empty($this->priceTiers) ) {
+    if ($quantity === null || $quantity === 0 || empty($this->priceTiers)) {
       return $quantity === 0 ? 0 : $this->price;
     }
 
