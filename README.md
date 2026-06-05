@@ -3,7 +3,7 @@
   <h1>send-invoice: Калькулятор заказа с генерацией счёта и отправкой на email</h1>
 
   ![Stars](https://img.shields.io/github/stars/AlexandrAnatoliev/send-invoice.svg?style=flat)
-  ![Version 0.21.0](https://img.shields.io/badge/Version-0.21.0-orange.svg)
+  ![Version 0.22.0](https://img.shields.io/badge/Version-0.22.0-orange.svg)
   ![Forks](https://img.shields.io/github/forks/AlexandrAnatoliev/send-invoice.svg?style=flat)
   ![GitHub repo size](https://img.shields.io/github/repo-size/AlexandrAnatoliev/send-invoice)
   
@@ -55,9 +55,9 @@
   * [x] Тиражное ценообразование для дополнительных опций
   * [x] Поле количества (до 1000 шт, выпадающий список)
   * [x] Динамический пересчёт цен и итоговой суммы
-  * [ ] Выделение выбранных опций (цвет, список внизу)
-    * [ ] Блок «Выбрано» с перечнем позиций до поля количества
-  * [ ] Блок «Итого»
+  * [x] Выделение выбранных опций (цвет, список внизу)
+    * [x] Блок «Выбрано» с перечнем позиций
+  * [x] Блок «Итого»
   * [x] Поля: Название организации, Телефон, Email, Количество
   * [ ] Валидация Email и Телефона (на клиенте и сервере)
   * [ ] Выделение незаполненных полей красной рамкой

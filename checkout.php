@@ -13,9 +13,17 @@ use sendInvoice\Config;
 $location = 'Location: index.html';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-  header($location);
-  exit;
+    header($location);
+    exit;
 }
+
+if (!isset($_SESSION['csrf_token'])
+  || !hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'] ?? '')) {
+  http_response_code(403);
+  die('Ошибка безопасности. Попробуйте отправить форму заново.');
+}
+
+unset($_SESSION['csrf_token']);
 
 $sourcePath     = htmlspecialchars($_POST['source_path'] ?? '');
 $customerName   = htmlspecialchars($_POST['customer_name'] ?? '');
@@ -30,34 +38,34 @@ $config = new Config();
 $items = $_SESSION['items_session'] ?? [];
 
 if ($items === []) {
-  header($location);
-  exit;
+    header($location);
+    exit;
 }
 
-$addons = $_SESSION['addons_session'];
+$addons = $_SESSION['addons_session'] ?? [];
 
 $selectedItem = null;
 foreach ($items as $item) {
-  if ($item->getName() === $itemNameKey) {
-    $selectedItem = $item;
-    break;
-  }
+    if ($item->getName() === $itemNameKey) {
+        $selectedItem = $item;
+        break;
+    }
 }
 
 if ($selectedItem === null) {
-  header($location);
-  exit;
+    header($location);
+    exit;
 }
 
 $invoice = new Invoice(
-  'invoice',
-  $config,
-  $customerPhone,
-  $customerName,
-  $selectedItem,
-  $quantity,
-  $selectedAddons,
-  $addons,
+    'invoice',
+    $config,
+    $customerPhone,
+    $customerName,
+    $selectedItem,
+    $quantity,
+    $selectedAddons,
+    $addons,
 );
 
 // Генерация PDF
@@ -69,24 +77,24 @@ $emailContent .= "<p>Наш менеджер свяжется с вами доп
 
 // Send to customer (PDF attachment optional — see utils/mailer.php)
 $resultCustomer = sendEmail(
-  $customerEmail,
-  $customerName,
-  $invoice->getInvoiceNumber(),
-  $emailContent,
-  $config,
-  $pdfContent,
-  $pdfFilename,
+    $customerEmail,
+    $customerName,
+    $invoice->getInvoiceNumber(),
+    $emailContent,
+    $config,
+    $pdfContent,
+    $pdfFilename,
 );
 
 // Send copy to admin
 $resultAdmin = sendEmail(
-  $config->get('ADMIN_EMAIL'),
-  $config->get('ADMIN_NAME'),
-  "Копия: " . $invoice->getInvoiceNumber(),
-  $emailContent,
-  $config,
-  $pdfContent,
-  $pdfFilename,
+    $config->get('ADMIN_EMAIL'),
+    $config->get('ADMIN_NAME'),
+    "Копия: " . $invoice->getInvoiceNumber(),
+    $emailContent,
+    $config,
+    $pdfContent,
+    $pdfFilename,
 );
 ?>
 

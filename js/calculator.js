@@ -27,16 +27,12 @@ function getAddonPrice(addonKey, quantity) {
     .map(Number)
     .sort((a,b) => a - b);
 
-  let price = priceTiers[circulations[0]];
-
   for (const circ of circulations) {
-    if (quantity >= circ) {
-      price = priceTiers[circ];
-    } else {
-      break;
+    if (quantity <= circ) {
+      return priceTiers[circ];
     }
   }
-  return price;
+  return priceTiers[circulations.at(-1)];
 }
 
 /**
@@ -125,6 +121,74 @@ function calculateTotal() {
 }
 
 /**
+ * Updates the displayed list of selected items (main tariff and add‑ons)
+ * with dynamically calculated prices based on the currently chosen quantity.
+ *
+ * The function reads:
+ * - The quantity from a <select> element with id "quantity".
+ * - The selected tariff from a radio button with name "itemName".
+ * - The selected add‑ons from checkboxes with name "selectedAddons[]".
+ *
+ * Add‑on prices are obtained via the helper `getAddonPrice(addonKey, qty)`,
+ * allowing quantity‑dependent pricing. The total price for each item is
+ * multiplied by the quantity and formatted with `Intl.NumberFormat`.
+ *
+ * The resulting list is rendered into the element with id "selectedList".
+ * If no items are selected, a placeholder message "Ничего не выбрано"
+ * (Nothing selected) is shown instead.
+ *
+ * @function updateSelectedItems
+ * @returns {void}
+ *
+ * @requires {@link getAddonPrice} – a function that returns the price for a given add‑on key and quantity.
+ * @requires DOM elements:
+ *   - `#quantity` – <select> or other input whose `.value` is a numeric quantity.
+ *   - `input[name="itemName"]` – radio buttons for the main tariff, each with
+ *     `data-name` and `data-price` attributes.
+ *   - `input[name="selectedAddons[]"]` – checkboxes for add‑ons, each with
+ *     `value` (add‑on key) and `data-name` attributes.
+ *   - `#selectedList` – container (e.g. <ul>) where the generated <li> items are placed.
+ */
+function updateSelectedItems() {
+  const selectedItems = [];
+
+  const qtySelect = document.getElementById('quantity');
+  if (!qtySelect) return;
+
+  const qty = Number.parseInt(qtySelect.value) || 0;
+
+  const itemRadio = document.querySelector('input[name="itemName"]:checked');
+  if (itemRadio) {
+    selectedItems.push({
+      name: itemRadio.dataset.name,
+      price: Number.parseFloat(itemRadio.dataset.price) || 0
+    });
+  }
+
+  const checkedAddons = document.querySelectorAll('input[name="selectedAddons[]"]:checked');
+  checkedAddons.forEach(cb => {
+    const addonKey = cb.value;
+    const price = getAddonPrice(addonKey, qty);
+    selectedItems.push({
+      name: cb.dataset.name,
+      price: price
+    });
+  });
+
+  const selectedList = document.getElementById('selectedList');
+  if (selectedItems.length === 0) {
+    selectedList.innerHTML = '<li class="empty-selection">Ничего не выбрано</li>';
+  } else {
+    selectedList.innerHTML = selectedItems.map(item =>
+      `<li>
+        <span class="item-name">${item.name}</span>
+        <span class="item-price">${new Intl.NumberFormat('ru-RU').format(item.price * qty)} руб.</span>
+      </li>`
+    ).join('');
+  }
+}
+
+/**
  * Initialization script that runs once the DOM is fully loaded.
  *
  * It performs the following:
@@ -144,16 +208,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
   updateAddonPricesDisplay();
   calculateTotal();
+  updateSelectedItems();
 
   qtySelect.addEventListener('change', function() {
     updateAddonPricesDisplay();
     calculateTotal();
+    updateSelectedItems();
   });
 
   const itemRadios = document.querySelectorAll('input[name="itemName"]');
   itemRadios.forEach(radio => {
     radio.addEventListener('change', function() {
       calculateTotal();
+      updateSelectedItems();
     });
   });
 
@@ -161,6 +228,7 @@ document.addEventListener('DOMContentLoaded', function() {
   addonCheckboxes.forEach(checkbox => {
     checkbox.addEventListener('change', function() {
       calculateTotal();
+      updateSelectedItems();
     });
   });
 });

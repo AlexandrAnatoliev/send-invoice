@@ -29,7 +29,7 @@ class Invoice extends FormElement
    * @param $selectedItem   Selected item
    * @param $quantity       Quantity of items
    * @param $selectedAddons Selected addon names
-   * @param $addons         Array <string, Addon>
+   * @param $addons         Array<string, Addon>
    */
   public function __construct(
     string $name,
