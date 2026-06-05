@@ -42,7 +42,7 @@ if ($items === []) {
     exit;
 }
 
-$addons = $_SESSION['addons_session'];
+$addons = $_SESSION['addons_session'] ?? [];
 
 $selectedItem = null;
 foreach ($items as $item) {
