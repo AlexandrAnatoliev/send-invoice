@@ -27,8 +27,6 @@ function getAddonPrice(addonKey, quantity) {
     .map(Number)
     .sort((a,b) => a - b);
 
-  let price = priceTiers[circulations[0]];
-
   for (const circ of circulations) {
     if (quantity <= circ) {
       return priceTiers[circ];
