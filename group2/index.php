@@ -74,6 +74,7 @@ $_SESSION['addons_session'] = [
   $addon2->getName() => $addon2,
   $addon3->getName() => $addon3,
 ];
+$_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 ?>
 
 <!DOCTYPE html>
@@ -141,6 +142,8 @@ window.addonPrices = <?= json_encode([
       <!-- Source group path for checkout “back” link -->
       <input type="hidden" name="source_path"
         value="<?= htmlspecialchars($_SERVER['SCRIPT_NAME']) ?>">
+
+      <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
 
       <button type="submit">Заказать и получить счёт на оплату на email</button>
     </form>

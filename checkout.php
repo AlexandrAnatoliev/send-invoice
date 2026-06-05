@@ -17,6 +17,14 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
+if (!isset($_SESSION['csrf_token'])
+  || !hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'] ?? '')) {
+  http_response_code(403);
+  die('Ошибка безопасности. Попробуйте отправить форму заново.');
+}
+
+unset($_SESSION['csrf_token']);
+
 $sourcePath     = htmlspecialchars($_POST['source_path'] ?? '');
 $customerName   = htmlspecialchars($_POST['customer_name'] ?? '');
 $customerPhone  = htmlspecialchars($_POST['customer_phone'] ?? '');
