@@ -3,8 +3,9 @@
  *
  * The price is determined by the add-on's tiered pricing structure 
  * (`priceTiers`). It iterates over sorted circulation thresholds 
- * and returns the price for the highest circulation that does not 
- * exceed the requested quantity.
+ * and returns the price for the tier whose threshold is the 
+ * smallest that is greater than or equal to the requested quantity.
+ * If the quantity exceeds all tiers, returns the lowest price.
  *
  * @param {string} addonKey - The unique key of the add-on 
  *        (matches the name used in `addonPrices`).
