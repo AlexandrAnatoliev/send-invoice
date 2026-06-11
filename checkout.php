@@ -26,6 +26,28 @@ if (!isset($_SESSION['csrf_token'])
 unset($_SESSION['csrf_token']);
 
 $sourcePath     = htmlspecialchars($_POST['source_path'] ?? '');
+
+// Белый список разрешённых путей
+$allowedPaths = [
+    '/send-invoice/index.html',
+    '/send-invoice/group1/',
+    '/send-invoice/group2/',
+    '/send-invoice/group1/index.php',
+    '/send-invoice/group2/index.php',
+];
+
+// Если переданный путь не в белом списке – используем безопасное значение по умолчанию
+if (!in_array($sourcePath, $allowedPaths, true)) {
+    $sourcePath = '/send-invoice/index.html';
+}
+
+$customerName = htmlspecialchars($_POST['customer_name'] ?? '');
+
+if (empty(trim($customerName))) {
+    $_SESSION['error'] = 'Укажите наименование организации.';
+    header('Location: ' . $sourcePath);
+    exit;
+}
 $customerName   = htmlspecialchars($_POST['customer_name'] ?? '');
 
 if (empty(trim($customerName))) {
