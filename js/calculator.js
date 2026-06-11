@@ -236,7 +236,7 @@ document.addEventListener('DOMContentLoaded', function() {
 const form = document.getElementById('orderForm');
 
 form.addEventListener('submit', function(e) {
-    // --- Валидация Email ---
+    // Email validation
     const emailInput = form.querySelector('input[name="customer_email"]');
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailPattern.test(emailInput.value.trim())) {
@@ -248,7 +248,7 @@ form.addEventListener('submit', function(e) {
     }
     emailInput.classList.remove('error');
 
-    // --- Валидация Телефона ---
+    // Phone number validation
     const phoneInput = form.querySelector('input[name="customer_phone"]');
     const phoneDigits = phoneInput.value.replace(/\D/g, '');
     if (phoneDigits.length < 10) {

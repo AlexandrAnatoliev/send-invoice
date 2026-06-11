@@ -31,7 +31,9 @@ $customerPhone  = htmlspecialchars($_POST['customer_phone'] ?? '');
 $itemNameKey    = htmlspecialchars($_POST['itemName'] ?? '');
 $quantity       = (int) ($_POST['quantity'] ?? '');
 $selectedAddons = $_POST['selectedAddons'] ?? [];
-$customerEmail  = htmlspecialchars($_POST['customer_email'] ?? '');
+//$customerEmail  = htmlspecialchars($_POST['customer_email'] ?? '');
+$email  = filter_input(INPUT_POST, 'customer_email', FILTER_VALIDATE_EMAIL);
+$customerEmail  = $email ? htmlspecialchars($email) : '';
 
 $config = new Config();
 
