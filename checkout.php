@@ -10,10 +10,10 @@ require_once __DIR__ . '/utils/generatePDF.php';
 use sendInvoice\Invoice;
 use sendInvoice\Config;
 
-$location = 'Location: index.html';
+define('REDIRECT_HEADER', 'Location: ');
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header($location);
+    header(REDIRECT_HEADER);
     exit;
 }
 
@@ -26,19 +26,64 @@ if (!isset($_SESSION['csrf_token'])
 unset($_SESSION['csrf_token']);
 
 $sourcePath     = htmlspecialchars($_POST['source_path'] ?? '');
+
+// Белый список разрешённых путей
+$allowedPaths = [
+    '/send-invoice/index.html',
+    '/send-invoice/group1/',
+    '/send-invoice/group2/',
+    '/send-invoice/group1/index.php',
+    '/send-invoice/group2/index.php',
+];
+
+// Если переданный путь не в белом списке – используем безопасное значение по умолчанию
+if (!in_array($sourcePath, $allowedPaths, true)) {
+    $sourcePath = '/send-invoice/index.html';
+}
+
+$customerName = htmlspecialchars($_POST['customer_name'] ?? '');
+
+if (empty(trim($customerName))) {
+    $_SESSION['error'] = 'Укажите наименование организации.';
+    header('Location: ' . $sourcePath);
+    exit;
+}
 $customerName   = htmlspecialchars($_POST['customer_name'] ?? '');
+
+if (empty(trim($customerName))) {
+    $_SESSION['error'] = 'Укажите наименование организации.';
+    header('Location: ' . $sourcePath);
+    exit;
+}
+
 $customerPhone  = htmlspecialchars($_POST['customer_phone'] ?? '');
+
+$phoneDigits = preg_replace('/\D/', '', $customerPhone);
+if (strlen($phoneDigits) < 10) {
+    $_SESSION['error'] = 'Номер телефона должен содержать не менее 10 цифр.';
+    header('Location: ' . $sourcePath);
+    exit;
+}
+
 $itemNameKey    = htmlspecialchars($_POST['itemName'] ?? '');
 $quantity       = (int) ($_POST['quantity'] ?? '');
 $selectedAddons = $_POST['selectedAddons'] ?? [];
-$customerEmail  = htmlspecialchars($_POST['customer_email'] ?? '');
+$email  = filter_input(INPUT_POST, 'customer_email', FILTER_VALIDATE_EMAIL);
+
+if (!$email) {
+    $_SESSION['error'] = 'Укажите корректный Email адрес.';
+    header('Location: ' . $sourcePath);
+    exit;
+}
+
+$customerEmail  = $email ? htmlspecialchars($email) : '';
 
 $config = new Config();
 
 $items = $_SESSION['items_session'] ?? [];
 
 if ($items === []) {
-    header($location);
+    header(REDIRECT_HEADER);
     exit;
 }
 
@@ -53,7 +98,7 @@ foreach ($items as $item) {
 }
 
 if ($selectedItem === null) {
-    header($location);
+    header(REDIRECT_HEADER);
     exit;
 }
 

@@ -3,8 +3,9 @@
  *
  * The price is determined by the add-on's tiered pricing structure 
  * (`priceTiers`). It iterates over sorted circulation thresholds 
- * and returns the price for the highest circulation that does not 
- * exceed the requested quantity.
+ * and returns the price for the tier whose threshold is the 
+ * smallest that is greater than or equal to the requested quantity.
+ * If the quantity exceeds all tiers, returns the lowest price.
  *
  * @param {string} addonKey - The unique key of the add-on 
  *        (matches the name used in `addonPrices`).
@@ -231,5 +232,33 @@ document.addEventListener('DOMContentLoaded', function() {
       updateSelectedItems();
     });
   });
+});
+
+const form = document.getElementById('orderForm');
+
+form.addEventListener('submit', function(e) {
+    // Email validation
+    const emailInput = form.querySelector('input[name="customer_email"]');
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(emailInput.value.trim())) {
+        e.preventDefault();
+        emailInput.classList.add('error');
+        alert('Введите корректный Email адрес.');
+        emailInput.focus();
+        return false;
+    }
+    emailInput.classList.remove('error');
+
+    // Phone number validation
+    const phoneInput = form.querySelector('input[name="customer_phone"]');
+    const phoneDigits = phoneInput.value.replace(/\D/g, '');
+    if (phoneDigits.length < 10) {
+        e.preventDefault();
+        phoneInput.classList.add('error');
+        alert('Номер телефона должен содержать не менее 10 цифр.');
+        phoneInput.focus();
+        return false;
+    }
+    phoneInput.classList.remove('error');
 });
 
