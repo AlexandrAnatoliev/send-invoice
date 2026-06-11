@@ -249,8 +249,6 @@ class Invoice extends FormElement
    */
   public function renderItemsTable(): string
   {
-    $this->getItem();
-
     $itemsTable = '
   <table class="items-table">
     <thead>
