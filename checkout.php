@@ -27,7 +27,22 @@ unset($_SESSION['csrf_token']);
 
 $sourcePath     = htmlspecialchars($_POST['source_path'] ?? '');
 $customerName   = htmlspecialchars($_POST['customer_name'] ?? '');
+
+if (empty(trim($customerName))) {
+    $_SESSION['error'] = 'Укажите наименование организации.';
+    header('Location: ' . $sourcePath);
+    exit;
+}
+
 $customerPhone  = htmlspecialchars($_POST['customer_phone'] ?? '');
+
+$phoneDigits = preg_replace('/\D/', '', $customerPhone);
+if (strlen($phoneDigits) < 10) {
+    $_SESSION['error'] = 'Номер телефона должен содержать не менее 10 цифр.';
+    header('Location: ' . $sourcePath);
+    exit;
+}
+
 $itemNameKey    = htmlspecialchars($_POST['itemName'] ?? '');
 $quantity       = (int) ($_POST['quantity'] ?? '');
 $selectedAddons = $_POST['selectedAddons'] ?? [];
