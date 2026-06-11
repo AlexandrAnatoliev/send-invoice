@@ -10,10 +10,10 @@ require_once __DIR__ . '/utils/generatePDF.php';
 use sendInvoice\Invoice;
 use sendInvoice\Config;
 
-$location = 'Location: index.html';
+define('REDIRECT_HEADER', 'Location: ');
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header($location);
+    header(REDIRECT_HEADER);
     exit;
 }
 
@@ -83,7 +83,7 @@ $config = new Config();
 $items = $_SESSION['items_session'] ?? [];
 
 if ($items === []) {
-    header($location);
+    header(REDIRECT_HEADER);
     exit;
 }
 
@@ -98,7 +98,7 @@ foreach ($items as $item) {
 }
 
 if ($selectedItem === null) {
-    header($location);
+    header(REDIRECT_HEADER);
     exit;
 }
 
