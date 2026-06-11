@@ -91,7 +91,7 @@ window.addonPrices = <?= json_encode([
   $addon3->getName() => $addon3->getPriceTiers(),
 ], JSON_UNESCAPED_UNICODE) ?>;
 </script>
-  <script src="/send-invoice/js/calculator.js" defer></script>
+  <script src="../js/calculator.js" defer></script>
 </head>
 <body>
   <div class="calculator">
