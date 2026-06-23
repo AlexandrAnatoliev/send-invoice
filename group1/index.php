@@ -106,6 +106,11 @@ window.addonPrices = <?= json_encode([
         <?= $item3->render() ?>
       </div>
 
+      <!-- Предупреждение: нанесение без сувенира -->
+      <div id="souvenirWarning" class="warning-box">
+        ⚠️ Сначала выберите сувенир
+      </div>
+
       <!-- Add-ons (checkboxes) -->
       <h2>2. Выберите нанесение</h2>
       <div class="checkbox-group">
