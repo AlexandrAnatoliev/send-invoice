@@ -3,7 +3,7 @@
   <h1>send-invoice: Калькулятор заказа с генерацией счёта и отправкой на email</h1>
 
   ![Stars](https://img.shields.io/github/stars/AlexandrAnatoliev/send-invoice.svg?style=flat)
-  ![Version 0.23.0](https://img.shields.io/badge/Version-0.23.0-orange.svg)
+  ![Version 0.24.0](https://img.shields.io/badge/Version-0.24.0-orange.svg)
   ![Forks](https://img.shields.io/github/forks/AlexandrAnatoliev/send-invoice.svg?style=flat)
   ![GitHub repo size](https://img.shields.io/github/repo-size/AlexandrAnatoliev/send-invoice)
   
@@ -60,7 +60,7 @@
   * [x] Блок «Итого»
   * [x] Поля: Название организации, Телефон, Email, Количество
   * [x] Валидация Email и Телефона (на клиенте и сервере)
-  * [ ] Выделение незаполненных полей красной рамкой
+  * [x] Выделение незаполненных полей красной рамкой (вывод предупреждания)
   * [x] Кнопка отправки заказа
   * [x] Кнопка return to index.html
   * [ ] Математическая CAPTCHA
