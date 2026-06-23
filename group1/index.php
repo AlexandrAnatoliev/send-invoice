@@ -106,7 +106,7 @@ window.addonPrices = <?= json_encode([
         <?= $item3->render() ?>
       </div>
 
-      <!-- Предупреждение: нанесение без сувенира -->
+      <!-- Warning: application without a souvenir -->
       <div id="souvenirWarning" class="warning-box">
         ⚠️ Сначала выберите сувенир
       </div>
@@ -124,6 +124,11 @@ window.addonPrices = <?= json_encode([
       <div class="quantity-block">
         <?= Selector::getCSS() ?>
         <?= $selector->render() ?>
+      </div>
+
+      <!-- Warning: apply without quantity -->
+      <div id="quantityWarning" class="warning-box">
+        ⚠️ Выберите количество! Цена нанесения зависит от количества.
       </div>
 
       <!-- Selected block -->

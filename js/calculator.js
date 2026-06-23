@@ -189,6 +189,14 @@ function updateSelectedItems() {
   }
 }
 
+function updateQuantityWarning() {
+    const qty = parseInt(document.getElementById('quantity').value) || 0;
+    const hasAddons = document.querySelectorAll('input[name="selectedAddons[]"]:checked').length > 0;
+    const warning = document.getElementById('quantityWarning');
+    if (warning) {
+        warning.style.display = (hasAddons && qty === 0) ? 'block' : 'none';
+    }
+}
 /**
  * Initialization script that runs once the DOM is fully loaded.
  *
@@ -210,11 +218,13 @@ document.addEventListener('DOMContentLoaded', function() {
   updateAddonPricesDisplay();
   calculateTotal();
   updateSelectedItems();
+  updateQuantityWarning();
 
   qtySelect.addEventListener('change', function() {
     updateAddonPricesDisplay();
     calculateTotal();
     updateSelectedItems();
+    updateQuantityWarning();
   });
 
   const itemRadios = document.querySelectorAll('input[name="itemName"]');
@@ -222,6 +232,7 @@ document.addEventListener('DOMContentLoaded', function() {
     radio.addEventListener('change', function() {
       calculateTotal();
       updateSelectedItems();
+      updateQuantityWarning();
     });
   });
 
@@ -230,6 +241,7 @@ document.addEventListener('DOMContentLoaded', function() {
     checkbox.addEventListener('change', function() {
       calculateTotal();
       updateSelectedItems();
+      updateQuantityWarning();
     });
   });
 });
