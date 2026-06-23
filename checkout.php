@@ -67,6 +67,11 @@ if (strlen($phoneDigits) < 10) {
 
 $itemNameKey    = htmlspecialchars($_POST['itemName'] ?? '');
 $quantity       = (int) ($_POST['quantity'] ?? '');
+if ($quantity < 0) {
+    $_SESSION['error'] = 'Выберите корректное количество.';
+    header('Location: ' . $sourcePath);
+    exit;
+}
 $selectedAddons = $_POST['selectedAddons'] ?? [];
 $email  = filter_input(INPUT_POST, 'customer_email', FILTER_VALIDATE_EMAIL);
 
