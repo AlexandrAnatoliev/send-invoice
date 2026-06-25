@@ -145,9 +145,9 @@ window.addonPrices = <?= json_encode([
 
       <!-- Customer details -->
       <h2>4. Ваши данные для получения счёта на оплату на почту</h2>
-      <input type="text" name="customer_name" placeholder="Наименование организации для счёта" required>
-      <input type="email" name="customer_email" placeholder="Email для отправки счета" required>
-      <input type="tel" name="customer_phone" placeholder="Телефон контакта" required>
+      <input type="text" name="customer_name" id="customer_name" placeholder="Наименование организации для счёта" required>
+      <input type="email" name="customer_email" id="customer_email" placeholder="Email для отправки счета" required>
+      <input type="tel" name="customer_phone" id="customer_phone" placeholder="Телефон контакта" required>
 
       <!-- Source group path for checkout “back” link -->
       <input type="hidden" name="source_path"
