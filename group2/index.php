@@ -106,6 +106,11 @@ window.addonPrices = <?= json_encode([
         <?= $item3->render() ?>
       </div>
 
+      <!-- Warning: application without a souvenir -->
+      <div id="souvenirWarning" class="warning-box">
+        ⚠️ Сначала выберите сувенир
+      </div>
+
       <!-- Add-ons (checkboxes) -->
       <h2>2. Выберите нанесение</h2>
       <div class="checkbox-group">
@@ -119,6 +124,11 @@ window.addonPrices = <?= json_encode([
       <div class="quantity-block">
         <?= Selector::getCSS() ?>
         <?= $selector->render() ?>
+      </div>
+
+      <!-- Warning: apply without quantity -->
+      <div id="quantityWarning" class="warning-box">
+        ⚠️ Выберите количество! Цена нанесения зависит от количества.
       </div>
 
       <!-- Selected block -->
@@ -135,9 +145,12 @@ window.addonPrices = <?= json_encode([
 
       <!-- Customer details -->
       <h2>4. Ваши данные для получения счёта на оплату на почту</h2>
-      <input type="text" name="customer_name" placeholder="Наименование организации для счёта" required>
-      <input type="email" name="customer_email" placeholder="Email для отправки счета" required>
-      <input type="tel" name="customer_phone" placeholder="Телефон контакта" required>
+      <label for="customer_name" class="visually-hidden">Наименование организации для счёта</label>
+      <input type="text" name="customer_name" id="customer_name" placeholder="Наименование организации для счёта" required>
+      <label for="customer_email" class="visually-hidden">Email для отправки счета</label>
+      <input type="email" name="customer_email" id="customer_email" placeholder="Email для отправки счета" required>
+      <label for="customer_phone" class="visually-hidden">Телефон контакта</label>
+      <input type="tel" name="customer_phone" id="customer_phone" placeholder="Телефон контакта" required>
 
       <!-- Source group path for checkout “back” link -->
       <input type="hidden" name="source_path"
