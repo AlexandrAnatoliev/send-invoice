@@ -60,7 +60,7 @@
   * [x] Блок «Итого»
   * [x] Поля: Название организации, Телефон, Email, Количество
   * [x] Валидация Email и Телефона (на клиенте и сервере)
-  * [x] Выделение незаполненных полей красной рамкой (вывод предупреждания)
+  * [x] Выделение незаполненных полей красной рамкой (вывод предупреждения)
   * [x] Кнопка отправки заказа
   * [x] Кнопка return to index.html
   * [ ] Математическая CAPTCHA
@@ -245,7 +245,7 @@ classDiagram
     # price: int
     # image: string
     + Card(name: string, price: int, image: string)
-    + getPrice(quantity: int = null) int
+    + getPrice(quantity: ?int) int
     + getImage() string
   }
 
