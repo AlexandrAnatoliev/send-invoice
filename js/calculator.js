@@ -203,7 +203,7 @@ function updateSelectedItems() {
  *   - `input[name="selectedAddons[]"]` – checkboxes for add‑ons, each with
  */
 function updateQuantityWarning() {
-    const qty = parseInt(document.getElementById('quantity').value) || 0;
+    const qty = Number.parseInt(document.getElementById('quantity').value) || 0;
     const hasAddons = document.querySelectorAll('input[name="selectedAddons[]"]:checked').length > 0;
     const warning = document.getElementById('quantityWarning');
     if (warning) {
